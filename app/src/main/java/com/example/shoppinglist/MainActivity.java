@@ -18,13 +18,13 @@ import model.ShoppingListException;
 public class MainActivity extends AppCompatActivity {
 
     //---- Atributos ----
-    private SQLiteDatabase bd;
+    private TextView title;
 
     //---- Metodos ----
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        title= findViewById(R.id.textViewTitle);
     }
 }

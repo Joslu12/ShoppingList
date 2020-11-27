@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Un objeto de la clase ListaCompraInventario tiene el mismo comportamiento que una ListaCompra. Aunque además
- * almacena una referencia al inventario que la generó para poder modificar sus datos tras finalizar una compra
+ * Un objeto de la clase ListaCompraInventario tiene el mismo comportamiento que una ListaCompra. Aunque ademas
+ * almacena una referencia al inventario que la genera para poder modificar sus datos tras finalizar una compra
  *
  */
 
@@ -39,8 +39,8 @@ public class ListaCompraInventario extends ListaCompra {
 	
 	//---- Metodos ----
 	/**
-	 * Redefine el método finalizarResumen de la clase padre. En este caso cuando se finaliza el resumen, independientemente 
-	 * de la operacion especificada siempre se descartará la lista tras haber actualizado las unidades del inventario.
+	 * Redefine el mï¿½todo finalizarResumen de la clase padre. En este caso cuando se finaliza el resumen, independientemente 
+	 * de la operacion especificada siempre se descartarï¿½ la lista tras haber actualizado las unidades del inventario.
 	 * Que se descarte implica que se debe eliminar
 	 */
 	@Override

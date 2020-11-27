@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * La clase Inventario ofrece el comportamiento de un inventario llevando un listado de ProductoInventario
- * permitiendo editar las unidades restantes de estos as/í como generar una lista de la compra
+ * permitiendo editar las unidades restantes de estos asi como generar una lista de la compra
  *
  */
 public class Inventario extends ListadoProductosClass<ProductoInventario> {
@@ -51,7 +51,7 @@ public class Inventario extends ListadoProductosClass<ProductoInventario> {
 	}
 	
 	/**
-	 * Las unidades actuales del producto pasarán a ser igual a las unidades objetivo
+	 * Las unidades actuales del producto pasaran a ser igual a las unidades objetivo
 	 * @param p Producto al que completar las unidades
 	 * @throws ShoppingListException 
 	 */

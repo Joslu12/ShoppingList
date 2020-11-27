@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingList">
         <activity
+            android:name=".StockListActivity"
+            android:label="@string/title_activity_stock_list"
+            android:theme="@style/Theme.ShoppingList.NoActionBar"></activity>
+        <activity
             android:name=".TestActivity"
             android:label="@string/title_activity_test"
-            android:theme="@style/Theme.ShoppingList.NoActionBar">
-        </activity>
-
+            android:theme="@style/Theme.ShoppingList.NoActionBar"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
