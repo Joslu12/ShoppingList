@@ -26,20 +26,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bd = BaseDatosUtils.getWritableDatabaseConnection(getApplicationContext());
-
-        ProductoDao productoDao = new ProductoDao(bd);
-        for(int i = 1; i < 10; ++i) {
-            try {
-                productoDao.insert(new Producto("Pipas del Indio" + i, i));
-            } catch (ShoppingListException e) {
-                e.printStackTrace();
-            }
-        }
-
-        TextView t = (TextView) findViewById (R.id.textView);
-
-        //Producto p = productoDao.findById(3);
-        //productoDao.remove(p);
     }
 }
