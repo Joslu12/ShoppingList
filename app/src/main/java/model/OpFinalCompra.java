@@ -1,7 +1,7 @@
 package model;
 
 /**
- * El tipo enumerado OpFinalCompra permitirá modelar el comportamiento del 
+ * El tipo enumerado OpFinalCompra permitira modelar el comportamiento del
  * sistema cuando se da por finaliazada una compra
  */
 public enum OpFinalCompra {

@@ -11,7 +11,8 @@ import java.util.List;
 public class Inventario extends ListadoProductosClass<ProductoInventario> {
 
 	//---- Atributos ----
-	
+	private int idListaAsociada;
+
 	//---- Constructor ----
 	/**
 	 * Devuelve un nuevo Inventario con 0 productos
@@ -19,6 +20,7 @@ public class Inventario extends ListadoProductosClass<ProductoInventario> {
 	 */
 	public Inventario(final String nombre) {
 		super(-1,nombre);
+		idListaAsociada = -1;
 	}
 	
 	/**
@@ -28,10 +30,30 @@ public class Inventario extends ListadoProductosClass<ProductoInventario> {
 	 * @param lista de productos 
 	 */
 	public Inventario(final int id, final String nombre, final List<ProductoInventario> lista) {
+		this(id,nombre,lista,-1);
+	}
+
+	/**
+	 * Devuelve un nuevo Inventario con los productos especificados como argumentos
+	 * @param id del inventario
+	 * @param nombre del inventario
+	 * @param lista de productos
+	 * @param idListaAsociada id de la lista asociada
+	 */
+	public Inventario(final int id, final String nombre, final List<ProductoInventario> lista, final int idListaAsociada) {
 		super(id,nombre,lista);
+		this.idListaAsociada = idListaAsociada;
 	}
 	
 	//---- Metodos ----
+	public int getIdListaAsociada() {
+		return idListaAsociada;
+	}
+
+	public void setIdListaAsociada(final int id) {
+		idListaAsociada = id;
+	}
+
 	/**
 	 * Incrementa en 1 las unidades del producto p si es posible
 	 * @param p Producto al que incrementar las unidades

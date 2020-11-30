@@ -3,18 +3,24 @@ package com.example.shoppinglist;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 import bd.BaseDatosUtils;
+import bd.dao.InventarioDao;
+import bd.dao.ListaCompraDao;
+import bd.dao.ListaCompraInventarioDao;
 import bd.dao.ProductoDao;
+import bd.dao.ProductoInventarioDao;
+import bd.dao.ProductoTableDao;
+import model.Inventario;
+import model.ListaCompra;
+import model.ListaCompraInventario;
 import model.Producto;
+import model.ProductoInventario;
 import model.ShoppingListException;
 
 public class TestActivity extends AppCompatActivity {
@@ -30,16 +36,31 @@ public class TestActivity extends AppCompatActivity {
 
         bd = BaseDatosUtils.getWritableDatabaseConnection(getApplicationContext());
 
-        ProductoDao productoDao = new ProductoDao(bd);
-        for(int i = 1; i < 10; ++i) {
+        InventarioDao dao = new InventarioDao(bd);
+        int id = 5;
+        List<Inventario> inventarios = dao.findAll();
+
+        for(Inventario inv : inventarios) {
+            System.out.println("---------------- id: " + inv.getID());
+        }
+
+        /*Inventario inventario = new Inventario("Piscina");
+        for(int i = 0; i<5; ++i) {
             try {
-                productoDao.insert(new Producto("Pipas del Indio" + i, i));
+                ProductoInventario p = new ProductoInventario("Manguitos " + i, 4, i );
+                inventario.addProducto(p);
             } catch (ShoppingListException e) {
                 e.printStackTrace();
             }
         }
 
-        TextView t = (TextView) findViewById (R.id.textView);
+        dao.insert(inventario);
+
+        ListaCompraInventarioDao dao2 = new ListaCompraInventarioDao(bd);
+
+        inventario.setIdListaAsociada(dao2.insert(inventario.generarListaCompra()));
+
+        dao.update(inventario);*/
 
         //Producto p = productoDao.findById(3);
         //productoDao.remove(p);

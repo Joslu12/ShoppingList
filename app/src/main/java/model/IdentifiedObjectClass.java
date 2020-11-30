@@ -3,7 +3,7 @@ package model;
 public abstract class IdentifiedObjectClass {
 
     //---- Atributos ----
-    private final int id;
+    private int id;
 
     //---- Constructor ----
     public IdentifiedObjectClass(final int id) {
@@ -16,5 +16,12 @@ public abstract class IdentifiedObjectClass {
      */
     public int getID() {
         return id;
+    }
+
+    /**
+     * @param id nuevo identificador del objeto
+     */
+    public void setID(final int id) {
+        this.id = id;
     }
 }

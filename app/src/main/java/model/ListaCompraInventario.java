@@ -38,9 +38,12 @@ public class ListaCompraInventario extends ListaCompra {
 	}
 	
 	//---- Metodos ----
+	public int getIDInventarioAsociado() {
+		return inventarioAsociado.getID();
+	}
 	/**
-	 * Redefine el m�todo finalizarResumen de la clase padre. En este caso cuando se finaliza el resumen, independientemente 
-	 * de la operacion especificada siempre se descartar� la lista tras haber actualizado las unidades del inventario.
+	 * Redefine el metodo finalizarResumen de la clase padre. En este caso cuando se finaliza el resumen, independientemente
+	 * de la operacion especificada siempre se descartara la lista tras haber actualizado las unidades del inventario.
 	 * Que se descarte implica que se debe eliminar
 	 */
 	@Override

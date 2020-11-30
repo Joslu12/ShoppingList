@@ -64,7 +64,7 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * Permite indicar que un producto ya se ha comprado
 	 * @param p Producto a marcar como comprado
 	 * @return true si el Producto p pertenece a la lista de objetos que aun no se han marcado
-	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se está en un estado de
+	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se esta en un estado de
 	 * compra
 	 */
 	public boolean marcarProducto(final Producto p) throws ShoppingListException {
@@ -83,7 +83,7 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * Permite indicar que un producto se ha desmarcado
 	 * @param p Producto a desmarcar
 	 * @return true si el Producto p pertenece a la lista de objetos que ya se han comprado
-	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se está en un estado de
+	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se esta en un estado de
 	 * compra
 	 */
 	public boolean desmarcarProducto(final Producto p) throws ShoppingListException {
@@ -99,7 +99,7 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	}
 	
 	/**
-	 * Se pasa al sistema a un estado seguro indicando que no se está comprando
+	 * Se pasa al sistema a un estado seguro indicando que no se esta comprando
 	 */
 	public void finalizarCompra() {
 		comprando = false;
@@ -128,7 +128,7 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * 		- GENERAR_LISTA_RESTANTES: devuelve una nueva lista con los productos que han faltado por comprar
 	 * @param operacion a realizar
 	 * @return ListaCompra segun la operacion indicada
-	 * @throws ShoppingListException en el caso de que la compra esté activa
+	 * @throws ShoppingListException en el caso de que la compra este activa
 	 */
 	public ListaCompra finalizarResumen(final OpFinalCompra operacion) throws ShoppingListException {
 		if(comprando) {

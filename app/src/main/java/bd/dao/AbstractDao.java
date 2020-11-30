@@ -39,6 +39,7 @@ public abstract class AbstractDao<T extends IdentifiedObjectClass> {
     public abstract List<T> findAll();
 
     /**
+     * El propio metodo actualiza el estado de elem, editando su id
      * @param elem
      * @return el id generado del elemento añadido o -1 si ocurre algún error
      */

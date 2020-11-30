@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * La clase abstracta ListadoProductosClass modela el comportamiento de un objeto que almacena un listado de productos. Implementando
- * las operaciones add y remove, así como un iterador.
+ * las operaciones add y remove, asi como un iterador.
  *
  * @param <E> representa una clase que hereda de la clase Producto
  */
@@ -19,7 +19,7 @@ public abstract class ListadoProductosClass<E extends Producto> extends Identifi
 	
 	//---- Constructor ----
 	/**
-	 * Devuelve una instancia con un objeto donde la lista de productos está vacía
+	 * Devuelve una instancia con un objeto donde la lista de productos estï¿½ vacï¿½a
 	 * @param id del objeto
 	 * @param nombre del objeto
 	 */
@@ -70,9 +70,9 @@ public abstract class ListadoProductosClass<E extends Producto> extends Identifi
 	
 	@SuppressWarnings("unchecked")
 	/**
-	 * Añade al listado de productos una copia del Producto p recibido como argumento solo si la lista no contiene
+	 * Aï¿½ade al listado de productos una copia del Producto p recibido como argumento solo si la lista no contiene
 	 * algun producto con el mismo nombre
-	 * @param p Producto añadir
+	 * @param p Producto aï¿½adir
 	 */
 	public boolean addProducto(final E p) {
 		try {

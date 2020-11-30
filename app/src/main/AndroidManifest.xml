@@ -9,21 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingList">
-        <activity
-            android:name=".StockListActivity"
-            android:label="@string/title_activity_stock_list"
-            android:theme="@style/Theme.ShoppingList.NoActionBar"></activity>
+
+        <!-- DELETE LATER  -->
         <activity
             android:name=".TestActivity"
             android:label="@string/title_activity_test"
-            android:theme="@style/Theme.ShoppingList.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity
+            android:name=".StockListActivity"
+            android:label="@string/title_activity_stock_list"
+            android:theme="@style/Theme.ShoppingList.NoActionBar"></activity>
+
     </application>
 
 </manifest>

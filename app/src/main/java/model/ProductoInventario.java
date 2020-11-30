@@ -1,7 +1,7 @@
 package model;
 
 /**
- * La clase ProductoInventario hereda de la clase Producto. Almacena además la cantidad actual del producto. Así como, ofrece los 
+ * La clase ProductoInventario hereda de la clase Producto. Almacena ademas la cantidad actual del producto. Asi como, ofrece los
  * metodos correspondientes para modelar el comportamiento de este tipo de productos
  */
 public class ProductoInventario extends Producto implements Cloneable {
@@ -70,7 +70,7 @@ public class ProductoInventario extends Producto implements Cloneable {
 	
 	/**
 	 * Incrementa en 1 la cantidad actual del producto
-	 * @return false si no se ha podido incrementar por ya estar al máximo de unidades
+	 * @return false si no se ha podido incrementar por ya estar al mï¿½ximo de unidades
 	 */
 	public boolean incrementarCantidadActual() {
 		if(this.cantidadActual + 1 > this.cantidadObjetivo) {
