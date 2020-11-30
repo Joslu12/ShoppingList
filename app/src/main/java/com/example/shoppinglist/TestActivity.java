@@ -5,23 +5,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.widget.TextView;
-
 import java.util.List;
 
 import bd.BaseDatosUtils;
-import bd.dao.InventarioDao;
-import bd.dao.ListaCompraDao;
-import bd.dao.ListaCompraInventarioDao;
-import bd.dao.ProductoDao;
-import bd.dao.ProductoInventarioDao;
-import bd.dao.ProductoTableDao;
-import model.Inventario;
-import model.ListaCompra;
-import model.ListaCompraInventario;
-import model.Producto;
-import model.ProductoInventario;
-import model.ShoppingListException;
+import bd.dao.StockDao;
+import model.Stock;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -36,11 +24,11 @@ public class TestActivity extends AppCompatActivity {
 
         bd = BaseDatosUtils.getWritableDatabaseConnection(getApplicationContext());
 
-        InventarioDao dao = new InventarioDao(bd);
+        StockDao dao = new StockDao(bd);
         int id = 5;
-        List<Inventario> inventarios = dao.findAll();
+        List<Stock> stocks = dao.findAll();
 
-        for(Inventario inv : inventarios) {
+        for(Stock inv : stocks) {
             System.out.println("---------------- id: " + inv.getID());
         }
 

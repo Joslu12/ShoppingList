@@ -5,37 +5,37 @@ package model;
  * Implementa el interfaz Cloneable y no es editable. Es decir, el nombre o la cantidad objetivo indicada al inicio son los valores 
  * finales del objeto
  */
-public class Producto extends IdentifiedObjectClass implements Cloneable {
+public class Product extends IdentifiedObjectClass implements Cloneable {
 
 	//---- Atributos ----
-	private final String nombre;
-	protected final int cantidadObjetivo;
+	private final String name;
+	protected final int targetAmount;
 	
 	//---- Constructor ----
 	/**
 	 * Devuelve una instancia del tipo Producto con el nombre y la cantidad objetivo especificadas
-	 * @param nombre del producto
-	 * @param cantObj numero de unidades a obtener del producto
+	 * @param name del producto
+	 * @param targetAmount numero de unidades a obtener del producto
 	 * @throws ShoppingListException en el caso de que cantObj <= 0
 	 */
-	public Producto(final String nombre, final int cantObj) throws ShoppingListException {
-		this(-1,nombre,cantObj);
+	public Product(final String name, final int targetAmount) throws ShoppingListException {
+		this(-1,name,targetAmount);
 	}
 
 	/**
 	 * Devuelve una instancia del tipo Producto con el nombre y la cantidad objetivo especificadas
 	 * @param id del producto
-	 * @param nombre del producto
-	 * @param cantObj numero de unidades a obtener del producto
+	 * @param name del producto
+	 * @param targetAmount numero de unidades a obtener del producto
 	 * @throws ShoppingListException en el caso de que cantObj <= 0
 	 */
-	public Producto(final int id, final String nombre, final int cantObj) throws ShoppingListException {
+	public Product(final int id, final String name, final int targetAmount) throws ShoppingListException {
 		super(id);
-		if(cantObj <= 0) {
+		if(targetAmount <= 0) {
 			throw new ShoppingListException("ERROR. La cantidad objetivo debe ser mayor que 0");
 		}
-		this.nombre = nombre;
-		this.cantidadObjetivo = cantObj;
+		this.name = name;
+		this.targetAmount = targetAmount;
 	}
 	
 	/**
@@ -43,32 +43,32 @@ public class Producto extends IdentifiedObjectClass implements Cloneable {
 	 * recibido como argumento
 	 * @param p Producto del que copiar
 	 */
-	public Producto(final Producto p) {
+	public Product(final Product p) {
 		super(p.getID());
-		this.nombre = p.nombre;
-		this.cantidadObjetivo = p.cantidadObjetivo;
+		this.name = p.name;
+		this.targetAmount = p.targetAmount;
 	}
 	
 	//---- Metodos ----
 	/**
 	 * @return nombre del Producto
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 	
 	/**
 	 * @return cantidad objetivo del Producto
 	 */
-	public int getCantidadObjetivo() {
-		return cantidadObjetivo;
+	public int getTargetAmount() {
+		return targetAmount;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -80,13 +80,13 @@ public class Producto extends IdentifiedObjectClass implements Cloneable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof Producto))
+		if (!(obj instanceof Product))
 			return false;
-		Producto other = (Producto) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
+		Product other = (Product) obj;
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
@@ -96,7 +96,7 @@ public class Producto extends IdentifiedObjectClass implements Cloneable {
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		Producto p = new Producto(this);
+		Product p = new Product(this);
 		return p;
 	}
 }

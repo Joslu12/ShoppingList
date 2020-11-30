@@ -11,36 +11,35 @@ import java.util.List;
  * @param <E> representa una clase que hereda de la clase Producto
  */
 
-public abstract class ListadoProductosClass<E extends Producto> extends IdentifiedObjectClass {
+public abstract class ProductsListClass<E extends Product> extends IdentifiedObjectClass {
 
 	//---- Atributos ----
-	protected String nombre;
-	protected List<E> productos;
+	protected String name;
+	protected List<E> products;
 	
 	//---- Constructor ----
 	/**
 	 * Devuelve una instancia con un objeto donde la lista de productos est� vac�a
 	 * @param id del objeto
-	 * @param nombre del objeto
+	 * @param name del objeto
 	 */
-	public ListadoProductosClass(final int id, final String nombre) {
-		this(id,nombre,new ArrayList<E>());
+	public ProductsListClass(final int id, final String name) {
+		this(id, name,new ArrayList<E>());
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	/**
 	 * Devuleve una instancia con un objeto donde la lista de productos es la copia del parametro recibido
 	 * @param id del objeto
-	 * @param nombre del objeto
-	 * @param lista de productos a copiar
+	 * @param name del objeto
+	 * @param list de productos a copiar
 	 */
-	public ListadoProductosClass(final int id, final String nombre, final List<E> lista) {
+	public ProductsListClass(final int id, final String name, final List<E> list) {
 		super(id);
-		this.nombre = nombre;
-		this.productos = new ArrayList<E>();
-		for(E p : lista) {
+		this.name = name;
+		this.products = new ArrayList<E>();
+		for(E p : list) {
 			try {
-				productos.add((E) p.clone());
+				products.add((E) p.clone());
 			} catch (CloneNotSupportedException e) {}
 		}
 	}
@@ -49,35 +48,34 @@ public abstract class ListadoProductosClass<E extends Producto> extends Identifi
 	/**
 	 * @return nombre del ListadoProductos
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 	
 	/**
 	 * Cambia el nombre del objeto
-	 * @param nombre nuevo del objeto
+	 * @param name nuevo del objeto
 	 */
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
+	public void setName(final String name) {
+		this.name = name;
 	}
 	
 	/**
 	 * @return iterador que permita recorrer los productos del listado
 	 */
-	public Iterator<E> getProductos() {
-		return productos.iterator();
+	public Iterator<E> getProducts() {
+		return products.iterator();
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	/**
-	 * A�ade al listado de productos una copia del Producto p recibido como argumento solo si la lista no contiene
+	 * Anade al listado de productos una copia del Producto p recibido como argumento solo si la lista no contiene
 	 * algun producto con el mismo nombre
-	 * @param p Producto a�adir
+	 * @param p Producto anadir
 	 */
-	public boolean addProducto(final E p) {
+	public boolean addProduct(final E p) {
 		try {
-			if(!productos.contains(p)) {
-				productos.add((E) p.clone());
+			if(!products.contains(p)) {
+				products.add((E) p.clone());
 				return true;
 			} else {
 				return false;
@@ -86,16 +84,14 @@ public abstract class ListadoProductosClass<E extends Producto> extends Identifi
 			return false;
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	/**
 	 * Elimina del listado de productos el Producto que sea igual a p recibido como argumento
 	 * @param p Producto a eliminar
 	 */
-	public boolean removeProducto(final E p) {
+	public boolean removeProduct(final E p) {
 		try {
-			boolean resultado = productos.remove((E) p.clone());
-			return resultado;
+			return products.remove((E) p.clone());
 		} catch (CloneNotSupportedException e) {
 			return false;
 		}

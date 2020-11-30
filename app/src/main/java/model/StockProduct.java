@@ -4,37 +4,37 @@ package model;
  * La clase ProductoInventario hereda de la clase Producto. Almacena ademas la cantidad actual del producto. Asi como, ofrece los
  * metodos correspondientes para modelar el comportamiento de este tipo de productos
  */
-public class ProductoInventario extends Producto implements Cloneable {
+public class StockProduct extends Product implements Cloneable {
 
 	//---- Atributos ----
-	private int cantidadActual;
+	private int currentAmount;
 	
 	//---- Constructor ----
 	/**
 	 * Devuelve una instancia del tipo ProductoInventario con los argumentos especificados
-	 * @param nombre del objeto
-	 * @param cantObj numero unidades a obtener del producto
-	 * @param cantActual numero de unidades restantes del producto
+	 * @param name del objeto
+	 * @param targetAmount numero unidades a obtener del producto
+	 * @param currentAmount numero de unidades restantes del producto
 	 * @throws ShoppingListException en el caso de que cantObj <= 0 o cantActual < 0 || cantActual > cantObj
 	 */
-	public ProductoInventario(final String nombre, final int cantObj, final int cantActual) throws ShoppingListException {
-		this(-1,nombre,cantObj,cantActual);
+	public StockProduct(final String name, final int targetAmount, final int currentAmount) throws ShoppingListException {
+		this(-1,name,targetAmount,currentAmount);
 	}
 	
 	/**
 	 * Devuelve una instancia del tipo ProductoInventario con los argumentos especificados
 	 * @param id del objeto
-	 * @param nombre del objeto
-	 * @param cantObj numero unidades a obtener del producto
-	 * @param cantActual numero de unidades restantes del producto
+	 * @param name del objeto
+	 * @param targetAmount numero unidades a obtener del producto
+	 * @param currentAmount numero de unidades restantes del producto
 	 * @throws ShoppingListException en el caso de que cantObj <= 0 o cantActual < 0 || cantActual > cantObj
 	 */
-	public ProductoInventario(final int id, final String nombre, final int cantObj, final int cantActual) throws ShoppingListException {
-		super(id,nombre,cantObj);
-		if(cantActual < 0 || cantActual > cantObj) {
+	public StockProduct(final int id, final String name, final int targetAmount, final int currentAmount) throws ShoppingListException {
+		super(id,name,targetAmount);
+		if(currentAmount < 0 || currentAmount > targetAmount) {
 			throw new ShoppingListException("ERROR. La cantidad restante de productos debe ser mayor que 0 y menor o igual que la cantidad objetivo");
 		}
-		this.cantidadActual = cantActual;
+		this.currentAmount = currentAmount;
 	}
 	
 	/**
@@ -42,41 +42,41 @@ public class ProductoInventario extends Producto implements Cloneable {
 	 * recibido como argumento
 	 * @param p ProductoInventario del que copiar
 	 */
-	public ProductoInventario(final ProductoInventario p) {
+	public StockProduct(final StockProduct p) {
 		super(p);
-		this.cantidadActual = p.cantidadActual;
+		this.currentAmount = p.currentAmount;
 	}
 	
 	//---- Metodos ----
 	/**
 	 * @return cantidad actual del producto 
 	 */
-	public int getCantidadActual() {
-		return cantidadActual;
+	public int getCurrentAmount() {
+		return currentAmount;
 	}
 	
 	/**
 	 * Actualiza el valor de la cantidad actual del producto con el parametro cant
-	 * @param cant cantidad actual nueva
+	 * @param amount cantidad actual nueva
 	 * @throws ShoppingListException si cant > this.cantidadObjetivo
 	 */
-	public void setCantidadActual(final int cant) throws ShoppingListException {
-		if(cant > this.cantidadObjetivo) {
+	public void setCurrentAmount(final int amount) throws ShoppingListException {
+		if(amount > this.targetAmount) {
 			throw new ShoppingListException("ERROR. La cantidad indicada es mayor que la cantidad objetivo");
 		} else {
-			this.cantidadActual = cant;
+			this.currentAmount = amount;
 		}
 	}
 	
 	/**
 	 * Incrementa en 1 la cantidad actual del producto
-	 * @return false si no se ha podido incrementar por ya estar al m�ximo de unidades
+	 * @return false si no se ha podido incrementar por ya estar al maximo de unidades
 	 */
-	public boolean incrementarCantidadActual() {
-		if(this.cantidadActual + 1 > this.cantidadObjetivo) {
+	public boolean increaseCurrentAmount() {
+		if(this.currentAmount + 1 > this.targetAmount) {
 			return false;
 		} else {
-			++this.cantidadActual;
+			++this.currentAmount;
 			return true;
 		}
 	}
@@ -85,11 +85,11 @@ public class ProductoInventario extends Producto implements Cloneable {
 	 * Decrementa en 1 la cantidad actual del producto
 	 * @return false si no quedan unidades del producto por consumir
 	 */
-	public boolean decrementarCantidadActual() {
-		if(this.cantidadActual - 1 < 0) {
+	public boolean decreaseCurrentAmount() {
+		if(this.currentAmount - 1 < 0) {
 			return false;
 		} else {
-			--this.cantidadActual;
+			--this.currentAmount;
 			return true;
 		}
 	}
@@ -99,7 +99,7 @@ public class ProductoInventario extends Producto implements Cloneable {
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		ProductoInventario p = new ProductoInventario(this);
+		StockProduct p = new StockProduct(this);
 		return p;
 	}
 }

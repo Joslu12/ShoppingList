@@ -9,55 +9,55 @@ import java.util.Random;
  * La clase ListaCompra ofrece el comportamiento de una lista de la compra llevando un listado de Producto
  * a comprar. Ofrece toda la funcionalidad necesaria para ejecutar el proceso de compra.
  */
-public class ListaCompra extends ListadoProductosClass<Producto> {
+public class ShoppingList extends ProductsListClass<Product> {
 
 	//---- Atributos ----
-	private List<Producto> productosComprados; //Productos comprados durante el proceso de compra
-	private List<Producto> productosPorComprar; //Productos por comprar durante el proceso de compra
-	private boolean comprando;
+	private List<Product> purchasedProducts; //Productos comprados durante el proceso de compra
+	private List<Product> productsToPurchase; //Productos por comprar durante el proceso de compra
+	private boolean buying;
 	
 	//---- Constructor ----
 	/**
 	 * Devuelve una nueva ListaCompra con 0 productos
-	 * @param nombre de la lista
+	 * @param name de la lista
 	 */
-	public ListaCompra(final String nombre) {
-		super(-1,nombre,new ArrayList<Producto>());
+	public ShoppingList(final String name) {
+		super(-1,name,new ArrayList<Product>());
 	}
 
 	/**
 	 * Devuelve una nueva ListaCompra con los productos especificados como argumentos
-	 * @param nombre de la lista
-	 * @param lista de productos
+	 * @param name de la lista
+	 * @param list de productos
 	 */
-	public ListaCompra(final String nombre, final List<Producto> lista) {
-		this(-1,nombre,lista);
+	public ShoppingList(final String name, final List<Product> list) {
+		this(-1,name,list);
 	}
 
 	/**
 	 * Devuelve una nueva ListaCompra con los productos especificados como argumentos
 	 * @param id de la lista
-	 * @param nombre de la lista
-	 * @param lista de productos 
+	 * @param name de la lista
+	 * @param list de productos
 	 */
-	public ListaCompra(final int id, final String nombre, final List<Producto> lista) {
-		super(id,nombre,lista);
-		productosComprados = null;
-		productosPorComprar = null;
-		comprando = false;
+	public ShoppingList(final int id, final String name, final List<Product> list) {
+		super(id,name,list);
+		purchasedProducts = null;
+		productsToPurchase = null;
+		buying = false;
 	}
 	
 	//---- Metodos ----
 	/**
 	 * Inicializa el estado del objeto preparandolo para realizar una compra
 	 */
-	public void iniciarCompra() {
-		productosComprados = new ArrayList<Producto>();
-		productosPorComprar = new ArrayList<Producto>();
-		for(Producto p : this.productos) {
-			productosPorComprar.add(new Producto(p));
+	public void initPurchasing() {
+		purchasedProducts = new ArrayList<Product>();
+		productsToPurchase = new ArrayList<Product>();
+		for(Product p : this.products) {
+			productsToPurchase.add(new Product(p));
 		}
-		comprando = true;
+		buying = true;
 	}
 	
 	/**
@@ -67,14 +67,14 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se esta en un estado de
 	 * compra
 	 */
-	public boolean marcarProducto(final Producto p) throws ShoppingListException {
-		if(!comprando) {
+	public boolean checkProduct(final Product p) throws ShoppingListException {
+		if(!buying) {
 			throw new ShoppingListException("ERROR. La lista de la compra no se encuentra en estado de compra");
 		}
-		if(!productosPorComprar.remove(p)) {
+		if(!productsToPurchase.remove(p)) {
 			return false;
 		} else {
-			productosComprados.add(new Producto(p));
+			purchasedProducts.add(new Product(p));
 			return true;
 		}
 	}
@@ -86,14 +86,14 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * @throws ShoppingListException si se intenta ejecutar esta operacion cuando no se esta en un estado de
 	 * compra
 	 */
-	public boolean desmarcarProducto(final Producto p) throws ShoppingListException {
-		if(!comprando) {
+	public boolean uncheckProduct(final Product p) throws ShoppingListException {
+		if(!buying) {
 			throw new ShoppingListException("ERROR. La lista de la compra no se encuentra en estado de compra");
 		}
-		if(!productosComprados.remove(p)) {
+		if(!purchasedProducts.remove(p)) {
 			return false;
 		} else {
-			productosPorComprar.add(new Producto(p));
+			productsToPurchase.add(new Product(p));
 			return true;
 		}
 	}
@@ -101,23 +101,23 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	/**
 	 * Se pasa al sistema a un estado seguro indicando que no se esta comprando
 	 */
-	public void finalizarCompra() {
-		comprando = false;
+	public void finishPurchasing() {
+		buying = false;
 	}
 	
 	/**
 	 * @return Iterator<Producto> con los productos que han sido comprados
 	 */
-	public Iterator<Producto> getProductosComprados() {
-		return productosComprados.iterator();
+	public Iterator<Product> getPurchasedProducts() {
+		return purchasedProducts.iterator();
 	}
 	
 	/**
 	 * 
 	 * @return Iterator<Producto> con los productos que faltan por comprar
 	 */
-	public Iterator<Producto> getProductosPorComprar() {
-		return productosPorComprar.iterator();
+	public Iterator<Product> getProductsToPurchase() {
+		return productsToPurchase.iterator();
 	}
 	
 	/**
@@ -126,34 +126,34 @@ public class ListaCompra extends ListadoProductosClass<Producto> {
 	 * 		- GUARDAR_LISTA: se devuelve la lista con todos los productos que estaban antes de la compra
 	 * 		- ACTUALIZAR_LISTA: se devuelve la lista pero solo con los productos que han faltado por comprar
 	 * 		- GENERAR_LISTA_RESTANTES: devuelve una nueva lista con los productos que han faltado por comprar
-	 * @param operacion a realizar
+	 * @param operation a realizar
 	 * @return ListaCompra segun la operacion indicada
 	 * @throws ShoppingListException en el caso de que la compra este activa
 	 */
-	public ListaCompra finalizarResumen(final OpFinalCompra operacion) throws ShoppingListException {
-		if(comprando) {
+	public ShoppingList finishSummary(final EndPurchaseOperation operation) throws ShoppingListException {
+		if(buying) {
 			throw new ShoppingListException("ERROR. El resumen debe darse sobre un estado de compra nulo");
 		}
-		ListaCompra listaCompra = null;
-		switch(operacion) {
-			case DESCARTAR:
+		ShoppingList shoppingList = null;
+		switch(operation) {
+			case DISCARD:
 				break;
 				
-			case GUARDAR_LISTA:
-				listaCompra = this;
+			case SAVE_LIST:
+				shoppingList = this;
 				break;
 				
-			case ACTUALIZAR_LISTA:
-				for(Producto p : this.productosComprados) {
-					this.removeProducto(p);
+			case UPDATE_LIST:
+				for(Product p : this.purchasedProducts) {
+					this.removeProduct(p);
 				}
-				listaCompra = this;
+				shoppingList = this;
 				break;
 				
-			case GENERAR_LISTA_RESTANTES:
-				listaCompra = new ListaCompra(this.nombre + " x" + (new Random().nextInt(100)*new Random().nextInt(100)), productosPorComprar);
+			case GENERATE_REMAINING_LIST:
+				shoppingList = new ShoppingList(this.name + " x" + (new Random().nextInt(100)*new Random().nextInt(100)), productsToPurchase);
 				break;
 		}
-		return listaCompra;
+		return shoppingList;
 	}
 }

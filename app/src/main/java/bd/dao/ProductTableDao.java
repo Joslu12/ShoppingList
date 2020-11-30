@@ -8,24 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bd.ShoppingListContract;
-import model.Producto;
-import model.ProductoInventario;
+import model.Product;
 import model.ShoppingListException;
 
 
-public abstract class ProductoTableDao<T extends Producto> extends AbstractDao<T> {
+public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> {
 
     //---- Constantes ----
-    private final String[] columnasProductoTable = {
-            ShoppingListContract.ProductoTable._ID,
-            ShoppingListContract.ProductoTable.COLUMN_NAME,
-            ShoppingListContract.ProductoTable.COLUMN_TARGET_AMOUNT,
-            ShoppingListContract.ProductoTable.COLUMN_CURRENT_AMOUNT
+    private final String[] productTableColumns = {
+            ShoppingListContract.ProductTable._ID,
+            ShoppingListContract.ProductTable.COLUMN_NAME,
+            ShoppingListContract.ProductTable.COLUMN_TARGET_AMOUNT,
+            ShoppingListContract.ProductTable.COLUMN_CURRENT_AMOUNT
     };
 
     //---- Constructor ----
-    protected ProductoTableDao(final SQLiteDatabase conexion) {
-        super(conexion);
+    protected ProductTableDao(final SQLiteDatabase connection) {
+        super(connection);
     }
 
     //---- Metodos ----
@@ -38,47 +37,47 @@ public abstract class ProductoTableDao<T extends Producto> extends AbstractDao<T
      * @return un producto generado
      * @throws ShoppingListException
      */
-    protected abstract T cargarProducto(int id, Cursor cursor) throws ShoppingListException;
+    protected abstract T loadProduct(int id, Cursor cursor) throws ShoppingListException;
 
-    public List<T> findAllByListId(int listadoId) {
-        List<T> lista = new ArrayList<T>();
+    public List<T> findAllByListId(int listID) {
+        List<T> list = new ArrayList<T>();
 
         // Indicamos las columnas que queremos obtener
-        String[] columns = {ShoppingListContract.ListadoProductoTable.COLUMN_PRODUCTO_ID};
-        String where = ShoppingListContract.ListadoProductoTable.COLUMN_LISTADO_ID + " = ? ";
-        String[] whereArgs = {Integer.toString(listadoId)};
+        String[] columns = {ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID};
+        String where = ShoppingListContract.ListProductTable.COLUMN_LIST_ID + " = ? ";
+        String[] whereArgs = {Integer.toString(listID)};
 
         // Ejecutamos la consulta y la almacenamos en el cursor
-        Cursor cursor = getConexionBD().query(ShoppingListContract.ListadoProductoTable.TABLE_NAME,
+        Cursor cursor = getBDConnection().query(ShoppingListContract.ListProductTable.TABLE_NAME,
                 columns, where, whereArgs, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                int id = cursor.getInt(cursor.getColumnIndex(ShoppingListContract.ListadoProductoTable.COLUMN_PRODUCTO_ID));
+                int id = cursor.getInt(cursor.getColumnIndex(ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID));
 
-                lista.add(findById(id));
+                list.add(findById(id));
             }
         } finally {
             cursor.close();
         }
 
-        return lista;
+        return list;
     }
 
     @Override
     public T findById(int id) {
-        T producto = null;
+        T product = null;
 
         // Indicamos las columnas que queremos obtener
-        String[] columns = columnasProductoTable;
-        String where = ShoppingListContract.ProductoTable._ID + " = ?";
+        String[] columns = productTableColumns;
+        String where = ShoppingListContract.ProductTable._ID + " = ?";
         String[] whereArgs = { Integer.toString(id) };
 
         // Ejecutamos la consulta y la almacenamos en el cursor
-        Cursor cursor = getConexionBD().query(ShoppingListContract.ProductoTable.TABLE_NAME,
+        Cursor cursor = getBDConnection().query(ShoppingListContract.ProductTable.TABLE_NAME,
                 columns, where, whereArgs, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                producto = cargarProducto(id,cursor);
+                product = loadProduct(id,cursor);
             }
         } catch (ShoppingListException e) {
             e.printStackTrace();
@@ -86,33 +85,33 @@ public abstract class ProductoTableDao<T extends Producto> extends AbstractDao<T
             cursor.close();
         }
 
-        return producto;
+        return product;
     }
 
     protected abstract String getWhere();
 
     @Override
     public List<T> findAll() {
-        List<T> lista = new ArrayList<T>();
+        List<T> list = new ArrayList<T>();
 
         // Indicamos las columnas que queremos obtener
-        String[] columns = columnasProductoTable;
+        String[] columns = productTableColumns;
         String where = getWhere();
 
         // Ejecutamos la consulta y la almacenamos en el cursor
-        Cursor cursor = getConexionBD().query(ShoppingListContract.ProductoTable.TABLE_NAME,
+        Cursor cursor = getBDConnection().query(ShoppingListContract.ProductTable.TABLE_NAME,
                 columns, where, null, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                int id = cursor.getInt(cursor.getColumnIndex(ShoppingListContract.ProductoTable._ID));
+                int id = cursor.getInt(cursor.getColumnIndex(ShoppingListContract.ProductTable._ID));
 
-                lista.add(findById(id));
+                list.add(findById(id));
             }
         } finally {
             cursor.close();
         }
 
-        return lista;
+        return list;
     }
 
     /**
@@ -126,27 +125,27 @@ public abstract class ProductoTableDao<T extends Producto> extends AbstractDao<T
     public int insert(T elem) {
         ContentValues values = generateContentValues(elem);
 
-        int idElem = (int) getConexionBD().insert(ShoppingListContract.ProductoTable.TABLE_NAME,null,values);
-        elem.setID(idElem);
+        int elementID = (int) getBDConnection().insert(ShoppingListContract.ProductTable.TABLE_NAME,null,values);
+        elem.setID(elementID);
 
-        return idElem;
+        return elementID;
     }
 
     @Override
     public long update(T elem) {
         ContentValues values = generateContentValues(elem);
-        String where = ShoppingListContract.ProductoTable._ID + " = ?";
+        String where = ShoppingListContract.ProductTable._ID + " = ?";
         String[] whereArgs = { Integer.toString(elem.getID()) };
 
-        return getConexionBD().update(ShoppingListContract.ProductoTable.TABLE_NAME, values, where, whereArgs);
+        return getBDConnection().update(ShoppingListContract.ProductTable.TABLE_NAME, values, where, whereArgs);
     }
 
     @Override
     public long remove(T elem) {
-        String where = ShoppingListContract.ProductoTable._ID + " = ?";
+        String where = ShoppingListContract.ProductTable._ID + " = ?";
         String[] whereArgs = { Integer.toString(elem.getID()) };
 
-        return getConexionBD().delete(ShoppingListContract.ProductoTable.TABLE_NAME, where, whereArgs);
+        return getBDConnection().delete(ShoppingListContract.ProductTable.TABLE_NAME, where, whereArgs);
     }
 
 }

@@ -9,11 +9,11 @@ import model.IdentifiedObjectClass;
 public abstract class AbstractDao<T extends IdentifiedObjectClass> {
 
     //---- Atributos ----
-    private final SQLiteDatabase conexionBD;
+    private final SQLiteDatabase bdConnection;
 
     //---- Constructor ----
-    public AbstractDao(final SQLiteDatabase conexion) {
-        conexionBD = conexion;
+    public AbstractDao(final SQLiteDatabase connection) {
+        bdConnection = connection;
     }
 
     //---- Metodos ----
@@ -21,8 +21,8 @@ public abstract class AbstractDao<T extends IdentifiedObjectClass> {
     /**
      * @return conexion a la bd
      */
-    public SQLiteDatabase getConexionBD() {
-        return conexionBD;
+    public SQLiteDatabase getBDConnection() {
+        return bdConnection;
     }
 
     /**
@@ -41,7 +41,7 @@ public abstract class AbstractDao<T extends IdentifiedObjectClass> {
     /**
      * El propio metodo actualiza el estado de elem, editando su id
      * @param elem
-     * @return el id generado del elemento añadido o -1 si ocurre algún error
+     * @return el id generado del elemento anadido o -1 si ocurre algun error
      */
     public abstract int insert(T elem);
 
