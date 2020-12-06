@@ -35,13 +35,11 @@ public class ProductsListArrayAdapter<T extends ProductsListClass> extends Array
         ViewHolder holder = (ViewHolder) view.getTag();
         if (holder == null) {
             holder = new ViewHolder();
-            holder.id = (TextView) view.findViewById(R.id.id_text);
             holder.text_nombre = (TextView) view.findViewById(R.id.name_text);
             view.setTag(holder);
         }
 
         // Actualiza los componentes de la vista
-        holder.id.setText(Integer.toString(productList.getID()));
         holder.text_nombre.setText(productList.getName());
 
         // Devuelve la vista creada con los elementos actualizados
@@ -49,7 +47,6 @@ public class ProductsListArrayAdapter<T extends ProductsListClass> extends Array
     }
 
     private static class ViewHolder {
-        TextView id;
         TextView text_nombre;
     }
 }

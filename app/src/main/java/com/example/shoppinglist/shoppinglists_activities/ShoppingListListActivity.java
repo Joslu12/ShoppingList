@@ -63,17 +63,16 @@ public class ShoppingListListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onShoppingListClick(view);
+                ShoppingList shoppingList = (ShoppingList) parent.getItemAtPosition(position);
+                onShoppingListClick(shoppingList.getID());
             }
         });
         return listView;
     }
 
-    private void onShoppingListClick(final View v) {
-        int productList_ID = Integer.parseInt(((TextView)v.findViewById(R.id.id_text)).getText().toString());
-
+    private void onShoppingListClick(final int shoppingListID) {
         Intent intent = new Intent(getApplicationContext(), ShoppingListActivity.class);
-        intent.putExtra("ID", productList_ID);
+        intent.putExtra("ID", shoppingListID);
         startActivity(intent);
     }
 
@@ -137,6 +136,7 @@ public class ShoppingListListActivity extends AppCompatActivity {
         return ok;
     }
 
+    //TODO: Refactor to another class
     private static class ListUtils {
         public static void setDynamicHeight(ListView mListView) {
             ListAdapter mListAdapter = mListView.getAdapter();
