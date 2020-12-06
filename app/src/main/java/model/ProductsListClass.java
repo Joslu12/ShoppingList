@@ -96,4 +96,12 @@ public abstract class ProductsListClass<E extends Product> extends IdentifiedObj
 			return false;
 		}
 	}
+
+	/**
+	 * @return the String representation of the object
+	 */
+	@Override
+	public String toString() {
+		return name;
+	}
 }
