@@ -28,7 +28,12 @@
         <activity
             android:name=".stocks_activities.StockListActivity"
             android:label="@string/title_activity_stock_list"
-            android:theme="@style/Theme.ShoppingList.NoActionBar" /> <!-- END STOCK -->
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
+        <!-- END STOCK -->
         <!-- BEGIN SHOPPING LIST -->
         <activity
             android:name=".shoppinglists_activities.ShoppingListListActivity"

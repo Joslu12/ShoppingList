@@ -22,7 +22,7 @@
     <!-- END MESSAGES -->
 
     <!-- BEGIN STOCK -->
-    <string name="title_activity_stock_list">ScrollingActivity</string>
+    <string name="title_activity_stock_list">Stock List</string>
     <string name="stocks">Stocks</string>
     <string name="stock">Stock</string>
     <!-- END STOCK -->
