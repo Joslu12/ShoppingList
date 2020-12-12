@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
 import com.example.shoppinglist.shoppinglists_activities.ShoppingListListActivity;
+import com.example.shoppinglist.stocks_activities.StockListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnMainStocks:
-                // TODO:
+                startActivity(new Intent(getApplicationContext(), StockListActivity.class));
                 break;
         }
     }

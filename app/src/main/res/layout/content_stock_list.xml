@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dip"
+            android:textAppearance="@style/TitleFont"
+            android:text="@string/stocks"/>
+
+        <ListView
+            android:id="@+id/stock_lists_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <!--<TextView
+        android:id="@+id/stock_shopping_lists_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/stock_shopping_lists" />-->
+
+    <!--<ListView
+        android:id="@+id/stock_shopping_lists_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+
+
+
+</ScrollView>

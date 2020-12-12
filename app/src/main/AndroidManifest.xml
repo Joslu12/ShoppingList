@@ -9,16 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingList">
-
-        <!--TODO: DELETE LATER -->
+        <activity android:name=".stocks_activities.StockActivity"></activity>
+        <!-- TODO: DELETE LATER -->
         <activity
             android:name=".TestActivity"
             android:label="@string/title_activity_test"
-            android:theme="@style/Theme.ShoppingList.NoActionBar">
-        </activity>
-        <!--  -->
-
-        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.ShoppingList.NoActionBar" /> <!--  -->
+        <activity
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
             <intent-filter>
@@ -26,38 +24,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- BEGIN STOCK -->
+        </activity> <!-- BEGIN STOCK -->
         <activity
             android:name=".stocks_activities.StockListActivity"
             android:label="@string/title_activity_stock_list"
-            android:theme="@style/Theme.ShoppingList.NoActionBar" />
-        <!-- END STOCK -->
-
+            android:theme="@style/Theme.ShoppingList.NoActionBar" /> <!-- END STOCK -->
         <!-- BEGIN SHOPPING LIST -->
         <activity
             android:name=".shoppinglists_activities.ShoppingListListActivity"
             android:label="@string/shopping_lists"
-            android:theme="@style/Theme.ShoppingList.NoActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".shoppinglists_activities.ShoppingListActivity"
             android:label="@string/shopping_list"
-            android:theme="@style/Theme.ShoppingList.NoActionBar"
-            android:parentActivityName=".shoppinglists_activities.ShoppingListListActivity">
+            android:parentActivityName=".shoppinglists_activities.ShoppingListListActivity"
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".shoppinglists_activities.ShoppingListListActivity" />
-
         </activity>
-        <!-- END SHOPPING LIST -->
-
     </application>
 
 </manifest>
