@@ -1,5 +1,9 @@
 package com.example.shoppinglist.stocks_activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,14 +14,18 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,9 +34,10 @@ import java.util.List;
 
 import bd.BaseDatosUtils;
 import bd.dao.StockDao;
+import model.CreateDialogFragment;
 import model.Stock;
 
-public class StockListActivity extends AppCompatActivity {
+public class StockListActivity extends AppCompatActivity implements CreateDialogFragment.CreateDialogListener {
     //---- Constantes y Definiciones ----
 
     //---- Atributos ----
@@ -89,7 +98,27 @@ public class StockListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = findViewById(R.id.add_new_shopping_list_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+
+
+        });
     }
+
+    public void openDialog() {
+        CreateDialogFragment dialog = new CreateDialogFragment();
+        dialog.show(getSupportFragmentManager(), "Create a new Stock");
+    }
+
+    @Override
+    public void applyText(String name) {
+        Stock s = new Stock(name);
+        stockLists.add(s);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -123,6 +152,8 @@ public class StockListActivity extends AppCompatActivity {
     }
 
 
+
+
     //TODO: Refactor to another class
     private static class ListUtils {
         public static void setDynamicHeight(ListView mListView) {
@@ -145,3 +176,4 @@ public class StockListActivity extends AppCompatActivity {
         }
     }
 }
+

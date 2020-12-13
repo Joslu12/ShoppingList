@@ -18,6 +18,8 @@
     <string name="warnig_dialog">Warning</string>
     <string name="info_msg_shopping_list_deleted">"The shopping list '%1$s' has been deleted."</string>
     <string name="info_msg_stock_deleted">"The stock '%1$s' has been deleted."</string>
+    <string name="title_stock_dialog">Create a new stock</string>
+    <string name="create_btn">Create</string>
 
     <!-- END MESSAGES -->
 

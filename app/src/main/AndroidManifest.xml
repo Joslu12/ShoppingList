@@ -24,7 +24,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- BEGIN STOCK -->
+        </activity> <!-- BEGIN STOCK LIST -->
         <activity
             android:name=".stocks_activities.StockListActivity"
             android:label="@string/title_activity_stock_list"
@@ -33,7 +33,7 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
         </activity>
-        <!-- END STOCK -->
+        <!-- END STOCK LIST -->
         <!-- BEGIN SHOPPING LIST -->
         <activity
             android:name=".shoppinglists_activities.ShoppingListListActivity"
