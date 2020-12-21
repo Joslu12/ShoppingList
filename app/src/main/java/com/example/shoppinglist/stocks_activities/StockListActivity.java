@@ -1,31 +1,21 @@
 package com.example.shoppinglist.stocks_activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.example.shoppinglist.ProductsListArrayAdapter;
+import com.example.shoppinglist.view_utils.MyListOfProductsRecyclerViewAdapter;
 import com.example.shoppinglist.R;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,10 +24,10 @@ import java.util.List;
 
 import bd.BaseDatosUtils;
 import bd.dao.StockDao;
-import model.CreateDialogFragment;
+import com.example.shoppinglist.view_utils.CreateDialogFragment;
 import model.Stock;
 
-public class StockListActivity extends AppCompatActivity implements CreateDialogFragment.CreateDialogListener {
+public class StockListActivity extends AppCompatActivity {
     //---- Constantes y Definiciones ----
 
     //---- Atributos ----
@@ -55,10 +45,10 @@ public class StockListActivity extends AppCompatActivity implements CreateDialog
         stockLists = daoSL.findAll();
     }
 
-    private ListView initListView(final int list_view_id, List<?> list) {
+/*    private ListView initListView(final int list_view_id, List<?> list) {
         ListView listView = findViewById(list_view_id);
-        ProductsListArrayAdapter<?> productsListArrayAdapter = new ProductsListArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,list);
-        listView.setAdapter(productsListArrayAdapter);
+        MyListOfProductsRecyclerViewAdapter<?> myListOfProductsRecyclerViewAdapter = new MyListOfProductsRecyclerViewAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,list);
+        listView.setAdapter(myListOfProductsRecyclerViewAdapter);
 
         // Indicamos la accion a realizar cuando se presiona sobre un elemento de la lista
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -174,6 +164,6 @@ public class StockListActivity extends AppCompatActivity implements CreateDialog
             mListView.setLayoutParams(params);
             mListView.requestLayout();
         }
-    }
+    }*/
 }
 

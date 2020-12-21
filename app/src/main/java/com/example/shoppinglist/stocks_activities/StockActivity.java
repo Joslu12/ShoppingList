@@ -14,9 +14,7 @@ import android.widget.Toast;
 import com.example.shoppinglist.R;
 
 import bd.BaseDatosUtils;
-import bd.dao.ShoppingListDao;
 import bd.dao.StockDao;
-import model.ShoppingList;
 import model.Stock;
 
 public class StockActivity extends AppCompatActivity {

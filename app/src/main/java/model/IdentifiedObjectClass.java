@@ -1,6 +1,8 @@
 package model;
 
-public abstract class IdentifiedObjectClass {
+import java.io.Serializable;
+
+public abstract class IdentifiedObjectClass implements Serializable {
 
     //---- Atributos ----
     private int id;

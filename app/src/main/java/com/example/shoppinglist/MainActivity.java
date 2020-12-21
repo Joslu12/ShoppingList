@@ -2,38 +2,28 @@ package com.example.shoppinglist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
-import com.example.shoppinglist.shoppinglists_activities.ShoppingListListActivity;
-import com.example.shoppinglist.stocks_activities.StockListActivity;
+import com.example.shoppinglist.view_utils.ListOfProductsListFragment;
+
+import model.ShoppingList;
+import model.Stock;
 
 public class MainActivity extends AppCompatActivity {
 
     //---- Elementos de la Vista ----
-    private TextView title;
-    private Button stocksBtn, shoppingListsBtn;
-
-    //---- Metodos ----
-    public void buttonClicked(View v) {
-        switch(v.getId()) {
-            case R.id.btnMainShoppingLists:
-                startActivity(new Intent(getApplicationContext(), ShoppingListListActivity.class));
-                break;
-
-            case R.id.btnMainStocks:
-                startActivity(new Intent(getApplicationContext(), StockListActivity.class));
-                break;
-        }
-    }
+    private Button shoppingListsBtn, stocksBtn;
+    private FragmentTransaction transaction;
+    private Fragment fragmentWelcome, fragmentShoppingList, fragmentStocks;
+    private Fragment fragmentActive;
 
     //---- Metodos de la Actividad ----
     @Override
@@ -43,11 +33,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Cargamos los elementos de la vista
-        title = findViewById(R.id.textViewTitle);
-        shoppingListsBtn = findViewById(R.id.btnMainShoppingLists);
-        stocksBtn = findViewById(R.id.btnMainStocks);
+        // Cargamos los elementos de la vista //TODO: Seran usados para cambios de color
+        shoppingListsBtn = findViewById(R.id.btnShoppingLists);
+        stocksBtn = findViewById(R.id.btnStocks);
 
+        // Instanciamos los fragmentos
+        fragmentWelcome = new WelcomeFragment();
+        fragmentShoppingList = new ListOfProductsListFragment();
+        fragmentStocks = new ListOfProductsListFragment();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragments, fragmentWelcome).commit();
+        fragmentActive = fragmentWelcome;
     }
 
     @Override
@@ -74,4 +70,32 @@ public class MainActivity extends AppCompatActivity {
         }
         return ok;
     }
+
+    //---- Metodos ----
+    public void buttonClicked(View v) {
+        transaction = getSupportFragmentManager().beginTransaction();
+        switch(v.getId()) {
+            case R.id.btnShoppingLists:
+                fragmentShoppingList = ListOfProductsListFragment.newInstance(ShoppingList.class);
+                transaction.replace(R.id.contenedorFragments,fragmentShoppingList);
+                fragmentActive = fragmentShoppingList;
+                break;
+
+            case R.id.btnStocks:
+                fragmentStocks = ListOfProductsListFragment.newInstance(Stock.class);
+                transaction.replace(R.id.contenedorFragments,fragmentStocks);
+                fragmentActive = fragmentShoppingList;
+                break;
+
+            case R.id.addNewProductsList:
+                // Si el fragmento inicio tiene la referencia de uno de los dos de ListOfProductListFragment
+                if (fragmentActive == fragmentShoppingList || fragmentWelcome == fragmentStocks) {
+                    ((ListOfProductsListFragment) fragmentActive).addNewListOfProducts();
+                }
+                break;
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }

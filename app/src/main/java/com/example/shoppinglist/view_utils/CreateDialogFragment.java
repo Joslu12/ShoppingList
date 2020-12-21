@@ -1,4 +1,4 @@
-package model;
+package com.example.shoppinglist.view_utils;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
