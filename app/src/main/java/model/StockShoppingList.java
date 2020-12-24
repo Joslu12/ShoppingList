@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StockShoppingList extends ShoppingList {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	private Stock associatedStock;
 	
 	//---- Constructor ----
@@ -37,7 +37,7 @@ public class StockShoppingList extends ShoppingList {
 		this.associatedStock = stock;
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 	public int getAssociatedStockID() {
 		return associatedStock.getID();
 	}
@@ -54,7 +54,9 @@ public class StockShoppingList extends ShoppingList {
 			Product p = purchasedProductsIt.next();
 			try {
 				associatedStock.completeUnitsProduct(p);
-			} catch (ShoppingListException e) {}
+			} catch (ShoppingListException e) {
+				return null; //TODO: throw exception indicado que algo ha pasado
+			}
 		}
 		
 		return null;

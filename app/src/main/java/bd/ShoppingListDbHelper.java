@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
-    //---- Constantes y Definiciones ----
+    //---- Constants and Definitions ----
     public static final int DATA_BASE_VERSION = 1;
 
     private static final String SQL_CREATE_PRODUCT_TABLE =
@@ -52,7 +52,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         super(context, dataBaseName, null, DATA_BASE_VERSION);
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_PRODUCT_TABLE);

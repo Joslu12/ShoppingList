@@ -7,11 +7,11 @@ import com.example.shoppinglist.SingletonMap;
 
 public class BaseDatosUtils {
 
-    //---- Constantes y Definiciones ----
+    //---- Constants and Definitions ----
     private static final String DATA_BASE_NAME = "dataBase.db";
     private static final String DATA_BASE_SINGLETON_KEY = "BASE_DATOS";
 
-    //---- Metodos Estaticos ----
+    //---- Static Methods ----
     public static SQLiteDatabase getWritableDatabaseConnection(Context context) {
         SQLiteDatabase writableBdConnection = (SQLiteDatabase) SingletonMap.getInstance().get(DATA_BASE_SINGLETON_KEY);
         if(writableBdConnection == null) {

@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class ShoppingList extends ProductsListClass<Product> {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	private List<Product> purchasedProducts; //Productos comprados durante el proceso de compra
 	private List<Product> productsToPurchase; //Productos por comprar durante el proceso de compra
 	private boolean buying;
@@ -47,7 +47,7 @@ public class ShoppingList extends ProductsListClass<Product> {
 		buying = false;
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 	/**
 	 * Inicializa el estado del objeto preparandolo para realizar una compra
 	 */

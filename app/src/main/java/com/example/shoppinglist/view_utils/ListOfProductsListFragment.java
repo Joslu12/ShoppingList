@@ -1,16 +1,24 @@
 package com.example.shoppinglist.view_utils;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
+import com.example.shoppinglist.stocks_activities.StockActivity;
+import com.example.shoppinglist.view_utils.dialogs.CreateEntityDialog;
+import com.example.shoppinglist.view_utils.dialogs.CreateListOfProductsDialog;
+import com.example.shoppinglist.view_utils.dialogs.CreateShoppingListDialog;
+import com.example.shoppinglist.view_utils.dialogs.CreateStockDialog;
 
 import java.util.List;
 
@@ -24,22 +32,23 @@ import model.ShoppingList;
 import model.Stock;
 import model.StockShoppingList;
 
-public class ListOfProductsListFragment extends Fragment {
+public class ListOfProductsListFragment extends Fragment implements CreateEntityDialog.CreateEntityDialogListener {
 
-    //---- Definiciones y Constantes ----
-    private static final String PRODUCT_LIST_CLASS = "product-list-class";
+    //---- Constants and Definitions ----
+    protected static final String PRODUCT_LIST_CLASS = "product-list-class";
 
-    //---- Elementos de la Vista ----
+    //---- View Elements ----
     private RecyclerView recyclerView;
 
-    //---- Atributos ----
+    //---- Attributes ----
+    private Class productListClass;
     private ListTableDao dao;
     private List<ProductsListClass<?>> list;
 
     //---- Constructor ----
     public ListOfProductsListFragment() {}
 
-    //---- Metodos del Fragmento ----
+    //---- Fragment Methods ----
     public static ListOfProductsListFragment newInstance(final Class productListClass) {
         ListOfProductsListFragment fragment = new ListOfProductsListFragment();
         Bundle args = new Bundle();
@@ -54,7 +63,7 @@ public class ListOfProductsListFragment extends Fragment {
         SQLiteDatabase bd = BaseDatosUtils.getWritableDatabaseConnection(getContext());
 
         if (getArguments() != null) {
-            Class productListClass = (Class) getArguments().getSerializable(PRODUCT_LIST_CLASS);
+            productListClass = (Class) getArguments().getSerializable(PRODUCT_LIST_CLASS);
             if(productListClass.equals(ShoppingList.class)) {
                 dao = new ShoppingListDao(bd);
             } else if (productListClass.equals(Stock.class)) {
@@ -96,8 +105,50 @@ public class ListOfProductsListFragment extends Fragment {
         return view;
     }
 
-    //---- Metodos ----
-    public void addNewListOfProducts() {
-        //TODO: Add new ProductList con Dialog
+    //---- Methods ----
+    public void openCreateListOfProductsDialog() {
+        CreateListOfProductsDialog dialog;
+        String tag = "";
+        if(productListClass.equals(ShoppingList.class)) {
+            dialog = new CreateShoppingListDialog(this);
+            tag = "Create new Shopping List";
+        } else if (productListClass.equals(Stock.class)) {
+            dialog = new CreateStockDialog(this);
+            tag = "Create new Stock";
+        } else {
+            throw new RuntimeException(); // TODO:
+        }
+        dialog.show(getParentFragmentManager(), tag);
+    }
+
+    @Override
+    public void onDialogCreateClick(CreateEntityDialog dialog) {
+        if (productListClass.equals(ShoppingList.class) || productListClass.equals(Stock.class)) {
+            ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
+            int opResult = dao.insert(entity);
+            if(opResult == -1) {
+                Toast.makeText(getContext(),dialog.getErrorMsg(entity),Toast.LENGTH_LONG).show();
+            } else {
+                // Mostramos el mensaje de exito y cerramos el dialog
+                Toast.makeText(getContext(), dialog.getSuccessMsg(entity.getName()), Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+
+                // Saltamos a la actividad del nuevo productList
+                Class activityClass = null;
+                if(entity.getClass().equals(Stock.class)) {
+                    activityClass = StockActivity.class;
+                } else if (entity.getClass().equals(ShoppingList.class)) {
+                    activityClass = ShoppingListActivity.class;
+                } else {
+                    //TODO:
+                    throw new RuntimeException();
+                }
+                Intent intent = new Intent(getContext(), activityClass);
+                intent.putExtra("ID", entity.getID());
+                getContext().startActivity(intent);
+            }
+        } else {
+            throw new RuntimeException(); // TODO:
+        }
     }
 }

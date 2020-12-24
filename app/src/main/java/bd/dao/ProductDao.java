@@ -16,7 +16,7 @@ public class ProductDao extends ProductTableDao<Product> {
 
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     public ContentValues generateContentValues(Product elem) {
         ContentValues values = new ContentValues();

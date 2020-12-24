@@ -54,7 +54,7 @@ public class MyListOfProductsRecyclerViewAdapter extends RecyclerView.Adapter<My
      */
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        //---- Atributos ----
+        //---- Attributes ----
         public final View mView;
         public final Context mContext;
         public final TextView mContentView;
@@ -70,7 +70,7 @@ public class MyListOfProductsRecyclerViewAdapter extends RecyclerView.Adapter<My
             view.setOnClickListener(this);
         }
 
-        //---- Metodos ----
+        //---- Methods ----
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";

@@ -20,7 +20,7 @@
         tools:listitem="@layout/recycler_view_adapter_list_of_products"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewProductsList"
+        android:id="@+id/btnAddNewProductsList"
         android:onClick="buttonClicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

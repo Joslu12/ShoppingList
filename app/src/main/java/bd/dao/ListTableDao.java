@@ -14,7 +14,7 @@ import model.Product;
 
 public abstract class ListTableDao<T extends ProductsListClass> extends AbstractDao<T> {
 
-    //---- Constantes ----
+    //---- Constants and Definitions ----
     private final String[] listTableColumns = {
             ShoppingListContract.ListTable._ID,
             ShoppingListContract.ListTable.COLUMN_NAME,
@@ -29,7 +29,7 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
         super(connection);
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     protected abstract T loadList(int listID, List productsList, Cursor cursor);
 
     protected abstract String getWhere();
@@ -99,7 +99,7 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
     protected abstract ProductTableDao getProductDao();
 
     @Override
-    public int insert(T elem) {
+    protected int doInsert(T elem) {
         // Insertamos el listado en la tabla ListadoTable
         ContentValues values = generateContentValues(elem);
         int listID = (int) getBDConnection().insert(ShoppingListContract.ListTable.TABLE_NAME,null,values);
@@ -109,7 +109,7 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
         ProductTableDao dao = getProductDao();
         Iterator<Product> it = elem.getProducts();
         while (it.hasNext()) {
-            int productID = dao.insert(it.next());
+            int productID = dao.doInsert(it.next());
 
             // Creamos la relacion entre el listado y el producto
             values = new ContentValues();
@@ -122,7 +122,7 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
     }
 
     @Override
-    public long update(T elem) {
+    protected long doUpdate(T elem) {
         // Actualizamos el listado en la tabla ListadoTable
         ContentValues values = generateContentValues(elem);
         String where = ShoppingListContract.ListTable._ID + " = ?";
@@ -134,20 +134,20 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
         ProductTableDao dao = getProductDao();
         Iterator<Product> it = elem.getProducts();
         while (it.hasNext()) {
-            dao.update(it.next());
+            dao.doUpdate(it.next());
         }
 
         return rowsUpdt;
     }
 
     @Override
-    public long remove(T elem) {
+    protected long doRemove(T elem) {
 
         // Eliminamos todos los productos del listado
         Iterator<Product> it = elem.getProducts();
         ProductDao productDao = new ProductDao(getBDConnection()); //Podemos usar un ProductoDao porque se van a eliminar y no importa la currentAmount
         while(it.hasNext()) {
-            productDao.remove(it.next());
+            productDao.doRemove(it.next());
         }
 
         // Eliminamos todas las referencias al listado en ListadoProductosTable

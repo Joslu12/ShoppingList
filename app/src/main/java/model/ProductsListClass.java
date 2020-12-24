@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class ProductsListClass<E extends Product> extends IdentifiedObjectClass {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	protected String name;
 	protected List<E> products;
 	
@@ -44,7 +44,7 @@ public abstract class ProductsListClass<E extends Product> extends IdentifiedObj
 		}
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 	/**
 	 * @return nombre del ListadoProductos
 	 */

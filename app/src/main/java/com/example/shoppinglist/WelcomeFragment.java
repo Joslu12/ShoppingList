@@ -14,7 +14,7 @@ public class WelcomeFragment extends Fragment {
         // Constructo publico y vacio requerido
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

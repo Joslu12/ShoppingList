@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Stock extends ProductsListClass<StockProduct> {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	private int associatedListId;
 
 	//---- Constructor ----
@@ -45,7 +45,7 @@ public class Stock extends ProductsListClass<StockProduct> {
 		this.associatedListId = associatedListId;
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 
 	/**
 	 * @return el id de la lista asociada al Stock

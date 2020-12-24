@@ -19,15 +19,11 @@ import model.ShoppingList;
 
 public class ShoppingListActivity extends AppCompatActivity {
 
-    //---- Constantes y Definiciones ----
-
-    //---- Atributos ----
+    //---- Attributes ----
     private SQLiteDatabase bd;
     private ShoppingList shoppingList;
 
-    //---- Elementos de la Vista ----
-
-    //---- Metodos ----
+    //---- Methods ----
     private void loadShoppingList(int id) {
         // Cargamos la lista de la compra almacenada en la BD con el id especificado
         ShoppingListDao daoSL = new ShoppingListDao(bd);
@@ -37,7 +33,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     private void deleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setTitle(R.string.warnig_dialog);
+        builder.setTitle(R.string.warning);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
@@ -67,11 +63,12 @@ public class ShoppingListActivity extends AppCompatActivity {
         this.finish();
 
         // Mostramos un mensaje informativo de la accion realizada
-        String msg = String.format(getResources().getString(R.string.info_msg_shopping_list_deleted), name);
+        String msg = String.format(getResources().getString(R.string.info_msg_product_list_deleted),
+                getResources().getString(R.string.upCase_the_shopping_list), name);
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 
-    //---- Metodos de la Actividad ----
+    //---- Activity Methods ----
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

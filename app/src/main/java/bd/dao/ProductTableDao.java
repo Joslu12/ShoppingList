@@ -14,7 +14,7 @@ import model.ShoppingListException;
 
 public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> {
 
-    //---- Constantes ----
+    //---- Constants and Definitions ----
     private final String[] productTableColumns = {
             ShoppingListContract.ProductTable._ID,
             ShoppingListContract.ProductTable.COLUMN_NAME,
@@ -27,7 +27,7 @@ public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> 
         super(connection);
     }
 
-    //---- Metodos ----
+    //---- Methods ----
 
     /**
      * A partir de la posicion de un cursor dada, generara un Producto obteniendo los valores
@@ -122,7 +122,7 @@ public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> 
     protected abstract ContentValues generateContentValues(T elem);
 
     @Override
-    public int insert(T elem) {
+    protected int doInsert(T elem) {
         ContentValues values = generateContentValues(elem);
 
         int elementID = (int) getBDConnection().insert(ShoppingListContract.ProductTable.TABLE_NAME,null,values);
@@ -132,7 +132,7 @@ public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> 
     }
 
     @Override
-    public long update(T elem) {
+    protected long doUpdate(T elem) {
         ContentValues values = generateContentValues(elem);
         String where = ShoppingListContract.ProductTable._ID + " = ?";
         String[] whereArgs = { Integer.toString(elem.getID()) };
@@ -141,7 +141,7 @@ public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> 
     }
 
     @Override
-    public long remove(T elem) {
+    protected long doRemove(T elem) {
         String where = ShoppingListContract.ProductTable._ID + " = ?";
         String[] whereArgs = { Integer.toString(elem.getID()) };
 

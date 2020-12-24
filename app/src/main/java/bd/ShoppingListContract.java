@@ -6,7 +6,7 @@ public final class ShoppingListContract {
 
     private ShoppingListContract() {}
 
-    //---- TABLA PRODUCTO ----
+    //---- PRODUCT TABLE ----
     public static abstract class ProductTable implements BaseColumns {
         public static final String TABLE_NAME = "Producto";
         public static final String COLUMN_NAME = "nombre";
@@ -14,7 +14,7 @@ public final class ShoppingListContract {
         public static final String COLUMN_CURRENT_AMOUNT = "cantidadActual";
     }
 
-    //---- TABLA LISTADO ----
+    //---- LIST TABLE ----
     public static abstract class ListTable implements BaseColumns {
         public static final String TABLE_NAME = "Listado";
         public static final String COLUMN_IS_SHOPPING_LIST = "esListaCompra";
@@ -24,7 +24,7 @@ public final class ShoppingListContract {
         public static final String COLUMN_ASSOCIATED_STOCK = "listadoAsociado";
     }
 
-    //---- TABLA LISTADO_PRODUCTO
+    //---- LIST_PRODUCT TABLE
     public static abstract class ListProductTable implements BaseColumns {
         public static final String TABLE_NAME = "ListadoProducto";
         public static final String COLUMN_LIST_ID = "listado";

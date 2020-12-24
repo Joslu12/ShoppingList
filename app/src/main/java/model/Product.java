@@ -7,7 +7,7 @@ package model;
  */
 public class Product extends IdentifiedObjectClass implements Cloneable {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	private final String name;
 	protected final int targetAmount;
 	
@@ -49,7 +49,7 @@ public class Product extends IdentifiedObjectClass implements Cloneable {
 		this.targetAmount = p.targetAmount;
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 	/**
 	 * @return nombre del Producto
 	 */
@@ -96,7 +96,6 @@ public class Product extends IdentifiedObjectClass implements Cloneable {
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		Product p = new Product(this);
-		return p;
+		return new Product(this);
 	}
 }

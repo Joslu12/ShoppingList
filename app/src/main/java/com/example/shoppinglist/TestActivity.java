@@ -13,10 +13,10 @@ import model.Stock;
 
 public class TestActivity extends AppCompatActivity {
 
-    //---- Atributos ----
+    //---- Attributtes ----
     private SQLiteDatabase bd;
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -19,13 +19,13 @@ import model.Stock;
 
 public class MainActivity extends AppCompatActivity {
 
-    //---- Elementos de la Vista ----
+    //---- View Elements ----
     private Button shoppingListsBtn, stocksBtn;
     private FragmentTransaction transaction;
     private Fragment fragmentWelcome, fragmentShoppingList, fragmentStocks;
     private Fragment fragmentActive;
 
-    //---- Metodos de la Actividad ----
+    //---- Activity Methods ----
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
         return ok;
     }
 
-    //---- Metodos ----
-    public void buttonClicked(View v) {
+    //---- Methods ----
+    public void buttonClicked(View view) {
         transaction = getSupportFragmentManager().beginTransaction();
-        switch(v.getId()) {
+        switch(view.getId()) {
             case R.id.btnShoppingLists:
                 fragmentShoppingList = ListOfProductsListFragment.newInstance(ShoppingList.class);
                 transaction.replace(R.id.contenedorFragments,fragmentShoppingList);
@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnStocks:
                 fragmentStocks = ListOfProductsListFragment.newInstance(Stock.class);
                 transaction.replace(R.id.contenedorFragments,fragmentStocks);
-                fragmentActive = fragmentShoppingList;
+                fragmentActive = fragmentStocks;
                 break;
 
-            case R.id.addNewProductsList:
+            case R.id.btnAddNewProductsList:
                 // Si el fragmento inicio tiene la referencia de uno de los dos de ListOfProductListFragment
-                if (fragmentActive == fragmentShoppingList || fragmentWelcome == fragmentStocks) {
-                    ((ListOfProductsListFragment) fragmentActive).addNewListOfProducts();
+                if (fragmentActive == fragmentShoppingList || fragmentActive == fragmentStocks) {
+                    ((ListOfProductsListFragment) fragmentActive).openCreateListOfProductsDialog();
                 }
                 break;
         }

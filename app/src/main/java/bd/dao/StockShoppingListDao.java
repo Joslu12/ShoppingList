@@ -17,7 +17,7 @@ public class StockShoppingListDao extends ListTableDao<StockShoppingList> {
         super(connection);
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     protected StockShoppingList loadList(int listID, List productsList, Cursor cursor) {
         StockShoppingList StockShoppingList = null;

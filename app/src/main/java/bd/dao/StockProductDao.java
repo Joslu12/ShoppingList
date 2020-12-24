@@ -15,7 +15,7 @@ public class StockProductDao extends ProductTableDao<StockProduct> {
         super(connection);
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     @Override
     protected StockProduct loadProduct(int id, Cursor cursor) throws ShoppingListException {
         String name = cursor.getString(cursor.getColumnIndex(ShoppingListContract.ProductTable.COLUMN_NAME));

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class IdentifiedObjectClass implements Serializable {
 
-    //---- Atributos ----
+    //---- Attributes ----
     private int id;
 
     //---- Constructor ----
@@ -12,7 +12,7 @@ public abstract class IdentifiedObjectClass implements Serializable {
         this.id = id;
     }
 
-    //---- Metodos ----
+    //---- Methods ----
     /**
      * @return el identificador del objeto
      */

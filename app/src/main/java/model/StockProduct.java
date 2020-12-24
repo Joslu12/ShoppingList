@@ -6,7 +6,7 @@ package model;
  */
 public class StockProduct extends Product implements Cloneable {
 
-	//---- Atributos ----
+	//---- Attributes ----
 	private int currentAmount;
 	
 	//---- Constructor ----
@@ -47,7 +47,7 @@ public class StockProduct extends Product implements Cloneable {
 		this.currentAmount = p.currentAmount;
 	}
 	
-	//---- Metodos ----
+	//---- Methods ----
 	/**
 	 * @return cantidad actual del producto 
 	 */

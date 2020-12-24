@@ -8,7 +8,7 @@ import model.IdentifiedObjectClass;
 
 public abstract class AbstractDao<T extends IdentifiedObjectClass> {
 
-    //---- Atributos ----
+    //---- Attributes ----
     private final SQLiteDatabase bdConnection;
 
     //---- Constructor ----
@@ -16,7 +16,7 @@ public abstract class AbstractDao<T extends IdentifiedObjectClass> {
         bdConnection = connection;
     }
 
-    //---- Metodos ----
+    //---- Methods ----
 
     /**
      * @return conexion a la bd
@@ -38,24 +38,50 @@ public abstract class AbstractDao<T extends IdentifiedObjectClass> {
      */
     public abstract List<T> findAll();
 
+
+
     /**
      * El propio metodo actualiza el estado de elem, editando su id
      * @param elem
      * @return el id generado del elemento anadido o -1 si ocurre algun error
      */
-    public abstract int insert(T elem);
+    public int insert(T elem) {
+        if(elem == null) {
+            return -1;
+        } else {
+            return doInsert(elem);
+        }
+    }
+
+    protected abstract int doInsert(T elem);
 
     /**
      * @param elem
-     * @return numero de filas actualizadas
+     * @return numero de filas actualizadas o -1 si el elem recibido es null
      */
-    public abstract long update(T elem);
+    public long update(T elem) {
+        if(elem == null) {
+            return -1;
+        } else {
+            return doUpdate(elem);
+        }
+    }
+
+    protected abstract long doUpdate(T elem);
 
     /**
      *
      * @param elem
-     * @return numero de filas eliminadas
+     * @return numero de filas eliminadas o -1 si el elem recibido es null
      */
-    public abstract long remove(T elem);
+    public long remove(T elem) {
+        if(elem == null) {
+            return -1;
+        } else {
+            return doRemove(elem);
+        }
+    }
+
+    protected abstract long doRemove(T elem);
 
 }

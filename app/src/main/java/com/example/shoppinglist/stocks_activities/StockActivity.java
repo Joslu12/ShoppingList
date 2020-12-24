@@ -19,15 +19,11 @@ import model.Stock;
 
 public class StockActivity extends AppCompatActivity {
 
-    //---- Constantes y Definiciones ----
-
-    //---- Atributos ----
+    //---- Attributes ----
     private SQLiteDatabase bd;
     private Stock stock;
 
-    //---- Elementos de la Vista ----
-
-    //---- Metodos ----
+    //---- Methods ----
     private void loadStock(int id) {
         // Cargamos la lista de la compra almacenada en la BD con el id especificado
         StockDao daoSL = new StockDao(bd);
@@ -37,7 +33,7 @@ public class StockActivity extends AppCompatActivity {
     private void deleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setTitle(R.string.warnig_dialog);
+        builder.setTitle(R.string.warning);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
@@ -67,10 +63,12 @@ public class StockActivity extends AppCompatActivity {
         this.finish();
 
         // Mostramos un mensaje informativo de la accion realizada
-        String msg = String.format(getResources().getString(R.string.info_msg_stock_deleted), name);
+        String msg = String.format(getResources().getString(R.string.info_msg_product_list_deleted),
+                getResources().getString(R.string.upCase_the_stock), name);
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 
+    //---- Activity Methods ----
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
