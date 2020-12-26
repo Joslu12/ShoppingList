@@ -1,13 +1,17 @@
-package com.example.shoppinglist.view_utils.dialogs;
+package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
-import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.shoppinglist.R;
 
 import model.ProductsListClass;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public abstract class CreateListOfProductsDialog<T extends ProductsListClass> extends CreateEntityDialog<T> {
 
@@ -21,18 +25,21 @@ public abstract class CreateListOfProductsDialog<T extends ProductsListClass> ex
 
     //---- Methods ----
     @Override
-    protected View setDialogContent() {
+    protected View generateTwoButtonsDialogContent() {
         return getLayoutInflater().inflate(R.layout.content_dialog_create_list_of_products,dialogContent,false);
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-
-        // Referenciamos el EditText from el contenido del Dialog
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
 
-        return dialog;
+        // Ponemos el foco en el EditText y abrimos el teclado directamente
+        inputName.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+        return super.onCreateView(inflater, container,savedInstanceState);
     }
 
     final protected String getTypedName() {

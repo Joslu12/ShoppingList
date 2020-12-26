@@ -40,4 +40,8 @@
     <string name="upCase_the_shopping_list">The shopping list</string>
     <!-- END SHOPPING LIST -->
 
+    <!-- BEGIN WORDS -->
+    <string name="Name">Name</string>
+    <!-- END WORDS -->
+
 </resources>

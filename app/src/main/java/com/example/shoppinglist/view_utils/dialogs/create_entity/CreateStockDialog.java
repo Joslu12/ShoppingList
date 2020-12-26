@@ -1,38 +1,38 @@
-package com.example.shoppinglist.view_utils.dialogs;
+package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
 import com.example.shoppinglist.R;
 
-import model.ShoppingList;
+import model.Stock;
 
-public class CreateShoppingListDialog extends CreateListOfProductsDialog<ShoppingList> {
+public class CreateStockDialog extends CreateListOfProductsDialog<Stock> {
 
     //---- Constructor ----
-    public CreateShoppingListDialog(CreateEntityDialogListener listener) {
+    public CreateStockDialog(CreateEntityDialogListener listener) {
         super(listener);
     }
 
     //---- Methods ----
-    public String getTitle() {
-        String titleText = getResources().getString(R.string.the_shopping_list);
+    public String getDialogTitle() {
+        String titleText = getResources().getString(R.string.the_stock);
         String dialogTitle = String.format(getResources().getString(R.string.enter_the_product_list_name), titleText);
         return dialogTitle;
     }
 
     @Override
-    public String getSuccessMsg(final String itemName) {
+    public String getSuccessMsg(String itemName) {
         String msg = String.format(getResources().getString(R.string.info_msg_product_list_created),
-                getResources().getString(R.string.upCase_the_shopping_list), itemName);
+                getResources().getString(R.string.upCase_the_stock), itemName);
         return msg;
     }
 
     //TODO: Comprobar que el nombre introducido es valido (No es solo numeros o simbolos raros)
     @Override
-    public ShoppingList getEntityToCreate() {
+    public Stock getEntityToCreate() {
         String name = getTypedName();
         if(name.equals("")) {
             return null;
         } else {
-            return new ShoppingList(name);
+            return new Stock(name);
         }
     }
 

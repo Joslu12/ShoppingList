@@ -1,6 +1,5 @@
-package com.example.shoppinglist.view_utils;
+package com.example.shoppinglist.view_utils.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
 import com.example.shoppinglist.stocks_activities.StockActivity;
-import com.example.shoppinglist.view_utils.dialogs.CreateEntityDialog;
-import com.example.shoppinglist.view_utils.dialogs.CreateListOfProductsDialog;
-import com.example.shoppinglist.view_utils.dialogs.CreateShoppingListDialog;
-import com.example.shoppinglist.view_utils.dialogs.CreateStockDialog;
+import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
+import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateListOfProductsDialog;
+import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateShoppingListDialog;
+import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockDialog;
 
 import java.util.List;
 

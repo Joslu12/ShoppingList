@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.shoppinglist.view_utils.ListOfProductsListFragment;
+import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
 import model.ShoppingList;
 import model.Stock;
