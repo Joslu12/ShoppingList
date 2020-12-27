@@ -41,6 +41,7 @@ public abstract class DeleteEntityDialog<T> extends TwoButtonsCustomDialog {
     @Override
     protected void actionAffirmativePressed() {
         ((DeleteEntityDialog.DeleteEntityDialogListener)listener).onDialogDeleteClick(this);
+        this.dismiss();
     }
 
     @Override

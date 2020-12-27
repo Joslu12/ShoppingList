@@ -21,6 +21,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--TODO: Cambiar por fragmento o LinearLayoutDinamico -->
     <include layout="@layout/content_shopping_list" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

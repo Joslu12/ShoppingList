@@ -9,7 +9,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     //---- Constants and Definitions ----
     public static final int DATA_BASE_VERSION = 1;
 
-    private static final String SQL_CREATE_PRODUCT_TABLE =
+    protected static final String SQL_CREATE_PRODUCT_TABLE =
             "CREATE TABLE " + ShoppingListContract.ProductTable.TABLE_NAME + " (" +
             ShoppingListContract.ProductTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             ShoppingListContract.ProductTable.COLUMN_NAME + " TEXT NOT NULL," +
@@ -17,7 +17,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
             ShoppingListContract.ProductTable.COLUMN_CURRENT_AMOUNT + " INTEGER" +
             ");";
 
-    private static final String SQL_CREATE_LIST_TABLE =
+    protected static final String SQL_CREATE_LIST_TABLE =
             "CREATE TABLE " + ShoppingListContract.ListTable.TABLE_NAME + " (" +
             ShoppingListContract.ListTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             ShoppingListContract.ListTable.COLUMN_IS_SHOPPING_LIST + " INTEGER NOT NULL," +
@@ -29,7 +29,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
                     ShoppingListContract.ListTable.TABLE_NAME + " (" + ShoppingListContract.ListTable._ID +")" +
             ");";
 
-    private static final String SQL_CREATE_LIST_PRODUCT_TABLE =
+    protected static final String SQL_CREATE_LIST_PRODUCT_TABLE =
             "CREATE TABLE " + ShoppingListContract.ListProductTable.TABLE_NAME + " (" +
             ShoppingListContract.ListProductTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             ShoppingListContract.ListProductTable.COLUMN_LIST_ID + " INTEGER NOT NULL," +
@@ -40,11 +40,11 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
                     ShoppingListContract.ProductTable.TABLE_NAME + " (" + ShoppingListContract.ProductTable._ID +")" +
             ");";
 
-    private static final String SQL_DELETE_PRODUCT_TABLE =
+    protected static final String SQL_DELETE_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + ShoppingListContract.ProductTable.TABLE_NAME + ";";
-    private static final String SQL_DELETE_LIST_TABLE =
+    protected static final String SQL_DELETE_LIST_TABLE =
             "DROP TABLE IF EXISTS " + ShoppingListContract.ListTable.TABLE_NAME + ";";
-    private static final String SQL_DELETE_LIST_PRODUCT_TABLE =
+    protected static final String SQL_DELETE_LIST_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + ShoppingListContract.ListProductTable.TABLE_NAME + ";";
 
     //---- Constructor ----

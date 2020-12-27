@@ -31,4 +31,16 @@ public class BaseDatosUtils {
         }
         return readableBdConnection;
     }
+
+    public static void deleteAllDataStored(Context context) {
+        SQLiteDatabase db = getWritableDatabaseConnection(context);
+
+        db.execSQL(ShoppingListDbHelper.SQL_DELETE_PRODUCT_TABLE);
+        db.execSQL(ShoppingListDbHelper.SQL_DELETE_LIST_TABLE);
+        db.execSQL(ShoppingListDbHelper.SQL_DELETE_LIST_PRODUCT_TABLE);
+
+        db.execSQL(ShoppingListDbHelper.SQL_CREATE_PRODUCT_TABLE);
+        db.execSQL(ShoppingListDbHelper.SQL_CREATE_LIST_TABLE);
+        db.execSQL(ShoppingListDbHelper.SQL_CREATE_LIST_PRODUCT_TABLE);
+    }
 }

@@ -16,7 +16,7 @@ import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteAllEntiti
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
-import bd.dao.ListTableDao;
+import bd.BaseDatosUtils;
 import model.ShoppingList;
 import model.Stock;
 
@@ -104,9 +104,8 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
 
     @Override
     public void onDialogDeleteClick(DeleteEntityDialog dialog) {
-        //TODO: delete all data stored
-
-        // Eliminamos de la BD TODO
+        // Vaciamos la Base de Datos
+        BaseDatosUtils.deleteAllDataStored(this);
 
         // Mostramos un mensaje informativo de la accion realizada
         String msg = getResources().getString(R.string.info_msg_all_data_deleted);
