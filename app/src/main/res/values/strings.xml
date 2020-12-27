@@ -15,14 +15,15 @@
     <string name="create">Create</string>
     <!-- END ACTIONS -->
 
-    <!-- BEGIN MESSAGES -->
+    <!-- BEGIN MESSAGES & QUESTIONS -->
     <string name="warning">Warning</string>
     <string name="enter_the_product_list_name">"Enter %1$s name:"</string>
     <string name="info_msg_product_list_created">"%1$s '%2$s' has been created successfully."</string>
     <string name="info_msg_product_list_deleted">"%1$s '%2$s' has been deleted."</string>
     <string name="blank_name_input_error">You must type a name.</string>
     <string name="unexpected_error">"Oops! This error shouldn't have occurred."</string>
-    <!-- END MESSAGES -->
+    <string name="delete_warning">"Are you sure you want to delete %1$s: '%2$s'"</string>
+    <!-- END MESSAGES & QUESTIONS -->
 
     <!-- BEGIN STOCK -->
     <string name="title_activity_stock_list">Stock List</string>
@@ -41,7 +42,7 @@
     <!-- END SHOPPING LIST -->
 
     <!-- BEGIN WORDS -->
-    <string name="Name">Name</string>
+    <string name="name">Name</string>
     <!-- END WORDS -->
 
 </resources>
