@@ -1,11 +1,14 @@
 package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
 
 import com.example.shoppinglist.R;
 
@@ -40,6 +43,15 @@ public abstract class CreateListOfProductsDialog<T extends ProductsListClass> ex
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         return super.onCreateView(inflater, container,savedInstanceState);
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+
+        // Cerramos el teclado
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     final protected String getTypedName() {

@@ -110,5 +110,9 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
         // Mostramos un mensaje informativo de la accion realizada
         String msg = getResources().getString(R.string.info_msg_all_data_deleted);
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+
+        // Volvemos al fragmento de Bienvenida
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragments, fragmentWelcome).commit();
+        fragmentActive = fragmentWelcome;
     }
 }
