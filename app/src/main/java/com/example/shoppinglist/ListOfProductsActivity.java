@@ -10,12 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
+import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import model.ProductsListClass;
 
-public abstract class ListOfProductsActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener {
+public abstract class ListOfProductsActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
 
     //---- Attributes ----
     protected SQLiteDatabase bd;
@@ -51,12 +52,14 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         boolean ok = true;
 
         switch (item.getItemId()) {
-            case R.id.delete:
-                DeleteEntityDialog<T> dialog = generateEntityDialog();
-                dialog.show(getSupportFragmentManager(), generateDialogTag());
+            case R.id.edit_name:
+                EditListOfProductsDialog<T> dialogEdit = generateEntityEditDialog();
+                dialogEdit.show(getSupportFragmentManager(), generateEditDialogTag());
                 break;
 
-            case R.id.action_settings:
+            case R.id.delete:
+                DeleteEntityDialog<T> dialogDelete = generateEntityDeleteDialog();
+                dialogDelete.show(getSupportFragmentManager(), generateDeleteDialogTag());
                 break;
 
             default:
@@ -67,8 +70,11 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
     }
 
     //---- Methods ----
-    protected abstract DeleteEntityDialog<T> generateEntityDialog();
-    protected abstract String generateDialogTag();
+    protected abstract DeleteEntityDialog<T> generateEntityDeleteDialog();
+    protected abstract String generateDeleteDialogTag();
+
+    protected abstract EditListOfProductsDialog<T> generateEntityEditDialog();
+    protected abstract String generateEditDialogTag();
 
     protected abstract ListTableDao<T> getProductListDao();
     private void loadProductList(int id) {
@@ -92,6 +98,29 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         // Mostramos un mensaje informativo de la accion realizada
         String msg = String.format(getResources().getString(R.string.info_msg_product_list_deleted), getProductListTypeString(), name);
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDialogUpdateClick(EditListOfProductsDialog dialog) {
+        ListTableDao<T> dao = getProductListDao();
+
+        // Actualizamos el nombre de la lista de productos
+        String newName = dialog.getTypedName();
+        if(newName.equals("")) {
+            // Mostramos un mensaje de error
+            Toast.makeText(getApplicationContext(),getResources().getText(R.string.blank_name_input_error),Toast.LENGTH_LONG).show();
+        } else {
+            productsList.setName(dialog.getTypedName());
+            dao.update(productsList);
+
+            // Actualizamos la vista y cerramos el Dialog
+            getSupportActionBar().setTitle(productsList.getName());
+            dialog.dismiss();
+
+            // Mostramos un mensaje informativo de la accion realizada
+            String msg = String.format(getResources().getString(R.string.info_msg_product_list_updated), getProductListTypeString(), productsList.getName());
+            Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+        }
     }
 
     protected abstract String getProductListTypeString();

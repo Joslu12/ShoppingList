@@ -12,6 +12,8 @@
     <string name="delete_all_data">Delete all data stored</string>
     <string name="cancel">Cancel</string>
     <string name="create">Create</string>
+    <string name="edit_name">Edit name</string>
+    <string name="update">Update</string>
     <!-- END ACTIONS -->
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
@@ -19,7 +21,8 @@
     <string name="enter_the_product_list_name">"Enter %1$s name:"</string>
     <string name="info_msg_product_list_created">"%1$s '%2$s' has been created successfully."</string>
     <string name="info_msg_product_list_deleted">"%1$s '%2$s' has been deleted."</string>
-    <string name="blank_name_input_error">You must type a name.</string>
+    <string name="info_msg_product_list_updated">"%1$s has been updated with the name: '%2$s'."</string>
+    <string name="blank_name_input_error">"The name can't be empty".</string>
     <string name="unexpected_error">"Oops! This error shouldn't have occurred."</string>
     <string name="delete_warning">"Are you sure you want to delete %1$s: '%2$s'?"</string>
     <string name="delete_all_data_warning">"WARNING! This operation can't be undone. Are you sure you want to delete all the data stored?</string>

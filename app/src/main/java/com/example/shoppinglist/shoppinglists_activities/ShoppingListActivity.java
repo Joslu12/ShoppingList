@@ -4,6 +4,8 @@ import com.example.shoppinglist.ListOfProductsActivity;
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteShoppingListDialog;
+import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
+import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditShoppingListDialog;
 
 import bd.dao.ShoppingListDao;
 import model.ShoppingList;
@@ -12,13 +14,23 @@ public class ShoppingListActivity extends ListOfProductsActivity<ShoppingList> {
 
     //---- Methods ----
     @Override
-    protected DeleteEntityDialog<ShoppingList> generateEntityDialog() {
+    protected DeleteEntityDialog<ShoppingList> generateEntityDeleteDialog() {
         return new DeleteShoppingListDialog(this, this.productsList);
     }
 
     @Override
-    protected String generateDialogTag() {
+    protected String generateDeleteDialogTag() {
         return "Delete a Shopping List";
+    }
+
+    @Override
+    protected EditListOfProductsDialog<ShoppingList> generateEntityEditDialog() {
+        return new EditShoppingListDialog(this,this.productsList);
+    }
+
+    @Override
+    protected String generateEditDialogTag() {
+        return "Edit a Shopping List";
     }
 
     @Override
