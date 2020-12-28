@@ -1,6 +1,7 @@
 package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.app_error_handling.AppException;
 import com.example.shoppinglist.view_utils.dialogs.TwoButtonsCustomDialog;
 
 public abstract class CreateEntityDialog<T> extends TwoButtonsCustomDialog {
@@ -36,7 +37,6 @@ public abstract class CreateEntityDialog<T> extends TwoButtonsCustomDialog {
         this.dismiss();
     }
 
-    public abstract String getErrorMsg(final T entity);
     public abstract String getSuccessMsg(final String entityName);
-    public abstract T getEntityToCreate();
+    public abstract T getEntityToCreate() throws AppException;
 }

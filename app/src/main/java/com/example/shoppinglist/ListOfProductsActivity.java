@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.shoppinglist.app_error_handling.AppError;
+import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 
@@ -107,8 +109,7 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         // Actualizamos el nombre de la lista de productos
         String newName = dialog.getTypedName();
         if(newName.equals("")) {
-            // Mostramos un mensaje de error
-            Toast.makeText(getApplicationContext(),getResources().getText(R.string.blank_name_input_error),Toast.LENGTH_LONG).show();
+            new AppError(CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),this);
         } else {
             productsList.setName(dialog.getTypedName());
             dao.update(productsList);

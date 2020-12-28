@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.app_error_handling.AppError;
+import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
+import com.example.shoppinglist.app_error_handling.AppException;
 import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
 import com.example.shoppinglist.stocks_activities.StockActivity;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
@@ -70,7 +73,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
             } else if (productListClass.equals(StockShoppingList.class)) {
                 dao = new StockShoppingListDao(bd);
             } else {
-                throw new RuntimeException(); // TODO:
+                new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
             }
         }
 
@@ -106,7 +109,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
 
     //---- Methods ----
     public void openCreateListOfProductsDialog() {
-        CreateListOfProductsDialog dialog;
+        CreateListOfProductsDialog dialog = null;
         String tag = "";
         if(productListClass.equals(ShoppingList.class)) {
             dialog = new CreateShoppingListDialog(this);
@@ -115,7 +118,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
             dialog = new CreateStockDialog(this);
             tag = "Create new Stock";
         } else {
-            throw new RuntimeException(); // TODO:
+            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
         }
         dialog.show(getParentFragmentManager(), tag);
     }
@@ -123,31 +126,29 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
     @Override
     public void onDialogCreateClick(CreateEntityDialog dialog) {
         if (productListClass.equals(ShoppingList.class) || productListClass.equals(Stock.class)) {
-            ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
-            int opResult = dao.insert(entity);
-            if(opResult == -1) {
-                Toast.makeText(getContext(),dialog.getErrorMsg(entity),Toast.LENGTH_LONG).show();
-            } else {
+            try {
+                ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
+                dao.insert(entity);
+
                 // Mostramos el mensaje de exito y cerramos el dialog
                 Toast.makeText(getContext(), dialog.getSuccessMsg(entity.getName()), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
 
                 // Saltamos a la actividad del nuevo productList
                 Class activityClass = null;
-                if(entity.getClass().equals(Stock.class)) {
+                if (entity.getClass().equals(Stock.class)) {
                     activityClass = StockActivity.class;
                 } else if (entity.getClass().equals(ShoppingList.class)) {
                     activityClass = ShoppingListActivity.class;
                 } else {
-                    //TODO:
-                    throw new RuntimeException();
+                    new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
                 }
                 Intent intent = new Intent(getContext(), activityClass);
                 intent.putExtra("ID", entity.getID());
                 getContext().startActivity(intent);
-            }
+            } catch (AppException ex) { }
         } else {
-            throw new RuntimeException(); // TODO:
+            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
         }
     }
 }

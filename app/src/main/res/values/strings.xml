@@ -3,8 +3,6 @@
     <!-- BEGIN MAIN -->
     <string name="app_name">ShoppingList</string>
     <string name="action_settings">Settings</string>
-
-    <string name="title_activity_test">TEST</string>
     <!-- END MAIN -->
 
     <!-- BEGIN ACTIONS -->
@@ -22,12 +20,21 @@
     <string name="info_msg_product_list_created">"%1$s '%2$s' has been created successfully."</string>
     <string name="info_msg_product_list_deleted">"%1$s '%2$s' has been deleted."</string>
     <string name="info_msg_product_list_updated">"%1$s has been updated with the name: '%2$s'."</string>
-    <string name="blank_name_input_error">"The name can't be empty".</string>
-    <string name="unexpected_error">"Oops! This error shouldn't have occurred."</string>
     <string name="delete_warning">"Are you sure you want to delete %1$s: '%2$s'?"</string>
     <string name="delete_all_data_warning">"WARNING! This operation can't be undone. Are you sure you want to delete all the data stored?</string>
     <string name="info_msg_all_data_deleted">All data stored was deleted successfully.</string>
     <!-- END MESSAGES & QUESTIONS -->
+
+    <!-- BEGIN ERROR MSG -->
+    <string name="src_error">"Oops! Something isn't work properly"</string>
+    <string name="unexpected_error">"Oops! This error shouldn't have occurred."</string>
+    <string name="blank_name_input_error">"The name can't be empty".</string>
+    <!-- END ERROR MSG -->
+
+    <!-- BEGIN WORDS -->
+    <string name="name">Name</string>
+    <string name="code">Code</string>
+    <!-- END WORDS -->
 
     <!-- BEGIN STOCK -->
     <string name="title_activity_stock_list">Stock List</string>
@@ -44,9 +51,5 @@
     <string name="the_shopping_list">the shopping list</string>
     <string name="upCase_the_shopping_list">The shopping list</string>
     <!-- END SHOPPING LIST -->
-
-    <!-- BEGIN WORDS -->
-    <string name="name">Name</string>
-    <!-- END WORDS -->
 
 </resources>

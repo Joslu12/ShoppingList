@@ -1,0 +1,45 @@
+package com.example.shoppinglist.app_error_handling;
+
+import android.content.Intent;
+import android.widget.Toast;
+
+import com.example.shoppinglist.R;
+import com.example.shoppinglist.stocks_activities.StockActivity;
+
+/**
+ * Clase encargada de actuar frente a la creacion de errores dentro de la app. Las acciones pueden ir desde conducir
+ * a una actividad concreta, mostrar un simple mensaje Toast o recuperar el sistema.
+ *
+ */
+public class AppErrorHelper {
+
+    //---- Definitions and Constants ----
+    // Codigos: [0,4] --> Errores que no deben ocurrir bajo ningún concepto, y si ocurren es debido a un fallo del código fuente
+    private static final int MIN_FATAL_ERROR_CODE = 0, MAX_FATAL_ERROR_CODE = 4;
+    // Codigos: [5,9] --> Errores en los que intervienen las entradas de datos por parte del usuario
+    private static final int MIN_INPUT_ERROR_CODE = 5, MAX_INPUT_ERROR_CODE = 9;
+
+    private static final int MAX_ERROR_CODE = 200;
+
+    //---- Handlers ----
+    protected static void handleError(AppError error) {
+        int errorCode = error.getCode();
+        if(errorCode < MIN_FATAL_ERROR_CODE || errorCode > MAX_ERROR_CODE) { // El error ha sido creado con un codigo no valido
+            new AppError(CodeErrors.MUST_NOT_HAPPEN_SRC_ERROR_CREATION, error.getContext().getResources().getString(R.string.src_error), error.getContext());
+        } else if(MIN_FATAL_ERROR_CODE <= errorCode && errorCode <= MAX_FATAL_ERROR_CODE) { // Errores que nunca deberian de ocurrir
+            Intent intent = new Intent(error.getContext(), FatalAppErrorActivity.class);
+            intent.putExtra("ERROR_MSG",error.toString());
+            error.getContext().startActivity(intent);
+        } else if(MIN_INPUT_ERROR_CODE <= errorCode && errorCode <= MAX_INPUT_ERROR_CODE) { // Errores de entrada del usuario
+            Toast.makeText(error.getContext(), error.getMsg(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    //---- Errors codes ----
+    public static class CodeErrors {
+        public static final int MUST_NOT_HAPPEN = MIN_FATAL_ERROR_CODE + 0;      // Errores que no debería de ocurrir bajo ninguna circunstancia por la estructura del codigo fuente
+        public static final int MUST_NOT_HAPPEN_SRC_ERROR_CREATION = MIN_FATAL_ERROR_CODE + 1;   // Error introducido en el codigo fuente durante la creacion de errores
+
+        public static final int EMPTY_NAME_IMPUT = MIN_INPUT_ERROR_CODE + 0;
+    }
+}

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.app_error_handling.AppException;
 
 import model.ProductsListClass;
 
@@ -59,14 +60,5 @@ public abstract class CreateListOfProductsDialog<T extends ProductsListClass> ex
     }
 
     @Override
-    public String getErrorMsg(ProductsListClass entity) {
-        if(entity == null) {
-            return getResources().getString(R.string.blank_name_input_error);
-        } else {
-            return getResources().getString(R.string.unexpected_error);
-        }
-    }
-
-    @Override
-    public abstract T getEntityToCreate();
+    public abstract T getEntityToCreate() throws AppException;
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
+import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
+import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
 import com.example.shoppinglist.stocks_activities.StockActivity;
 
@@ -80,7 +82,7 @@ public class MyListOfProductsRecyclerViewAdapter extends RecyclerView.Adapter<My
         public void onClick(View view) {
             ProductsListClass<?> productList = mProductList;
 
-            Intent intent;
+            Intent intent = null;
             if(productList instanceof ShoppingList) {
                 intent = new Intent(mContext, ShoppingListActivity.class);
             } else if(productList instanceof StockShoppingList) {
@@ -88,7 +90,7 @@ public class MyListOfProductsRecyclerViewAdapter extends RecyclerView.Adapter<My
             } else if(productList instanceof Stock) {
                 intent = new Intent(view.getContext(), StockActivity.class);
             } else {
-                throw new RuntimeException(); //TODO:
+                new AppError(CodeErrors.MUST_NOT_HAPPEN, this.mContext.getResources().getString(R.string.unexpected_error),mContext);
             }
 
             intent.putExtra("ID", productList.getID());

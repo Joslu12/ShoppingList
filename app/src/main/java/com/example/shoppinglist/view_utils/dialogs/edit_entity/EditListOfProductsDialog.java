@@ -75,14 +75,6 @@ public abstract class EditListOfProductsDialog<T extends ProductsListClass> exte
         return inputName.getText().toString().trim();
     }
 
-    public String getErrorMsg(ProductsListClass entity) {
-        if(entity == null) {
-            return getResources().getString(R.string.blank_name_input_error);
-        } else {
-            return getResources().getString(R.string.unexpected_error);
-        }
-    }
-
     @Override
     protected String getTextAffirmativeButton() {
         return getResources().getString(R.string.update);

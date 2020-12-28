@@ -1,6 +1,9 @@
 package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.app_error_handling.AppError;
+import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
+import com.example.shoppinglist.app_error_handling.AppException;
 
 import model.Stock;
 
@@ -25,12 +28,11 @@ public class CreateStockDialog extends CreateListOfProductsDialog<Stock> {
         return msg;
     }
 
-    //TODO: Comprobar que el nombre introducido es valido (No es solo numeros o simbolos raros)
     @Override
-    public Stock getEntityToCreate() {
+    public Stock getEntityToCreate() throws AppException {
         String name = getTypedName();
         if(name.equals("")) {
-            return null;
+            throw new AppException(new AppError(CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
         } else {
             return new Stock(name);
         }
