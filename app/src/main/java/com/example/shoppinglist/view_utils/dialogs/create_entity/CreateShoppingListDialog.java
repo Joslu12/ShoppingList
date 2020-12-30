@@ -23,7 +23,7 @@ public class CreateShoppingListDialog extends CreateListOfProductsDialog<Shoppin
 
     @Override
     public String getSuccessMsg(final String itemName) {
-        String msg = String.format(getResources().getString(R.string.info_msg_product_list_created),
+        String msg = String.format(getResources().getString(R.string.info_msg_entity_created),
                 getResources().getString(R.string.upCase_the_shopping_list), itemName);
         return msg;
     }
@@ -32,7 +32,7 @@ public class CreateShoppingListDialog extends CreateListOfProductsDialog<Shoppin
     public ShoppingList getEntityToCreate() throws AppException {
         String name = getTypedName();
         if(name.equals("")) {
-            throw new AppException(new AppError(CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
+            throw new AppException(new AppError(CodeErrors.EMPTY_NAME_INPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
         } else {
             return new ShoppingList(name);
         }

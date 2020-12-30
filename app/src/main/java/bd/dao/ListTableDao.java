@@ -160,4 +160,28 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
 
         return getBDConnection().delete(ShoppingListContract.ListTable.TABLE_NAME, where, whereArgs);
     }
+
+    public <E extends Product> int doAddProduct(int productListID, E product) {
+        // Insertamos el producto
+        ProductTableDao dao = getProductDao();
+        int productID = dao.insert(product);
+
+        // Creamos la relacion entre el listado y el producto
+        ContentValues values = new ContentValues();
+        values.put(ShoppingListContract.ListProductTable.COLUMN_LIST_ID, productListID);
+        values.put(ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID, productID);
+        return (int) getBDConnection().insert(ShoppingListContract.ListProductTable.TABLE_NAME, null, values);
+    }
+
+    public <E extends Product> int doRemoveProduct(int productListID, E product) {
+        // Eliminamos el producto
+        ProductTableDao dao = getProductDao();
+        dao.remove(product);
+
+        // Eliminamos la relacion entre el listado y el producto
+        String where = ShoppingListContract.ListProductTable.COLUMN_LIST_ID + " = ?" +
+                "AND " + ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID + " = ?";
+        String[] whereArgs = { Integer.toString(productListID), Integer.toString(product.getID()) };
+        return getBDConnection().delete(ShoppingListContract.ListProductTable.TABLE_NAME, where, whereArgs);
+    }
 }

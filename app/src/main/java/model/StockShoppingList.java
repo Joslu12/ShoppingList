@@ -47,7 +47,7 @@ public class StockShoppingList extends ShoppingList {
 	 * Que se descarte implica que se debe eliminar
 	 */
 	@Override
-	public ShoppingList finishSummary(final EndPurchaseOperation operation) {
+	public ShoppingList finishSummary(final EndPurchaseOperation operation) throws ShoppingListException{
 		Iterator<Product> purchasedProductsIt = this.getPurchasedProducts();
 		
 		while(purchasedProductsIt.hasNext()) {
@@ -55,7 +55,7 @@ public class StockShoppingList extends ShoppingList {
 			try {
 				associatedStock.completeUnitsProduct(p);
 			} catch (ShoppingListException e) {
-				return null; //TODO: throw exception indicado que algo ha pasado
+				throw new ShoppingListException("ERROR. Ha ocurrido un error durante la finalizacion del resumen");
 			}
 		}
 		

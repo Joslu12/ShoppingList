@@ -86,7 +86,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         super.onResume();
         if(recyclerView != null) {
             list = dao.findAll();
-            recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(list));
+            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list));
         }
     }
 
@@ -101,7 +101,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
-            recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(list));
+            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list));
         }
 
         return view;

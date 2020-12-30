@@ -4,21 +4,29 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shoppinglist.app_error_handling.AppError;
 import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
+import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import model.ProductsListClass;
 
 public abstract class ListOfProductsActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
+
+    //---- View Elements ----
+    private FragmentTransaction transaction;
+    private Fragment fragmentProducts;
 
     //---- Attributes ----
     protected SQLiteDatabase bd;
@@ -41,6 +49,11 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         // Configuramos lo necesario de la barra de herramientas
         getSupportActionBar().setTitle(productsList.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Instanciamos el fragmento
+        fragmentProducts = ListOfProductsFragment.newInstance(productsList);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedorProducts, fragmentProducts).commit();
     }
 
     @Override
@@ -98,7 +111,7 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         this.finish();
 
         // Mostramos un mensaje informativo de la accion realizada
-        String msg = String.format(getResources().getString(R.string.info_msg_product_list_deleted), getProductListTypeString(), name);
+        String msg = String.format(getResources().getString(R.string.info_msg_entity_deleted), getProductListTypeString(), name);
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 
@@ -109,7 +122,7 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         // Actualizamos el nombre de la lista de productos
         String newName = dialog.getTypedName();
         if(newName.equals("")) {
-            new AppError(CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),this);
+            new AppError(CodeErrors.EMPTY_NAME_INPUT, getResources().getString(R.string.blank_name_input_error),this);
         } else {
             productsList.setName(dialog.getTypedName());
             dao.update(productsList);
@@ -119,8 +132,16 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
             dialog.dismiss();
 
             // Mostramos un mensaje informativo de la accion realizada
-            String msg = String.format(getResources().getString(R.string.info_msg_product_list_updated), getProductListTypeString(), productsList.getName());
+            String msg = String.format(getResources().getString(R.string.info_msg_entity_updated), getProductListTypeString(), productsList.getName());
             Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void buttonClicked(View view) {
+        switch(view.getId()) {
+            case R.id.btnAddNewProduct:
+                ((ListOfProductsFragment)fragmentProducts).openCreateProductDialog();
+                break;
         }
     }
 

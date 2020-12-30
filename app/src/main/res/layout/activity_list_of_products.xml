@@ -9,7 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/app_bar_height"
         android:theme="@style/Theme.ShoppingList.AppBarOverlay">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -21,7 +21,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--TODO: Cambiar por fragmento o LinearLayoutDinamico -->
-    <include layout="@layout/content_shopping_list" />
+    <include layout="@layout/content_list_of_products" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -23,6 +23,10 @@ public abstract class DeleteEntityDialog<T> extends TwoButtonsCustomDialog {
     }
 
     //---- Methods ----
+    public T getEntity() {
+        return entity;
+    }
+
     @Override
     protected View generateTwoButtonsDialogContent() {
         View view = getLayoutInflater().inflate(R.layout.content_dialog_delete_entity,dialogContent,false);

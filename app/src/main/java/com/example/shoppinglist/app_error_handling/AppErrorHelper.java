@@ -16,8 +16,8 @@ public class AppErrorHelper {
     //---- Definitions and Constants ----
     // Codigos: [0,4] --> Errores que no deben ocurrir bajo ningún concepto, y si ocurren es debido a un fallo del código fuente
     private static final int MIN_FATAL_ERROR_CODE = 0, MAX_FATAL_ERROR_CODE = 4;
-    // Codigos: [5,9] --> Errores en los que intervienen las entradas de datos por parte del usuario
-    private static final int MIN_INPUT_ERROR_CODE = 5, MAX_INPUT_ERROR_CODE = 9;
+    // Codigos: [5,10] --> Errores en los que intervienen las entradas de datos por parte del usuario
+    private static final int MIN_INPUT_ERROR_CODE = 5, MAX_INPUT_ERROR_CODE = 10;
 
     private static final int MAX_ERROR_CODE = 200;
 
@@ -40,6 +40,12 @@ public class AppErrorHelper {
         public static final int MUST_NOT_HAPPEN = MIN_FATAL_ERROR_CODE + 0;      // Errores que no debería de ocurrir bajo ninguna circunstancia por la estructura del codigo fuente
         public static final int MUST_NOT_HAPPEN_SRC_ERROR_CREATION = MIN_FATAL_ERROR_CODE + 1;   // Error introducido en el codigo fuente durante la creacion de errores
 
-        public static final int EMPTY_NAME_IMPUT = MIN_INPUT_ERROR_CODE + 0;
+        public static final int EMPTY_NAME_INPUT = MIN_INPUT_ERROR_CODE + 0; // Se ha dejado el nombre a introducir en blanco
+        public static final int EMPTY_TARGET_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 1; // Se ha dejado la cantidad objetivo a introducir en blanco
+        public static final int EMPTY_CURRENT_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 2; // Se ha dejado cantidad actual a introducir en blanco
+        public static final int INVALID_TARGET_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 3; // La cantidad objetivo introducido es <= 0
+        public static final int INVALID_CURRENT_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 4; // La cantidad objetivo introducida es <= 0 || > targetAmount
+        public static final int NOT_A_NUMBER_TARGET_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 5; // Se ha introducido un numero no valido (Decimales, no un numero...)
+
     }
 }

@@ -20,7 +20,7 @@ import model.StockProduct;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
-public abstract class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> {
+public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> {
     //---- View Elements ----
     private EditText inputName;
     private EditText inputTargetAmount;
@@ -52,8 +52,6 @@ public abstract class CreateStockProductDialog  extends CreateEntityDialog<Stock
 
         //Ponemos el foco en el EditText y abrimos el teclado directamente
         inputName.requestFocus();
-        inputTargetAmount.requestFocus();
-        inputCurrentAmount.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
@@ -71,7 +69,7 @@ public abstract class CreateStockProductDialog  extends CreateEntityDialog<Stock
 
     @Override
     public String getSuccessMsg(String entityName) {
-        String msg = String.format(getResources().getString(R.string.info_msg_product_created),
+        String msg = String.format(getResources().getString(R.string.info_msg_entity_created),
                 getResources().getString(R.string.upCase_the_stock_product), entityName);
         return msg;
     }
@@ -90,19 +88,29 @@ public abstract class CreateStockProductDialog  extends CreateEntityDialog<Stock
 
     @Override
     public StockProduct getEntityToCreate() throws AppException {
-        String name = getTypedName();
-        int targetAmount = Integer.parseInt(getTypedTargetAmount());
-        int currentAmount = Integer.parseInt(getTypedCurrentAmount());
-        if(name.equals("")) {
-            throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
-        } else {
-            try {
-                return new StockProduct(name,targetAmount,currentAmount);
-            } catch (ShoppingListException e) {
-                e.printStackTrace();
+        try {
+            String name = getTypedName();
+            String targetAmount = getTypedTargetAmount();
+            String currentAmount = getTypedCurrentAmount();
+            if(name.equals("")) {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_NAME_INPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
+            } else if(targetAmount.equals("")) {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_TARGET_AMOUNT_INPUT, getResources().getString(R.string.blank_target_amount_input_error),getContext()));
+            } else if(currentAmount.equals("")) {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_CURRENT_AMOUNT_INPUT, getResources().getString(R.string.blank_current_amount_input_error),getContext()));
+            } else {
+                return new StockProduct(name,Integer.parseInt(targetAmount),Integer.parseInt(currentAmount));
             }
+        } catch (ShoppingListException e) {
+            int intTarget = Integer.parseInt(getTypedTargetAmount());
+            if(intTarget <= 0) {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.INVALID_TARGET_AMOUNT_INPUT, getResources().getString(R.string.invalid_target_amount_input_error),getContext()));
+            } else {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.INVALID_CURRENT_AMOUNT_INPUT, getResources().getString(R.string.invalid_current_amount_input_error),getContext()));
+            }
+        } catch (NumberFormatException e) {
+            throw new AppException(new AppError(AppErrorHelper.CodeErrors.NOT_A_NUMBER_TARGET_AMOUNT_INPUT, getResources().getString(R.string.not_a_number_input_error),getContext()));
         }
-        return null;
     }
 
 

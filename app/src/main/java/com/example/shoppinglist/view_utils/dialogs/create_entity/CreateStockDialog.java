@@ -23,7 +23,7 @@ public class CreateStockDialog extends CreateListOfProductsDialog<Stock> {
 
     @Override
     public String getSuccessMsg(String itemName) {
-        String msg = String.format(getResources().getString(R.string.info_msg_product_list_created),
+        String msg = String.format(getResources().getString(R.string.info_msg_entity_created),
                 getResources().getString(R.string.upCase_the_stock), itemName);
         return msg;
     }
@@ -32,7 +32,7 @@ public class CreateStockDialog extends CreateListOfProductsDialog<Stock> {
     public Stock getEntityToCreate() throws AppException {
         String name = getTypedName();
         if(name.equals("")) {
-            throw new AppException(new AppError(CodeErrors.EMPTY_NAME_IMPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
+            throw new AppException(new AppError(CodeErrors.EMPTY_NAME_INPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
         } else {
             return new Stock(name);
         }
