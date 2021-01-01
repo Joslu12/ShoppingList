@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.stocks_activities.StockActivity;
 
 /**
  * Clase encargada de actuar frente a la creacion de errores dentro de la app. Las acciones pueden ir desde conducir

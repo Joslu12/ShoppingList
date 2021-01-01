@@ -33,6 +33,8 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
     protected T productsList;
 
     //---- Activity Methods ----
+    protected abstract ListOfProductsFragment getNewInstance(T productsList);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +53,9 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Instanciamos el fragmento
-        fragmentProducts = ListOfProductsFragment.newInstance(productsList);
+        fragmentProducts = getNewInstance(productsList);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.contenedorProducts, fragmentProducts).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedorListOfProducts, fragmentProducts).commit();
     }
 
     @Override

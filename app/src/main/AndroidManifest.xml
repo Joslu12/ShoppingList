@@ -26,7 +26,7 @@
 
         <!-- BEGIN STOCK -->
         <activity
-            android:name=".stocks_activities.StockActivity"
+            android:name=".stocks.StockActivity"
             android:label="@string/title_activity_stock_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
@@ -38,7 +38,7 @@
 
         <!-- BEGIN SHOPPING LIST -->
         <activity
-            android:name=".shoppinglists_activities.ShoppingListActivity"
+            android:name=".shoppinglists.ShoppingListActivity"
             android:label="@string/shopping_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">

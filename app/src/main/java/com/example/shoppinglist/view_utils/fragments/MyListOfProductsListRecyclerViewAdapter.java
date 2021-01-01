@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shoppinglist.R;
 import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.app_error_handling.AppError;
-import com.example.shoppinglist.shoppinglists_activities.ShoppingListActivity;
-import com.example.shoppinglist.stocks_activities.StockActivity;
+import com.example.shoppinglist.shoppinglists.ShoppingListActivity;
+import com.example.shoppinglist.stocks.StockActivity;
 
 import java.util.List;
 

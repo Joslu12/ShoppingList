@@ -1,4 +1,4 @@
-package com.example.shoppinglist.stocks_activities;
+package com.example.shoppinglist.stocks;
 
 import com.example.shoppinglist.ListOfProductsActivity;
 import com.example.shoppinglist.R;
@@ -6,6 +6,7 @@ import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDia
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditStockDialog;
+import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.dao.StockDao;
 import model.Stock;
@@ -13,6 +14,11 @@ import model.Stock;
 public class StockActivity extends ListOfProductsActivity<Stock> {
 
     //---- Methods ----
+    @Override
+    protected StockFragment getNewInstance(Stock stock) {
+        return StockFragment.newInstance(stock);
+    }
+
     @Override
     protected DeleteEntityDialog<Stock> generateEntityDeleteDialog() {
         return new DeleteStockDialog(this, this.productsList);
