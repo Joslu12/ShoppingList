@@ -6,7 +6,6 @@ import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDia
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditStockDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.dao.StockDao;
 import model.Stock;

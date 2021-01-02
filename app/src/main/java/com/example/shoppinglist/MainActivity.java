@@ -21,8 +21,13 @@ import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDia
 import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
 import bd.BaseDatosUtils;
+import bd.dao.StockDao;
+import bd.dao.StockShoppingListDao;
 import model.ShoppingList;
+import model.ShoppingListException;
 import model.Stock;
+import model.StockProduct;
+import model.StockShoppingList;
 
 public class MainActivity extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener {
 
@@ -51,7 +56,27 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragments, fragmentWelcome).commit();
         fragmentActive = fragmentWelcome;
+
+        //TODO: Delete later
+        //createEntitiesBD();
     }
+
+   /*rivate void createEntitiesBD() {
+        StockDao stockDao = new StockDao(BaseDatosUtils.getWritableDatabaseConnection(this));
+        try {
+            Stock stock = new Stock("Inventario de Pruebas");
+            for (int i = 0; i < 25; ++i) {
+                StockProduct product = new StockProduct("Producto " + i, 100, Math.min(75 + 2*i,100));
+                stock.addProduct(product);
+            }
+            stockDao.insert(stock);
+
+            StockShoppingList stockShoppingList = stock.generateShoppingList();
+            StockShoppingListDao dao = new StockShoppingListDao(stockDao.getBDConnection());
+            dao.insert(stockShoppingList);
+
+        } catch(ShoppingListException ex) {}
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

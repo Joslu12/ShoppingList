@@ -2,16 +2,13 @@ package com.example.shoppinglist.shoppinglists;
 
 import com.example.shoppinglist.ListOfProductsActivity;
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.stocks.StockFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteShoppingListDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditShoppingListDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.dao.ShoppingListDao;
 import model.ShoppingList;
-import model.Stock;
 
 public class ShoppingListActivity extends ListOfProductsActivity<ShoppingList> {
 

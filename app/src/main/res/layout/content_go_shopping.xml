@@ -12,10 +12,11 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnGoShopping"
+            android:id="@+id/btnFinishShopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Go Shopping"/>
+            android:text="Finish Shopping"
+            android:onClick="onClick"/>
 
         <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,19 +28,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".view_utils.fragments.ListOfProductsFragment"
+            tools:context=".shoppinglists.GoShoppingActivity"
             android:id="@+id/recyclerView"
-            tools:listitem="@layout/recycler_view_adapter_list_of_products"/>
+            tools:listitem="@layout/recycler_view_adapter_go_shopping"/>
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddNewProduct"
-        android:onClick="buttonClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

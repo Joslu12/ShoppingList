@@ -104,4 +104,18 @@ public abstract class ProductsListClass<E extends Product> extends IdentifiedObj
 	public String toString() {
 		return name;
 	}
+
+	/**
+	 *
+	 * @return a List with copys of the products
+	 */
+	public List<E> getProductsInsideAList() {
+		List<E> result = new ArrayList<E>();
+
+		Iterator<E> iterator = getProducts();
+		while(iterator.hasNext()) {
+			result.add(iterator.next());
+		}
+		return result;
+	}
 }

@@ -13,11 +13,7 @@ import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppException;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
-import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateProductDialog;
-import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockProductDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
-import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteProductDialog;
-import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockProductDialog;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +24,6 @@ import model.Product;
 import model.ProductsListClass;
 import model.ShoppingList;
 import model.Stock;
-import model.StockProduct;
 import model.StockShoppingList;
 
 import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
@@ -42,7 +37,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
     private RecyclerView recyclerView;
 
     //---- Attributes ----
-    private ProductsListClass<T> productList; //Objeto que contiene el Listado de productos
+    protected ProductsListClass<T> productList; //Objeto que contiene el Listado de productos
     private ListTableDao daoProductList; //Dao para actualizar y cargar el listado de productos
     private List<T> products; //Lista con los productos del listado de productos
 
@@ -59,29 +54,20 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         if (getArguments() != null) {
             productList = (ProductsListClass) getArguments().getSerializable(PRODUCT_LIST);
             daoProductList = getDaoProductList();
-            products = getProductsInsideAList(); // Cargamos los productos del listado en una lista
+            products = productList.getProductsInsideAList(); // Cargamos los productos del listado en una lista
         } else {
             new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
         }
 
     }
 
-    private List<T> getProductsInsideAList() {
-        List<T> result = new ArrayList<T>();
-
-        Iterator<T> iterator = productList.getProducts();
-        while(iterator.hasNext()) {
-            result.add(iterator.next());
-        }
-        return result;
-    }
-
     @Override
     public void onResume() {
         super.onResume();
         if(recyclerView != null) {
-            products = getProductsInsideAList();
+            products = productList.getProductsInsideAList();
             recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+            updateFragment();
         }
     }
 
@@ -100,6 +86,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
             recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+            updateFragment();
         }
 
         return view;
@@ -115,6 +102,12 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         dialog.show(getParentFragmentManager(), "Create Product");
     }
 
+
+    /**
+     * Metodo usado para actualizar el estado del fragmento, que se realiza despues de cualquier modificacion del fragmento
+     */
+    protected abstract void updateFragment();
+
     @Override
     public void onDialogCreateClick(CreateEntityDialog dialog) {
         try {
@@ -128,8 +121,9 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
             // Recargamos la lista de productos
             if(recyclerView != null) {
-                products = getProductsInsideAList();
+                products = productList.getProductsInsideAList();
                 recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+                updateFragment();
             }
 
         } catch (AppException ex) { }
@@ -159,8 +153,9 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
             // Recargamos la lista de productos
             if(recyclerView != null) {
-                products = getProductsInsideAList();
+                products = productList.getProductsInsideAList();
                 recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+                updateFragment();
             }
         } else {
             new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
