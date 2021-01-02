@@ -44,21 +44,6 @@
     <string name="current_amount" tools:ignore="DuplicateDefinition">Current Amount</string>
     <!-- END WORDS -->
 
-    <!-- BEGIN STOCK -->
-    <string name="title_activity_stock_list">Stock List</string>
-    <string name="stocks">Stocks</string>
-    <string name="stock">Stock</string>
-    <string name="the_stock">the stock</string>
-    <string name="upCase_the_stock">The stock</string>
-    <!-- END STOCK -->
-
-    <!-- BEGIN STOCKPRODUCT -->
-    <string name="title_activity_stock_product">Stock Product</string>
-    <string name="stock_product">Stock Product</string>
-    <string name="the_stock_product">the stock product</string>
-    <string name="upCase_the_stock_product">The stock product</string>
-    <!-- END STOCKPRODUCT -->
-
     <!-- BEGIN PRODUCT -->
     <string name="title_activity_product">Stock List</string>
     <string name="product">Product</string>
@@ -69,9 +54,30 @@
     <!-- BEGIN SHOPPING LIST -->
     <string name="shopping_lists">Shopping Lists</string>
     <string name="shopping_list">Shopping List</string>
-    <string name="stock_shopping_lists">Stock Shopping Lists</string>
     <string name="the_shopping_list">the shopping list</string>
     <string name="upCase_the_shopping_list">The shopping list</string>
     <!-- END SHOPPING LIST -->
+
+    <!-- BEGIN STOCKPRODUCT -->
+    <string name="title_activity_stock_product">Stock Product</string>
+    <string name="stock_product">Stock Product</string>
+    <string name="the_stock_product">the stock product</string>
+    <string name="upCase_the_stock_product">The stock product</string>
+    <!-- END STOCKPRODUCT -->
+
+    <!-- BEGIN STOCK -->
+    <string name="title_activity_stock_list">Stock List</string>
+    <string name="stocks">Stocks</string>
+    <string name="stock">Stock</string>
+    <string name="the_stock">the stock</string>
+    <string name="upCase_the_stock">The stock</string>
+    <!-- END STOCK -->
+
+    <!-- BEGIN STOCK SHOPPING LIST -->
+    <string name="stock_shopping_lists">Stock Shopping Lists</string>
+    <string name="stock_shopping_list">Stock Shopping List</string>
+    <string name="the_stock_shopping_list">the stock shopping list</string>
+    <string name="upCase_the_stock_shopping_list">The stock shopping list</string>
+    <!-- END STOCK SHOPPING LIST -->
 
 </resources>

@@ -21,7 +21,9 @@ import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDia
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateShoppingListDialog;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.Serializable;
 import java.util.List;
 
 import bd.BaseDatosUtils;
@@ -96,6 +98,10 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         // Fragmento completo
         View view = inflater.inflate(R.layout.fragment_list_of_product_list, container, false);
 
+        // Si se trata de un StockShoppingLists Fragment hacemos invisible el FloatingButton
+        if(productListClass.equals(StockShoppingList.class))
+            ((FloatingActionButton) view.findViewById(R.id.btnAddNewProductsList)).setVisibility(View.INVISIBLE);
+
         // Se corresponde con el RecyclerView
         View recyclerViewElement = view.findViewById(R.id.recyclerView);
         // Set the adapter
@@ -125,30 +131,27 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
 
     @Override
     public void onDialogCreateClick(CreateEntityDialog dialog) {
-        if (productListClass.equals(ShoppingList.class) || productListClass.equals(Stock.class)) {
-            try {
-                ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
-                dao.insert(entity);
+        try {
+            ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
+            dao.insert(entity);
 
-                // Mostramos el mensaje de exito y cerramos el dialog
-                Toast.makeText(getContext(), dialog.getSuccessMsg(entity.getName()), Toast.LENGTH_LONG).show();
-                dialog.dismiss();
+            // Mostramos el mensaje de exito y cerramos el dialog
+            Toast.makeText(getContext(), dialog.getSuccessMsg(entity.getName()), Toast.LENGTH_LONG).show();
+            dialog.dismiss();
 
-                // Saltamos a la actividad del nuevo productList
-                Class activityClass = null;
-                if (entity.getClass().equals(Stock.class)) {
-                    activityClass = StockActivity.class;
-                } else if (entity.getClass().equals(ShoppingList.class)) {
-                    activityClass = ShoppingListActivity.class;
-                } else {
-                    new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-                }
-                Intent intent = new Intent(getContext(), activityClass);
-                intent.putExtra("ID", entity.getID());
-                getContext().startActivity(intent);
-            } catch (AppException ex) { }
-        } else {
-            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-        }
+            // Saltamos a la actividad del nuevo productList
+            Class activityClass = null;
+            if (entity.getClass().equals(Stock.class)) {
+                activityClass = StockActivity.class;
+
+            } else if (entity.getClass().equals(ShoppingList.class)) {
+                activityClass = ShoppingListActivity.class;
+            } else {
+                new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
+            }
+            Intent intent = new Intent(getContext(), activityClass);
+            intent.putExtra("ID", entity.getID());
+            getContext().startActivity(intent);
+        } catch (AppException ex) { }
     }
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.stocks.StockActivity;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateProductDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
@@ -19,22 +20,28 @@ import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import bd.dao.ShoppingListDao;
+import bd.dao.StockShoppingListDao;
 import model.Product;
 import model.ProductsListClass;
 import model.ShoppingList;
+import model.StockShoppingList;
 
 public class ShoppingListFragment extends ListOfProductsFragment<Product> {
 
     //---- View Elements ----
-    private Button btnGoShopping;
+    private Button btnGoShopping, btnGoAssociatedStock;
 
     //---- Constructor ----
     public ShoppingListFragment() {}
 
     @Override
-    protected ListTableDao<ShoppingList> getDaoProductList() {
+    protected ListTableDao<? extends ShoppingList> getDaoProductList() {
         SQLiteDatabase bd = BaseDatosUtils.getWritableDatabaseConnection(getContext());
-        return new ShoppingListDao(bd);
+        if(productList instanceof StockShoppingList) {
+            return new StockShoppingListDao(bd);
+        } else {
+            return new ShoppingListDao(bd);
+        }
     }
 
     //---- Fragment Methods ----
@@ -56,6 +63,18 @@ public class ShoppingListFragment extends ListOfProductsFragment<Product> {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), GoShoppingActivity.class);
                 intent.putExtra("SHOPPING_LIST", productList);
+                getContext().startActivity(intent);
+            }
+        });
+
+        btnGoAssociatedStock = (Button) view.findViewById(R.id.btnGoAssociatedStock);
+        if(!productList.getClass().equals(StockShoppingList.class))
+            btnGoAssociatedStock.setVisibility(View.INVISIBLE);
+        btnGoAssociatedStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), StockActivity.class);
+                intent.putExtra("ID", ((StockShoppingList)productList).getAssociatedStockID());
                 getContext().startActivity(intent);
             }
         });

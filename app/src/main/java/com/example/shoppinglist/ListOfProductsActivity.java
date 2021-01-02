@@ -31,6 +31,7 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
     //---- Attributes ----
     protected SQLiteDatabase bd;
     protected T productsList;
+    protected Class productListClass;
 
     //---- Activity Methods ----
     protected abstract ListOfProductsFragment getNewInstance(T productsList);
@@ -46,6 +47,7 @@ public abstract class ListOfProductsActivity<T extends ProductsListClass> extend
         bd = BaseDatosUtils.getWritableDatabaseConnection(getApplicationContext());
 
         // Cargamos de la base de datos la lista de la compra
+        productListClass = (Class) getIntent().getSerializableExtra("CLASS");
         loadProductList(getIntent().getIntExtra("ID",-1));
 
         // Configuramos lo necesario de la barra de herramientas

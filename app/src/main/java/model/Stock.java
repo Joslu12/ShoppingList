@@ -94,7 +94,7 @@ public class Stock extends ProductsListClass<StockProduct> {
 	 * los ProductosInventario cuyas unidades actuales es menor que su cantidad objetivo 
 	 * @return ListaCompraInventario con los Productos a los que les faltan unidades
 	 */
-	public StockShoppingList generateShoppingList() {
+	public StockShoppingList generateShoppingList(String name) {
 		List<Product> productsList = new ArrayList<Product>();
 		for(StockProduct p : this.products) {
 			if(p.getCurrentAmount() < p.getTargetAmount()) {
@@ -104,7 +104,7 @@ public class Stock extends ProductsListClass<StockProduct> {
 			}
 		}
 		
-		StockShoppingList shoppingList = new StockShoppingList("Lista Compra Inventario: " + this.name,productsList,this);
+		StockShoppingList shoppingList = new StockShoppingList(name,productsList,this);
 		return shoppingList;
 	}
 	

@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,20 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.shoppinglist.app_error_handling.AppError;
-import com.example.shoppinglist.app_error_handling.AppErrorHelper;
-import com.example.shoppinglist.app_error_handling.FatalAppErrorActivity;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteAllEntitiesDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
 import bd.BaseDatosUtils;
-import bd.dao.StockDao;
-import bd.dao.StockShoppingListDao;
 import model.ShoppingList;
-import model.ShoppingListException;
 import model.Stock;
-import model.StockProduct;
 import model.StockShoppingList;
 
 public class MainActivity extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener {
@@ -34,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
     //---- View Elements ----
     private Button shoppingListsBtn, stocksBtn;
     private FragmentTransaction transaction;
-    private Fragment fragmentWelcome, fragmentShoppingList, fragmentStocks;
+    private Fragment fragmentWelcome, fragmentShoppingLists, fragmentStocks, fragmentStockShoppingLists;
     private Fragment fragmentActive;
 
     //---- Activity Methods ----
@@ -51,8 +43,9 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
 
         // Instanciamos los fragmentos
         fragmentWelcome = new WelcomeFragment();
-        fragmentShoppingList = new ListOfProductsListFragment();
+        fragmentShoppingLists = new ListOfProductsListFragment();
         fragmentStocks = new ListOfProductsListFragment();
+        fragmentStockShoppingLists = new ListOfProductsListFragment();
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragments, fragmentWelcome).commit();
         fragmentActive = fragmentWelcome;
@@ -109,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
         transaction = getSupportFragmentManager().beginTransaction();
         switch(view.getId()) {
             case R.id.btnShoppingLists:
-                fragmentShoppingList = ListOfProductsListFragment.newInstance(ShoppingList.class);
-                transaction.replace(R.id.contenedorFragments,fragmentShoppingList);
-                fragmentActive = fragmentShoppingList;
+                fragmentShoppingLists = ListOfProductsListFragment.newInstance(ShoppingList.class);
+                transaction.replace(R.id.contenedorFragments, fragmentShoppingLists);
+                fragmentActive = fragmentShoppingLists;
                 break;
 
             case R.id.btnStocks:
@@ -120,9 +113,15 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
                 fragmentActive = fragmentStocks;
                 break;
 
+            case R.id.btnStockShoppingLists:
+                fragmentStockShoppingLists = ListOfProductsListFragment.newInstance(StockShoppingList.class);
+                transaction.replace(R.id.contenedorFragments,fragmentStockShoppingLists);
+                fragmentActive = fragmentStockShoppingLists;
+                break;
+
             case R.id.btnAddNewProductsList:
                 // Si el fragmento inicio tiene la referencia de uno de los dos de ListOfProductListFragment
-                if (fragmentActive == fragmentShoppingList || fragmentActive == fragmentStocks) {
+                if (fragmentActive == fragmentShoppingLists || fragmentActive == fragmentStocks) {
                     ((ListOfProductsListFragment) fragmentActive).openCreateListOfProductsDialog();
                 }
                 break;

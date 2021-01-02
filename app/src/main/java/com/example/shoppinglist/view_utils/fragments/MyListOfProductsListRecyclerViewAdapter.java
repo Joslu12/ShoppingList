@@ -94,6 +94,7 @@ public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapte
             }
 
             intent.putExtra("ID", productList.getID());
+            intent.putExtra("CLASS",productList.getClass());
             mContext.startActivity(intent);
         }
     }
