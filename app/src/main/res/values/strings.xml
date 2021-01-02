@@ -40,6 +40,7 @@
     <!-- BEGIN WORDS -->
     <string name="name">Name</string>
     <string name="code">Code</string>
+    <string name="amount">Amount</string>
     <string name="target_amount">Target Amount</string>
     <string name="current_amount" tools:ignore="DuplicateDefinition">Current Amount</string>
     <!-- END WORDS -->
@@ -71,6 +72,7 @@
     <string name="stock">Stock</string>
     <string name="the_stock">the stock</string>
     <string name="upCase_the_stock">The stock</string>
+    <string name="current_target_amount_difference">"%1$d/%2$d"</string>
     <!-- END STOCK -->
 
     <!-- BEGIN STOCK SHOPPING LIST -->

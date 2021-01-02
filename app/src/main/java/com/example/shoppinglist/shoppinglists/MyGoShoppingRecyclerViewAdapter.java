@@ -62,7 +62,7 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
         public ViewHolder(View view) {
             super(view);
             mName = (TextView) view.findViewById(R.id.txtName);
-            mTargetAmount = (TextView) view.findViewById(R.id.txtTargetAmount);
+            mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mCheckBox = (CheckBox) view.findViewById(R.id.checkBox);
             mCheckBox.setOnClickListener(this);
         }

@@ -50,7 +50,8 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
         holder.mName.setText(holder.mProduct.getName());
         holder.mTargetAmount.setText(Integer.toString(holder.mProduct.getTargetAmount()));
         if(holder.mProduct instanceof StockProduct) {
-            holder.mCurrentAmount.setText(Integer.toString(((StockProduct)holder.mProduct).getCurrentAmount()));
+            holder.mTargetAmount.setText(String.format(holder.mContext.getResources().getString(R.string.current_target_amount_difference),
+                    ((StockProduct)holder.mProduct).getCurrentAmount(),holder.mProduct.getTargetAmount()));
         }
     }
 
@@ -67,7 +68,7 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
         //---- Attributes ----
         public final View mView;
         public final Context mContext;
-        public final TextView mName, mTargetAmount, mCurrentAmount;
+        public final TextView mName, mTargetAmount;
         public final Button mDelete;
         public T mProduct;
 
@@ -77,8 +78,7 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
             mView = view;
             mContext = mView.getContext();
             mName = (TextView) view.findViewById(R.id.txtName);
-            mTargetAmount = (TextView) view.findViewById(R.id.txtTargetAmount);
-            mCurrentAmount = (TextView) view.findViewById(R.id.txtCurrentAmount);
+            mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mDelete = (Button) view.findViewById(R.id.btnDeleteProduct);
             mDelete.setOnClickListener(this);
         }
