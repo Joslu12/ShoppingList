@@ -61,6 +61,7 @@ public class ShoppingListFragment extends ListOfProductsFragment<Product> {
         btnGoShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getActivity().finishAffinity(); // Eliminamos las actividades del Stack para que no se pueda volver atras
                 Intent intent = new Intent(getContext(), GoShoppingActivity.class);
                 intent.putExtra("SHOPPING_LIST", productList);
                 getContext().startActivity(intent);

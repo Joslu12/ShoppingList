@@ -19,6 +19,7 @@ import model.ShoppingList;
 
 public class GoShoppingActivity<T extends ShoppingList> extends AppCompatActivity {
 
+
     //---- Attributes ----
     private T shoppingList;
 
@@ -53,12 +54,11 @@ public class GoShoppingActivity<T extends ShoppingList> extends AppCompatActivit
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.btnFinishShopping:
+                // Finalizamos la compra y mostramos un resumen de la compra
                 shoppingList.finishPurchasing();
-                //TODO: Go to finalise shopping
-                finishAffinity(); // Eliminamos las actividades del Stack
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ShoppingSummaryActivity.class);
+                intent.putExtra("SHOPPING_LIST",shoppingList);
                 getApplicationContext().startActivity(intent);
-
                 break;
         }
     }

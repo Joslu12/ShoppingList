@@ -86,7 +86,9 @@ public class Stock extends ProductsListClass<StockProduct> {
 	 * @throws ShoppingListException 
 	 */
 	public void completeUnitsProduct(final Product p) throws ShoppingListException {
-		this.products.get(products.indexOf(p)).setCurrentAmount(p.getTargetAmount());
+		// Hay necesidad de poner ownProduct, porque p es un Producto, y por tanto no tiene currentAmount
+		StockProduct ownProduct = this.products.get(products.indexOf(p));
+		ownProduct.setCurrentAmount(ownProduct.getTargetAmount());
 	}
 	
 	/**

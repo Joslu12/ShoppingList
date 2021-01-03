@@ -80,7 +80,11 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
             mName = (TextView) view.findViewById(R.id.txtName);
             mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mDelete = (Button) view.findViewById(R.id.btnDeleteProduct);
-            mDelete.setOnClickListener(this);
+            if(parentFragment != null) {
+                mDelete.setOnClickListener(this);
+            } else {
+                mDelete.setVisibility(View.INVISIBLE);
+            }
         }
 
         //---- Methods ----

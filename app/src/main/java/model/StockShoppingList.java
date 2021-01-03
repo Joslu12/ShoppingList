@@ -41,6 +41,10 @@ public class StockShoppingList extends ShoppingList {
 	public int getAssociatedStockID() {
 		return associatedStock.getID();
 	}
+
+	public Stock getAssociatedStock() {
+		return associatedStock;
+	}
 	/**
 	 * Redefine el metodo finalizarResumen de la clase padre. En este caso cuando se finaliza el resumen, independientemente
 	 * de la operacion especificada siempre se descartara la lista tras haber actualizado las unidades del inventario.

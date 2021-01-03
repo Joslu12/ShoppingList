@@ -57,6 +57,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".shoppinglists.ShoppingListActivity" />
         </activity>
+
+        <!-- TODO: label -->
+        <activity
+            android:name=".shoppinglists.ShoppingSummaryActivity"
+            android:label="@string/shopping_list"
+            android:parentActivityName=".shoppinglists.GoShoppingActivity"
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".shoppinglists.GoShoppingActivity" />
+        </activity>
         <!-- END SHOPPING LIST -->
     </application>
 
