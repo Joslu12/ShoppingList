@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="left"
-            android:textAppearance="@style/ListItemFont"/>
+            android:textAppearance="@style/AppFont.ListItemFont"/>
 
         <TextView
             android:id="@+id/txtCurrentTargetAmount"
@@ -27,11 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/fab_margin"
-            android:textAppearance="@style/ListItemFont"/>
+            android:textAppearance="@style/AppFont.ListItemFont"/>
 
     </GridLayout>
 
-    <Button
+    <android.widget.Button
+        style="@style/AppButton.NegativeButton"
         android:id="@+id/btnDeleteProduct"
         android:layout_marginLeft="4dp"
         android:layout_gravity="right"

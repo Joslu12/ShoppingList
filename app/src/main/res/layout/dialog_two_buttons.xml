@@ -26,13 +26,13 @@
         android:layout_gravity="right"
         android:orientation="horizontal">
 
-        <Button
+        <android.widget.Button
             android:id="@+id/btnNegative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/btnAffirmative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

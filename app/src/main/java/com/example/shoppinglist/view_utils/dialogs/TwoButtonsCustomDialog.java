@@ -30,9 +30,13 @@ public abstract class TwoButtonsCustomDialog extends CustomDialog implements Vie
         dialogContent.addView(this.generateTwoButtonsDialogContent());
 
         // Botones del Dialogo
-        ((Button) view.findViewById(R.id.btnAffirmative)).setText(this.getTextAffirmativeButton());
-        ((Button) view.findViewById(R.id.btnNegative)).setText(this.getTextNegativeButton());
-        //TODO: set Style de los botones
+        Button btnAffirmative = ((Button) view.findViewById(R.id.btnAffirmative));
+        btnAffirmative.setText(this.getTextAffirmativeButton());
+        btnAffirmative.setBackgroundResource(this.getStyleAffirmativeButton());
+
+        Button btnNegative = ((Button) view.findViewById(R.id.btnNegative));
+        btnNegative.setText(this.getTextNegativeButton());
+        btnNegative.setBackgroundResource(this.getStyleNegativeButton());
 
         return view;
     }
@@ -63,10 +67,12 @@ public abstract class TwoButtonsCustomDialog extends CustomDialog implements Vie
     protected abstract View generateTwoButtonsDialogContent();
 
     protected abstract String getTextAffirmativeButton();
-    //TODO: protected abstract Appareance appareanceAffirmativeButton();
+    protected abstract int getStyleAffirmativeButton();
     protected abstract void actionAffirmativePressed();
 
     protected abstract String getTextNegativeButton();
-    //TODO: protected abstract Appareance appareanceNegativeButton();
+    protected int getStyleNegativeButton() {
+        return R.drawable.button_cancel;
+    }
     protected abstract void actionNegativePressed();
 }

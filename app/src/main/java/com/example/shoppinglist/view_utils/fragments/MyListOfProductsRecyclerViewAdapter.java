@@ -13,6 +13,8 @@ import com.example.shoppinglist.R;
 
 import java.util.List;
 
+import bd.BaseDatosUtils;
+import bd.dao.StockProductDao;
 import model.Product;
 import model.StockProduct;
 
@@ -52,6 +54,14 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
         if(holder.mProduct instanceof StockProduct) {
             holder.mTargetAmount.setText(String.format(holder.mContext.getResources().getString(R.string.current_target_amount_difference),
                     ((StockProduct)holder.mProduct).getCurrentAmount(),holder.mProduct.getTargetAmount()));
+
+            if(((StockProduct)holder.mProduct).getCurrentAmount() == 0) {
+                holder.mRemoveUnit.setVisibility(View.INVISIBLE);
+            }
+            if(((StockProduct)holder.mProduct).getCurrentAmount() == ((StockProduct)holder.mProduct).getTargetAmount()) {
+                holder.mAddUnit.setVisibility(View.INVISIBLE);
+            }
+
         }
     }
 
@@ -69,7 +79,7 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
         public final View mView;
         public final Context mContext;
         public final TextView mName, mTargetAmount;
-        public final Button mDelete;
+        public final Button mDelete, mAddUnit, mRemoveUnit;
         public T mProduct;
 
         //---- Constructor ----
@@ -80,8 +90,14 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
             mName = (TextView) view.findViewById(R.id.txtName);
             mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mDelete = (Button) view.findViewById(R.id.btnDeleteProduct);
+            mAddUnit = (Button) view.findViewById(R.id.btnAddUnit);
+            mRemoveUnit = (Button) view.findViewById(R.id.btnRemoveUnit);
             if(parentFragment != null) {
                 mDelete.setOnClickListener(this);
+                if(mAddUnit != null && mRemoveUnit != null) {
+                    mAddUnit.setOnClickListener(this);
+                    mRemoveUnit.setOnClickListener(this);
+                }
             } else {
                 mDelete.setVisibility(View.INVISIBLE);
             }
@@ -95,7 +111,37 @@ public class MyListOfProductsRecyclerViewAdapter<T extends Product> extends Recy
 
         @Override
         public void onClick(View view) {
-            parentFragment.openDeleteProductDialog(this.mProduct);
+            switch(view.getId()) {
+                case R.id.btnDeleteProduct:
+                    parentFragment.openDeleteProductDialog(this.mProduct);
+                    break;
+
+                case R.id.btnAddUnit:
+                    ((StockProduct)mProduct).increaseCurrentAmount();
+                    new StockProductDao(BaseDatosUtils.getWritableDatabaseConnection(mContext)).update((StockProduct)mProduct);
+
+                    if(((StockProduct)mProduct).getCurrentAmount() == ((StockProduct)mProduct).getTargetAmount()) {
+                        mAddUnit.setVisibility(View.INVISIBLE);
+                    }
+                    mRemoveUnit.setVisibility(View.VISIBLE);
+
+                    mTargetAmount.setText(String.format(mContext.getResources().getString(R.string.current_target_amount_difference),
+                            ((StockProduct)mProduct).getCurrentAmount(),mProduct.getTargetAmount()));
+                    break;
+
+                case R.id.btnRemoveUnit:
+                    ((StockProduct)mProduct).decreaseCurrentAmount();
+                    new StockProductDao(BaseDatosUtils.getWritableDatabaseConnection(mContext)).update((StockProduct)mProduct);
+
+                    if(((StockProduct)mProduct).getCurrentAmount() == 0) {
+                        mRemoveUnit.setVisibility(View.INVISIBLE);
+                    }
+                    mAddUnit.setVisibility(View.VISIBLE);
+
+                    mTargetAmount.setText(String.format(mContext.getResources().getString(R.string.current_target_amount_difference),
+                            ((StockProduct)mProduct).getCurrentAmount(),mProduct.getTargetAmount()));
+                    break;
+            }
         }
     }
 }

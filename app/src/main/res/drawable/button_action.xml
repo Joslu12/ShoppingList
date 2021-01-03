@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false" android:state_enabled="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+
+            <corners
+                android:radius="@dimen/button_radius"/>
+
+            <!-- Borde del boton -->
+            <stroke
+                android:width="@dimen/button_stroke"/>
+
+            <!-- Colores del boton -->
+            <gradient
+                android:startColor="@color/start_action_button_color"
+                android:endColor="@color/end_action_button_color"
+                android:angle="45"/>
+
+        </shape>
+    </item>
+
+    <item android:state_pressed="true" android:state_enabled="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+
+            <corners
+                android:radius="@dimen/button_radius"/>
+
+            <!-- Borde del boton -->
+            <stroke
+                android:width="@dimen/button_stroke"/>
+
+            <!-- Colores del boton -->
+            <solid
+                android:color="@color/start_action_button_color"/>
+
+        </shape>
+    </item>
+
+    <item android:state_enabled="false">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+
+            <corners
+                android:radius="@dimen/button_radius"/>
+
+            <!-- Borde del boton -->
+            <stroke
+                android:width="@dimen/button_stroke"
+                android:color="@color/dark_grey"/>
+
+            <!-- Colores del boton -->
+            <solid
+                android:color="@color/disable_action_button_color"/>
+
+        </shape>
+    </item>
+
+</selector>

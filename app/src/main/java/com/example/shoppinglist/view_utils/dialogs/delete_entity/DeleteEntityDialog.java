@@ -43,6 +43,11 @@ public abstract class DeleteEntityDialog<T> extends TwoButtonsCustomDialog {
     }
 
     @Override
+    protected int getStyleAffirmativeButton() {
+        return R.drawable.button_negative;
+    }
+
+    @Override
     protected void actionAffirmativePressed() {
         ((DeleteEntityDialog.DeleteEntityDialogListener)listener).onDialogDeleteClick(this);
         this.dismiss();

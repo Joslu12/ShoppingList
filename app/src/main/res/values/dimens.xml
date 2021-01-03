@@ -2,4 +2,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">55dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="button_radius">5dp</dimen>
+    <dimen name="button_stroke">2dp</dimen>
+    <dimen name="list_item_button_radius">20dp</dimen>
+    <dimen name="list_item_button_stroke">1dp</dimen>
 </resources>

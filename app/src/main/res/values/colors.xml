@@ -10,4 +10,57 @@
 
     <color name="app_title_color">#FF004D40</color>
     <color name="list_item_color">#FF03DAC5</color>
+
+    <color name="light_grey">#C0C0C0</color>
+    <color name="dark_grey">#686868</color>
+
+    <!-- BEGIN BUTTONS COLORS -->
+    <color name="start_negative_button_color">#7e2b1a</color>
+    <color name="end_negative_button_color">#ec9f8b</color>
+
+    <color name="start_positive_button_color">#5d8d5d</color>
+    <color name="end_positive_button_color">#b4d6ad</color>
+
+    <color name="start_neutral_button_color">#a0d7d7</color>
+    <color name="end_neutral_button_color">#d4e6e6</color>
+
+    <color name="start_cancel_button_color">#808080</color>
+    <color name="end_cancel_button_color">#FFFFFF</color>
+
+    <color name="start_action_button_color">#F2DEB3</color>
+    <color name="end_action_button_color">#FFFACD</color>
+    <color name="disable_action_button_color">@color/light_grey</color>
+    <!-- END BUTTONS COLORS -->
+
+    <!-- BEGIN WALLPAPER COLORS -->
+    <color name="app_main_wallpaper_start_color">#FFFACD</color>
+    <color name="app_main_wallpaper_end_color">#F2DEB3</color>
+
+    <color name="app_shopping_list_wallpaper_start_color">#b4d6ad</color>
+    <color name="app_shopping_list_wallpaper_end_color">#5d8d5d</color>
+
+    <color name="app_stock_wallpaper_start_color">#aecccc</color>
+    <color name="app_stock_wallpaper_end_color">#5d9b9b</color>
+
+    <color name="app_stock_shopping_list_wallpaper_start_color">#ec9f8b</color>
+    <color name="app_stock_shopping_list_wallpaper_end_color">#d25f44</color>
+    <!-- END WALLPAPER COLORS -->
+
+    <!-- BEGIN SHOPPING LIST COLORS -->
+    <color name="shopping_list_inactive_button_color">#5d8d5d</color>
+    <color name="shopping_list_active_button_color">#b4d6ad</color>
+    <color name="shopping_list_backgroud_color">#b4d6ad</color>
+    <!-- END SHOPPING LIST COLORS -->
+
+    <!-- BEGIN STOCK COLORS -->
+    <color name="stock_inactive_button_color">#5d9b9b</color>
+    <color name="stock_active_button_color">#aecccc</color>
+    <color name="stock_backgroud_color">#aecccc</color>
+    <!-- END STOCK COLORS -->
+
+    <!-- BEGIN STOCK SHOPPING LIST COLORS -->
+    <color name="stock_shopping_list_inactive_button_color">#d25f44</color>
+    <color name="stock_shopping_list_active_button_color">#ec9f8b</color>
+    <color name="stock_shopping_list_backgroud_color">#ec9f8b</color>
+    <!-- END STOCK SHOPPING LIST COLORS -->
 </resources>

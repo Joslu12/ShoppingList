@@ -12,20 +12,26 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
-            <Button
+            <android.widget.Button
+                style="@style/AppButton.ActionButton"
                 android:id="@+id/btnGoShopping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
                 android:text="Go Shopping"/>
 
-            <Button
+            <android.widget.Button
+                style="@style/AppButton.ActionButton"
                 android:id="@+id/btnGoAssociatedStock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Go Associated Stock"/>
 
         </LinearLayout>
@@ -50,14 +56,14 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="left"
                     android:text="@string/product"
-                    android:textAppearance="@style/ListItemFont"/>
+                    android:textAppearance="@style/AppFont.ListItemFont"/>
 
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/amount"
-                    android:textAppearance="@style/ListItemFont"/>
+                    android:textAppearance="@style/AppFont.ListItemFont"/>
 
             </GridLayout>
         </GridLayout>
@@ -85,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/start_action_button_color"
         app:srcCompat="@android:drawable/ic_input_add"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

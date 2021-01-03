@@ -64,37 +64,43 @@
 
         </LinearLayout>
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="3">
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/btnDiscard"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/discard"
-            android:onClick="onClick"/>
+            android:layout_gravity="end"
+            android:orientation="horizontal">
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/save"
-            android:onClick="onClick"/>
+            <android.widget.Button
+                style="@style/AppButton.NegativeButton"
+                android:id="@+id/btnDiscard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/discard"
+                android:onClick="onClick"/>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/btnUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/update"
-            android:onClick="onClick"/>
+            <android.widget.Button
+                style="@style/AppButton.PositiveButton"
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/save"
+                android:onClick="onClick"/>
 
-    </GridLayout>
+            <android.widget.Button
+                style="@style/AppButton.NeutralButton"
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/update"
+                android:onClick="onClick"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

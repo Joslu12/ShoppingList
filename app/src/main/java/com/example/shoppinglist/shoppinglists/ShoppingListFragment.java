@@ -57,6 +57,12 @@ public class ShoppingListFragment extends ListOfProductsFragment<Product> {
     protected View getFragmentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_shopping_list,container,false);
 
+        if(productList instanceof StockShoppingList) {
+            view.setBackground(getResources().getDrawable(R.drawable.wallpaper_stock_shopping_list,null));
+        } else {
+            view.setBackground(getResources().getDrawable(R.drawable.wallpaper_shopping_list,null));
+        }
+
         btnGoShopping = (Button) view.findViewById(R.id.btnGoShopping);
         btnGoShopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +94,11 @@ public class ShoppingListFragment extends ListOfProductsFragment<Product> {
     protected void updateFragment() {
         // Si hay productos el boton se muestra disponible
         btnGoShopping.setEnabled(this.productList.getProducts().hasNext());
+        if(btnGoShopping.isEnabled()) {
+            btnGoShopping.setTextColor(getResources().getColor(R.color.black,null));
+        } else {
+            btnGoShopping.setTextColor(getResources().getColor(R.color.dark_grey,null));
+        }
     }
 
     @Override

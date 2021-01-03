@@ -9,26 +9,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <android.widget.Button
+            style="@style/AppButton.MainShoppingListButton"
             android:id="@+id/btnShoppingLists"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/shopping_lists"
             android:onClick="buttonClicked"/>
 
-        <Button
+        <android.widget.Button
+            style="@style/AppButton.MainStockButton"
             android:id="@+id/btnStocks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/stocks"
             android:onClick="buttonClicked"/>
 
-        <Button
+        <android.widget.Button
+            style="@style/AppButton.MainStockShoppingListButton"
             android:id="@+id/btnStockShoppingLists"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/stock_shopping_lists"
             android:onClick="buttonClicked"/>
@@ -39,7 +42,6 @@
     <FrameLayout
         android:id="@+id/contenedorFragments"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

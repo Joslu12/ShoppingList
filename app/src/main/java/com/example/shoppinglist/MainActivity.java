@@ -24,7 +24,7 @@ import model.StockShoppingList;
 public class MainActivity extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener {
 
     //---- View Elements ----
-    private Button shoppingListsBtn, stocksBtn;
+    private Button btnShoppingLists, btnStocks, btnStockShoppingList;
     private FragmentTransaction transaction;
     private Fragment fragmentWelcome, fragmentShoppingLists, fragmentStocks, fragmentStockShoppingLists;
     private Fragment fragmentActive;
@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Cargamos los elementos de la vista //TODO: Seran usados para cambios de color
-        shoppingListsBtn = findViewById(R.id.btnShoppingLists);
-        stocksBtn = findViewById(R.id.btnStocks);
+        // Cargamos los elementos de la vista
+        btnShoppingLists = findViewById(R.id.btnShoppingLists);
+        btnStocks = findViewById(R.id.btnStocks);
+        btnStockShoppingList = findViewById(R.id.btnStockShoppingLists);
 
         // Instanciamos los fragmentos
         fragmentWelcome = new WelcomeFragment();
@@ -105,18 +106,30 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
                 fragmentShoppingLists = ListOfProductsListFragment.newInstance(ShoppingList.class);
                 transaction.replace(R.id.contenedorFragments, fragmentShoppingLists);
                 fragmentActive = fragmentShoppingLists;
+
+                btnShoppingLists.setEnabled(false);
+                btnStocks.setEnabled(true);
+                btnStockShoppingList.setEnabled(true);
                 break;
 
             case R.id.btnStocks:
                 fragmentStocks = ListOfProductsListFragment.newInstance(Stock.class);
                 transaction.replace(R.id.contenedorFragments,fragmentStocks);
                 fragmentActive = fragmentStocks;
+
+                btnShoppingLists.setEnabled(true);
+                btnStocks.setEnabled(false);
+                btnStockShoppingList.setEnabled(true);
                 break;
 
             case R.id.btnStockShoppingLists:
                 fragmentStockShoppingLists = ListOfProductsListFragment.newInstance(StockShoppingList.class);
                 transaction.replace(R.id.contenedorFragments,fragmentStockShoppingLists);
                 fragmentActive = fragmentStockShoppingLists;
+
+                btnShoppingLists.setEnabled(true);
+                btnStocks.setEnabled(true);
+                btnStockShoppingList.setEnabled(false);
                 break;
 
             case R.id.btnAddNewProductsList:
@@ -142,5 +155,9 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
         // Volvemos al fragmento de Bienvenida
         getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragments, fragmentWelcome).commit();
         fragmentActive = fragmentWelcome;
+
+        btnShoppingLists.setEnabled(true);
+        btnStocks.setEnabled(true);
+        btnStockShoppingList.setEnabled(true);
     }
 }

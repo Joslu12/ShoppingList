@@ -88,7 +88,7 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         super.onResume();
         if(recyclerView != null) {
             list = dao.findAll();
-            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list));
+            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list,productListClass));
         }
     }
 
@@ -102,12 +102,23 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         if(productListClass.equals(StockShoppingList.class))
             ((FloatingActionButton) view.findViewById(R.id.btnAddNewProductsList)).setVisibility(View.INVISIBLE);
 
+        // El color de fondo cambia segun el tipo de listado
+        if(productListClass.equals(ShoppingList.class)) {
+            view.setBackgroundColor(getResources().getColor(R.color.shopping_list_backgroud_color,null));
+        } else if (productListClass.equals(Stock.class)) {
+            view.setBackgroundColor(getResources().getColor(R.color.stock_backgroud_color,null));
+        } else if (productListClass.equals(StockShoppingList.class)) {
+            view.setBackgroundColor(getResources().getColor(R.color.stock_shopping_list_backgroud_color,null));
+        } else {
+            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
+        }
+
         // Se corresponde con el RecyclerView
         View recyclerViewElement = view.findViewById(R.id.recyclerView);
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
-            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list));
+            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list,productListClass));
         }
 
         return view;
@@ -140,17 +151,19 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
             dialog.dismiss();
 
             // Saltamos a la actividad del nuevo productList
-            Class activityClass = null;
+            Class activityClass = null, entityClass = null;
             if (entity.getClass().equals(Stock.class)) {
                 activityClass = StockActivity.class;
-
+                entityClass = Stock.class;
             } else if (entity.getClass().equals(ShoppingList.class)) {
                 activityClass = ShoppingListActivity.class;
+                entityClass = ShoppingList.class;
             } else {
                 new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
             }
             Intent intent = new Intent(getContext(), activityClass);
             intent.putExtra("ID", entity.getID());
+            intent.putExtra("CLASS", entityClass);
             getContext().startActivity(intent);
         } catch (AppException ex) { }
     }

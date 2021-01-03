@@ -23,6 +23,11 @@ public abstract class CreateEntityDialog<T> extends TwoButtonsCustomDialog {
     }
 
     @Override
+    protected int getStyleAffirmativeButton() {
+        return R.drawable.button_positive;
+    }
+
+    @Override
     protected void actionAffirmativePressed() {
         ((CreateEntityDialogListener)listener).onDialogCreateClick(this);
     }

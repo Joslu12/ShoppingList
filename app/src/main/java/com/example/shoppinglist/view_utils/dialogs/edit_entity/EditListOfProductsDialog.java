@@ -81,6 +81,11 @@ public abstract class EditListOfProductsDialog<T extends ProductsListClass> exte
     }
 
     @Override
+    protected int getStyleAffirmativeButton() {
+        return R.drawable.button_neutral;
+    }
+
+    @Override
     protected void actionAffirmativePressed() {
         ((EditListOfProductsDialogListener)listener).onDialogUpdateClick(this);
     }

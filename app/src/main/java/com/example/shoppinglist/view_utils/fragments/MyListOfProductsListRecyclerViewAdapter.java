@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
@@ -26,10 +27,12 @@ public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapte
 
     //---- Atributos ----
     private final List<ProductsListClass<?>> values; // Lista con todos los listados de productos a presentar en el fragmento
+    private final Class productListClass;
 
     //---- Constructor ----
-    public MyListOfProductsListRecyclerViewAdapter(List<ProductsListClass<?>> objects) {
+    public MyListOfProductsListRecyclerViewAdapter(List<ProductsListClass<?>> objects, Class productListClass) {
         values = objects;
+        this.productListClass = productListClass;
     }
 
     //---- Metodos ----
@@ -37,6 +40,13 @@ public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_view_adapter_list_of_products, parent, false);
+        if(productListClass.equals(ShoppingList.class)) {
+            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_shopping_list,null));
+        } else if(productListClass.equals(Stock.class)) {
+            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_stock,null));
+        } else if(productListClass.equals(StockShoppingList.class)) {
+            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_stock_shopping_list,null));
+        }
         return new ViewHolder(view);
     }
 
