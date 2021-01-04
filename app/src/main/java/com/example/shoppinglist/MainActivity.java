@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,20 +13,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.shoppinglist.shoppinglists.view_utils.ListOfShoppingListsFragment;
+import com.example.shoppinglist.shoppinglists.view_utils.ListOfStockShoppingListsFragment;
+import com.example.shoppinglist.stocks.view_utils.ListOfStocksFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteAllEntitiesDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
 import bd.BaseDatosUtils;
-import model.ShoppingList;
-import model.Stock;
-import model.StockShoppingList;
 
 public class MainActivity extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener {
 
     //---- View Elements ----
     private Button btnShoppingLists, btnStocks, btnStockShoppingList;
-    private FragmentTransaction transaction;
     private Fragment fragmentWelcome, fragmentShoppingLists, fragmentStocks, fragmentStockShoppingLists;
     private Fragment fragmentActive;
 
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
 
         // Instanciamos los fragmentos
         fragmentWelcome = new WelcomeFragment();
-        fragmentShoppingLists = new ListOfProductsListFragment();
-        fragmentStocks = new ListOfProductsListFragment();
-        fragmentStockShoppingLists = new ListOfProductsListFragment();
+        fragmentShoppingLists = new ListOfShoppingListsFragment();
+        fragmentStocks = new ListOfStocksFragment();
+        fragmentStockShoppingLists = new ListOfStockShoppingListsFragment();
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragments, fragmentWelcome).commit();
         fragmentActive = fragmentWelcome;
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ok = true;
@@ -99,11 +100,11 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
     }
 
     //---- Methods ----
+    @SuppressLint("NonConstantResourceId")
     public void buttonClicked(View view) {
-        transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch(view.getId()) {
             case R.id.btnShoppingLists:
-                fragmentShoppingLists = ListOfProductsListFragment.newInstance(ShoppingList.class);
                 transaction.replace(R.id.contenedorFragments, fragmentShoppingLists);
                 fragmentActive = fragmentShoppingLists;
 
@@ -113,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
                 break;
 
             case R.id.btnStocks:
-                fragmentStocks = ListOfProductsListFragment.newInstance(Stock.class);
                 transaction.replace(R.id.contenedorFragments,fragmentStocks);
                 fragmentActive = fragmentStocks;
 
@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
                 break;
 
             case R.id.btnStockShoppingLists:
-                fragmentStockShoppingLists = ListOfProductsListFragment.newInstance(StockShoppingList.class);
                 transaction.replace(R.id.contenedorFragments,fragmentStockShoppingLists);
                 fragmentActive = fragmentStockShoppingLists;
 
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
             case R.id.btnAddNewProductsList:
                 // Si el fragmento inicio tiene la referencia de uno de los dos de ListOfProductListFragment
                 if (fragmentActive == fragmentShoppingLists || fragmentActive == fragmentStocks) {
-                    ((ListOfProductsListFragment) fragmentActive).openCreateListOfProductsDialog();
+                    ((ListOfProductsListFragment<?>) fragmentActive).openCreateListOfProductsDialog();
                 }
                 break;
         }

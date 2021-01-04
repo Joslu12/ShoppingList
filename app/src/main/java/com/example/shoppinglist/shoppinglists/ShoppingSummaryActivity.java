@@ -69,7 +69,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             purchasedProductsRecyclerView = (RecyclerView) recyclerViewElement;
-            purchasedProductsRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,Product.class,listFromIterator(shoppingList.getPurchasedProducts())));
+            purchasedProductsRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getPurchasedProducts())));
         }
 
         // Se corresponde con el productsToPurchaseRecyclerView
@@ -77,7 +77,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             productsToPurchaseRecyclerView = (RecyclerView) recyclerViewElement;
-            productsToPurchaseRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,Product.class,listFromIterator(shoppingList.getProductsToPurchase())));
+            productsToPurchaseRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getProductsToPurchase())));
         }
 
         if(shoppingList instanceof StockShoppingList) {

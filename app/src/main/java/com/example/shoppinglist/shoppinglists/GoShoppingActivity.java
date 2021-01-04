@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shoppinglist.MainActivity;
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
+import com.example.shoppinglist.shoppinglists.view_utils.MyGoShoppingRecyclerViewAdapter;
 
 import model.ShoppingList;
 

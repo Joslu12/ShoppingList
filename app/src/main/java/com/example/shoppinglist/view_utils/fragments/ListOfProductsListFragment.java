@@ -12,83 +12,49 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.app_error_handling.AppError;
-import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.app_error_handling.AppException;
-import com.example.shoppinglist.shoppinglists.ShoppingListActivity;
-import com.example.shoppinglist.stocks.StockActivity;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateListOfProductsDialog;
-import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateShoppingListDialog;
-import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.Serializable;
 import java.util.List;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
-import bd.dao.ShoppingListDao;
-import bd.dao.StockDao;
-import bd.dao.StockShoppingListDao;
 import model.ProductsListClass;
-import model.ShoppingList;
-import model.Stock;
-import model.StockShoppingList;
 
-public class ListOfProductsListFragment extends Fragment implements CreateEntityDialog.CreateEntityDialogListener {
-
-    //---- Constants and Definitions ----
-    protected static final String PRODUCT_LIST_CLASS = "product-list-class";
+public abstract class ListOfProductsListFragment<T extends ProductsListClass<?>> extends Fragment implements CreateEntityDialog.CreateEntityDialogListener {
 
     //---- View Elements ----
     private RecyclerView recyclerView;
 
     //---- Attributes ----
-    private Class productListClass;
-    private ListTableDao dao;
-    private List<ProductsListClass<?>> list;
+    private ListTableDao<T> dao;
+    protected List<T> listOfProductList;
 
     //---- Constructor ----
     public ListOfProductsListFragment() {}
 
     //---- Fragment Methods ----
-    public static ListOfProductsListFragment newInstance(final Class productListClass) {
-        ListOfProductsListFragment fragment = new ListOfProductsListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(PRODUCT_LIST_CLASS,productListClass);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    protected abstract ListTableDao<T> getProductListDao(SQLiteDatabase conexion);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SQLiteDatabase bd = BaseDatosUtils.getWritableDatabaseConnection(getContext());
 
-        if (getArguments() != null) {
-            productListClass = (Class) getArguments().getSerializable(PRODUCT_LIST_CLASS);
-            if(productListClass.equals(ShoppingList.class)) {
-                dao = new ShoppingListDao(bd);
-            } else if (productListClass.equals(Stock.class)) {
-                dao = new StockDao(bd);
-            } else if (productListClass.equals(StockShoppingList.class)) {
-                dao = new StockShoppingListDao(bd);
-            } else {
-                new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-            }
-        }
+        // Obtenemos el dao adecuado
+        SQLiteDatabase bd = BaseDatosUtils.getWritableDatabaseConnection(getContext());
+        dao = getProductListDao(bd);
 
         // Cargamos todos los listados de productos de la base de datos segun el dao
-        list = dao.findAll();
+        listOfProductList = dao.findAll();
     }
 
+    protected abstract MyListOfProductsListRecyclerViewAdapter<T> getRecyclerView();
     @Override
     public void onResume() {
         super.onResume();
         if(recyclerView != null) {
-            list = dao.findAll();
-            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list,productListClass));
+            listOfProductList = dao.findAll();
+            recyclerView.setAdapter(getRecyclerView());
         }
     }
 
@@ -98,52 +64,27 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
         // Fragmento completo
         View view = inflater.inflate(R.layout.fragment_list_of_product_list, container, false);
 
-        // Si se trata de un StockShoppingLists Fragment hacemos invisible el FloatingButton
-        if(productListClass.equals(StockShoppingList.class))
-            ((FloatingActionButton) view.findViewById(R.id.btnAddNewProductsList)).setVisibility(View.INVISIBLE);
-
-        // El color de fondo cambia segun el tipo de listado
-        if(productListClass.equals(ShoppingList.class)) {
-            view.setBackgroundColor(getResources().getColor(R.color.shopping_list_backgroud_color,null));
-        } else if (productListClass.equals(Stock.class)) {
-            view.setBackgroundColor(getResources().getColor(R.color.stock_backgroud_color,null));
-        } else if (productListClass.equals(StockShoppingList.class)) {
-            view.setBackgroundColor(getResources().getColor(R.color.stock_shopping_list_backgroud_color,null));
-        } else {
-            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-        }
-
         // Se corresponde con el RecyclerView
         View recyclerViewElement = view.findViewById(R.id.recyclerView);
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
-            recyclerView.setAdapter(new MyListOfProductsListRecyclerViewAdapter(list,productListClass));
+            recyclerView.setAdapter(getRecyclerView());
         }
 
         return view;
     }
 
     //---- Methods ----
-    public void openCreateListOfProductsDialog() {
-        CreateListOfProductsDialog dialog = null;
-        String tag = "";
-        if(productListClass.equals(ShoppingList.class)) {
-            dialog = new CreateShoppingListDialog(this);
-            tag = "Create new Shopping List";
-        } else if (productListClass.equals(Stock.class)) {
-            dialog = new CreateStockDialog(this);
-            tag = "Create new Stock";
-        } else {
-            new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-        }
-        dialog.show(getParentFragmentManager(), tag);
-    }
+    public abstract void openCreateListOfProductsDialog();
 
+    protected abstract Class<?> getIntentActivityClass();
+    protected abstract Class<?> getIntentEntityClass();
     @Override
     public void onDialogCreateClick(CreateEntityDialog dialog) {
         try {
-            ProductsListClass entity = ((CreateListOfProductsDialog) dialog).getEntityToCreate();
+            // Insertamos en la BD el nuevo ProductList
+            T entity = ((CreateListOfProductsDialog<T>) dialog).getEntityToCreate();
             dao.insert(entity);
 
             // Mostramos el mensaje de exito y cerramos el dialog
@@ -151,20 +92,12 @@ public class ListOfProductsListFragment extends Fragment implements CreateEntity
             dialog.dismiss();
 
             // Saltamos a la actividad del nuevo productList
-            Class activityClass = null, entityClass = null;
-            if (entity.getClass().equals(Stock.class)) {
-                activityClass = StockActivity.class;
-                entityClass = Stock.class;
-            } else if (entity.getClass().equals(ShoppingList.class)) {
-                activityClass = ShoppingListActivity.class;
-                entityClass = ShoppingList.class;
-            } else {
-                new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-            }
-            Intent intent = new Intent(getContext(), activityClass);
+            Intent intent = new Intent(getContext(), getIntentActivityClass());
             intent.putExtra("ID", entity.getID());
-            intent.putExtra("CLASS", entityClass);
+            intent.putExtra("CLASS", getIntentEntityClass());
             getContext().startActivity(intent);
-        } catch (AppException ex) { }
+        } catch (AppException ex) {
+            // El manejo de la excepcion se hara desde el AppErrorHelper
+        }
     }
 }

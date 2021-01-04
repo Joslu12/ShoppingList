@@ -48,6 +48,16 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:name=".shoppinglists.StockShoppingListActivity"
+            android:label="@string/stock_shopping_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.ShoppingList.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <!-- TODO: label -->
         <activity
             android:name=".shoppinglists.GoShoppingActivity"

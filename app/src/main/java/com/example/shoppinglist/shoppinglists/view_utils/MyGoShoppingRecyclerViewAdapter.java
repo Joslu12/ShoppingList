@@ -1,4 +1,4 @@
-package com.example.shoppinglist.shoppinglists;
+package com.example.shoppinglist.shoppinglists.view_utils;
 
 import android.view.LayoutInflater;
 import android.view.View;

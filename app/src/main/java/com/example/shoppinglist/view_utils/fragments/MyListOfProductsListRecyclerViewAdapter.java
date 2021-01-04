@@ -2,7 +2,6 @@ package com.example.shoppinglist.view_utils.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,49 +10,33 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
-import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
-import com.example.shoppinglist.app_error_handling.AppError;
-import com.example.shoppinglist.shoppinglists.ShoppingListActivity;
-import com.example.shoppinglist.stocks.StockActivity;
 
 import java.util.List;
 
 import model.ProductsListClass;
-import model.ShoppingList;
-import model.Stock;
-import model.StockShoppingList;
 
-public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapter<MyListOfProductsListRecyclerViewAdapter.ViewHolder> {
+public abstract class MyListOfProductsListRecyclerViewAdapter<T extends ProductsListClass<?>> extends RecyclerView.Adapter<MyListOfProductsListRecyclerViewAdapter.ViewHolder<T>> {
 
-    //---- Atributos ----
-    private final List<ProductsListClass<?>> values; // Lista con todos los listados de productos a presentar en el fragmento
-    private final Class productListClass;
+    //---- Attributes ----
+    private final List<T> values; // Lista con todos los listados de productos a presentar en el fragmento
 
     //---- Constructor ----
-    public MyListOfProductsListRecyclerViewAdapter(List<ProductsListClass<?>> objects, Class productListClass) {
+    public MyListOfProductsListRecyclerViewAdapter(List<T> objects) {
         values = objects;
-        this.productListClass = productListClass;
     }
 
-    //---- Metodos ----
+    //---- Methods ----
+    protected abstract ViewHolder<T> getCreateViewHolder(ViewGroup parent);
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_adapter_list_of_products, parent, false);
-        if(productListClass.equals(ShoppingList.class)) {
-            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_shopping_list,null));
-        } else if(productListClass.equals(Stock.class)) {
-            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_stock,null));
-        } else if(productListClass.equals(StockShoppingList.class)) {
-            view.findViewById(R.id.btnItemProductList).setBackground(parent.getResources().getDrawable(R.drawable.list_item_button_stock_shopping_list,null));
-        }
-        return new ViewHolder(view);
+    public ViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return getCreateViewHolder(parent);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mProductList = values.get(position);
-        holder.mContentView.setText(values.get(position).getName());
+        holder.mProductListName.setText(values.get(position).getName());
     }
 
     @Override
@@ -64,20 +47,20 @@ public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapte
     /**
      * Esta clase representa lo que se correspondería con una row de la lista, por lo que almacena la informacion necesaria
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public abstract static class ViewHolder<T extends ProductsListClass<?>> extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //---- Attributes ----
         public final View mView;
         public final Context mContext;
-        public final TextView mContentView;
-        public ProductsListClass<?> mProductList;
+        public final TextView mProductListName;
+        public T mProductList;
 
         //---- Constructor ----
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mContext = mView.getContext();
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mProductListName = (TextView) view.findViewById(R.id.txtProductListName);
             view.setClickable(true);
             view.setOnClickListener(this);
         }
@@ -85,26 +68,16 @@ public class MyListOfProductsListRecyclerViewAdapter extends RecyclerView.Adapte
         //---- Methods ----
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mProductListName.getText() + "'";
         }
 
+        //Class<ProductListClassActivity<T>>
+        protected abstract Class<?> getIntentActivityClass();
         @Override
         public void onClick(View view) {
-            ProductsListClass<?> productList = mProductList;
-
-            Intent intent = null;
-            if(productList instanceof ShoppingList) {
-                intent = new Intent(mContext, ShoppingListActivity.class);
-            } else if(productList instanceof StockShoppingList) {
-                intent = new Intent(view.getContext(), ShoppingListActivity.class);
-            } else if(productList instanceof Stock) {
-                intent = new Intent(view.getContext(), StockActivity.class);
-            } else {
-                new AppError(CodeErrors.MUST_NOT_HAPPEN, this.mContext.getResources().getString(R.string.unexpected_error),mContext);
-            }
-
-            intent.putExtra("ID", productList.getID());
-            intent.putExtra("CLASS",productList.getClass());
+            Intent intent = new Intent(mContext,getIntentActivityClass());
+            intent.putExtra("ID", mProductList.getID());
+            intent.putExtra("CLASS",mProductList.getClass());
             mContext.startActivity(intent);
         }
     }

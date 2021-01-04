@@ -1,36 +1,30 @@
 package com.example.shoppinglist.shoppinglists;
 
-import com.example.shoppinglist.ListOfProductsActivity;
+import com.example.shoppinglist.ProductListClassActivity;
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.shoppinglists.view_utils.ShoppingListFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteShoppingListDialog;
-import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockShoppingListDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditShoppingListDialog;
-import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditStockShoppingListDialog;
+import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.dao.ListTableDao;
 import bd.dao.ShoppingListDao;
-import bd.dao.StockShoppingListDao;
+import model.Product;
 import model.ShoppingList;
-import model.Stock;
-import model.StockShoppingList;
 
-public class ShoppingListActivity<T extends ShoppingList> extends ListOfProductsActivity<T> {
+public class ShoppingListActivity extends ProductListClassActivity<ShoppingList> {
 
     //---- Methods ----
     @Override
-    protected ShoppingListFragment getNewInstance(ShoppingList shoppingList) {
+    protected ListOfProductsFragment<Product> getNewInstance(ShoppingList shoppingList) {
         return ShoppingListFragment.newInstance(shoppingList);
     }
 
     @Override
-    protected DeleteEntityDialog<T> generateEntityDeleteDialog() {
-        if(productsList instanceof StockShoppingList) {
-            return (DeleteEntityDialog<T>) new DeleteStockShoppingListDialog(this, (StockShoppingList) this.productsList);
-        } else {
-            return (DeleteEntityDialog<T>) new DeleteShoppingListDialog(this, this.productsList);
-        }
+    protected DeleteEntityDialog<ShoppingList> generateEntityDeleteDialog() {
+        return new DeleteShoppingListDialog(this, this.productsList);
     }
 
     @Override
@@ -39,12 +33,8 @@ public class ShoppingListActivity<T extends ShoppingList> extends ListOfProducts
     }
 
     @Override
-    protected EditListOfProductsDialog<T> generateEntityEditDialog() {
-        if(productsList instanceof StockShoppingList) {
-            return (EditListOfProductsDialog<T>) new EditStockShoppingListDialog(this, (StockShoppingList) this.productsList);
-        } else {
-            return (EditListOfProductsDialog<T>) new EditShoppingListDialog(this, this.productsList);
-        }
+    protected EditListOfProductsDialog<ShoppingList> generateEntityEditDialog() {
+        return new EditShoppingListDialog(this, this.productsList);
     }
 
     @Override
@@ -53,12 +43,8 @@ public class ShoppingListActivity<T extends ShoppingList> extends ListOfProducts
     }
 
     @Override
-    protected ListTableDao<T> getProductListDao() {
-        if(this.productListClass.equals(StockShoppingList.class)) {
-            return (ListTableDao<T>) new StockShoppingListDao(this.bd);
-        } else {
-            return (ListTableDao<T>) new ShoppingListDao(this.bd);
-        }
+    protected ListTableDao<ShoppingList> getProductListDao() {
+        return new ShoppingListDao(this.bd);
     }
 
     @Override

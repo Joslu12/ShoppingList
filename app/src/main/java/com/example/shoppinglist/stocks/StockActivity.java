@@ -1,7 +1,8 @@
 package com.example.shoppinglist.stocks;
 
-import com.example.shoppinglist.ListOfProductsActivity;
+import com.example.shoppinglist.ProductListClassActivity;
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.stocks.view_utils.StockFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
@@ -10,7 +11,7 @@ import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditStockDialog;
 import bd.dao.StockDao;
 import model.Stock;
 
-public class StockActivity extends ListOfProductsActivity<Stock> {
+public class StockActivity extends ProductListClassActivity<Stock> {
 
     //---- Methods ----
     @Override

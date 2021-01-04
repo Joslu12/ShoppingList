@@ -39,7 +39,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
     //---- Attributes ----
     protected ProductsListClass<T> productList; //Objeto que contiene el Listado de productos
     private ListTableDao daoProductList; //Dao para actualizar y cargar el listado de productos
-    private List<T> products; //Lista con los productos del listado de productos
+    protected List<T> products; //Lista con los productos del listado de productos
 
     //---- Constructor ----
     public ListOfProductsFragment() {}
@@ -66,7 +66,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         super.onResume();
         if(recyclerView != null) {
             products = productList.getProductsInsideAList();
-            recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+            recyclerView.setAdapter(getRecyclerView());
             updateFragment();
         }
     }
@@ -85,7 +85,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
-            recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+            recyclerView.setAdapter(getRecyclerView());
             updateFragment();
         }
 
@@ -93,7 +93,8 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
     }
 
     //---- Methods ----
-    protected abstract Class getClassTypeOfProduct();
+    protected abstract MyListOfItemsProductsRecyclerViewAdapter<T> getRecyclerView();
+
     protected abstract String getStringTypeOfProduct();
 
     protected abstract CreateEntityDialog<T> getCreateProductDialog();
@@ -122,7 +123,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
             // Recargamos la lista de productos
             if(recyclerView != null) {
                 products = productList.getProductsInsideAList();
-                recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+                recyclerView.setAdapter(getRecyclerView());
                 updateFragment();
             }
 
@@ -154,7 +155,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
             // Recargamos la lista de productos
             if(recyclerView != null) {
                 products = productList.getProductsInsideAList();
-                recyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter<T>(this,this.getClassTypeOfProduct(),products));
+                recyclerView.setAdapter(getRecyclerView());
                 updateFragment();
             }
         } else {

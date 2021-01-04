@@ -22,10 +22,9 @@ import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import model.ProductsListClass;
 
-public abstract class ListOfProductsActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
+public abstract class ProductListClassActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
 
     //---- View Elements ----
-    private FragmentTransaction transaction;
     private Fragment fragmentProducts;
 
     //---- Attributes ----

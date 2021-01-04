@@ -1,6 +1,5 @@
-package com.example.shoppinglist.stocks;
+package com.example.shoppinglist.stocks.view_utils;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +14,8 @@ import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockProd
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockProductDialog;
 import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
+import com.example.shoppinglist.view_utils.fragments.MyListOfItemsProductsRecyclerViewAdapter;
+import com.example.shoppinglist.view_utils.fragments.MyListOfStockProductsRecyclerViewAdapter;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
@@ -26,9 +27,6 @@ import model.StockProduct;
 import model.StockShoppingList;
 
 public class StockFragment extends ListOfProductsFragment<StockProduct> {
-
-    //---- Attributes ----
-    private Button btnGenerateAssociatedShoppingList;
 
     //---- Constructor ----
     public StockFragment() {}
@@ -52,7 +50,8 @@ public class StockFragment extends ListOfProductsFragment<StockProduct> {
     protected View getFragmentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_stock,container,false);
 
-        btnGenerateAssociatedShoppingList = (Button) view.findViewById(R.id.btnGenerateAssociatedStock);
+        //---- Attributes ----
+        Button btnGenerateAssociatedShoppingList = (Button) view.findViewById(R.id.btnGenerateAssociatedStock);
         btnGenerateAssociatedShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,8 +83,8 @@ public class StockFragment extends ListOfProductsFragment<StockProduct> {
     protected void updateFragment() {}
 
     @Override
-    protected Class getClassTypeOfProduct() {
-        return StockProduct.class;
+    protected MyListOfItemsProductsRecyclerViewAdapter<StockProduct> getRecyclerView() {
+        return new MyListOfStockProductsRecyclerViewAdapter(this,products);
     }
 
     @Override
