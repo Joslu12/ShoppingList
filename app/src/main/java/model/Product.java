@@ -1,5 +1,7 @@
 package model;
 
+import androidx.annotation.NonNull;
+
 /**
  * La clase Producto modela el comportamiento de los objetos producto del sistema. Almacena un nombre y una cantidad a comprar.
  * Implementa el interfaz Cloneable y no es editable. Es decir, el nombre o la cantidad objetivo indicada al inicio son los valores 
@@ -84,16 +86,14 @@ public class Product extends IdentifiedObjectClass implements Cloneable {
 			return false;
 		Product other = (Product) obj;
 		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+			return other.name == null;
+		} else return name.equals(other.name);
 	}
 
 	/**
 	 * @return Producto con el mismo estado que el actual
 	 */
+	@NonNull
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return new Product(this);

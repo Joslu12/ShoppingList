@@ -1,6 +1,7 @@
 
 package com.example.shoppinglist.product_list_class.stock_shopping_list;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,9 +24,6 @@ import model.StockShoppingList;
 
 public class StockShoppingListFragment extends ShoppingListFragment {
 
-    //---- View Elements ----
-    private Button btnGoAssociatedStock;
-
     //---- Constructor ----
     public StockShoppingListFragment() {}
 
@@ -44,13 +42,15 @@ public class StockShoppingListFragment extends ShoppingListFragment {
         return fragment;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected View getFragmentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.getFragmentView(inflater,container,savedInstanceState);
 
         view.setBackground(getResources().getDrawable(R.drawable.wallpaper_stock_shopping_list,null));
 
-        btnGoAssociatedStock = (Button) view.findViewById(R.id.btnGoAssociatedStock);
+        //---- View Elements ----
+        Button btnGoAssociatedStock = (Button) view.findViewById(R.id.btnGoAssociatedStock);
         btnGoAssociatedStock.setVisibility(View.VISIBLE);
         btnGoAssociatedStock.setOnClickListener(new View.OnClickListener() {
             @Override

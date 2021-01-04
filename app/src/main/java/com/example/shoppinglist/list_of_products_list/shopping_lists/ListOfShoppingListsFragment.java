@@ -51,9 +51,4 @@ public class ListOfShoppingListsFragment extends ListOfProductsListFragment<Shop
     protected Class<?> getIntentActivityClass() {
         return ShoppingListActivity.class;
     }
-
-    @Override
-    protected Class<?> getIntentEntityClass() {
-        return ShoppingList.class;
-    }
 }

@@ -1,6 +1,7 @@
 
 package com.example.shoppinglist.product_list_class.shopping_list;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class ShoppingListFragment extends ListOfProductsFragment<Product> {
         return fragment;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected View getFragmentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_shopping_list,container,false);

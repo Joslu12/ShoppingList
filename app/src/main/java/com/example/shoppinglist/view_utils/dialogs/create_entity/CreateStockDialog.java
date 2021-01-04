@@ -17,15 +17,13 @@ public class CreateStockDialog extends CreateListOfProductsDialog<Stock> {
     //---- Methods ----
     public String getDialogTitle() {
         String titleText = getResources().getString(R.string.the_stock);
-        String dialogTitle = String.format(getResources().getString(R.string.enter_the_product_list_name), titleText);
-        return dialogTitle;
+        return String.format(getResources().getString(R.string.enter_the_product_list_name), titleText);
     }
 
     @Override
     public String getSuccessMsg(String itemName) {
-        String msg = String.format(getResources().getString(R.string.info_msg_entity_created),
+        return String.format(getResources().getString(R.string.info_msg_entity_created),
                 getResources().getString(R.string.upCase_the_stock), itemName);
-        return msg;
     }
 
     @Override

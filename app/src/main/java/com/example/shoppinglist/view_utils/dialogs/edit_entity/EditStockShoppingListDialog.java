@@ -2,7 +2,6 @@ package com.example.shoppinglist.view_utils.dialogs.edit_entity;
 
 import com.example.shoppinglist.R;
 
-import model.ShoppingList;
 import model.StockShoppingList;
 
 public class EditStockShoppingListDialog extends EditListOfProductsDialog<StockShoppingList> {

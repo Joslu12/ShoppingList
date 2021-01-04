@@ -79,9 +79,8 @@ public abstract class ListOfProductsListFragment<T extends ProductsListClass<?>>
     public abstract void openCreateListOfProductsDialog();
 
     protected abstract Class<?> getIntentActivityClass();
-    protected abstract Class<?> getIntentEntityClass();
     @Override
-    public void onDialogCreateClick(CreateEntityDialog dialog) {
+    public void onDialogCreateClick(CreateEntityDialog<?> dialog) {
         try {
             // Insertamos en la BD el nuevo ProductList
             T entity = ((CreateListOfProductsDialog<T>) dialog).getEntityToCreate();
@@ -94,7 +93,6 @@ public abstract class ListOfProductsListFragment<T extends ProductsListClass<?>>
             // Saltamos a la actividad del nuevo productList
             Intent intent = new Intent(getContext(), getIntentActivityClass());
             intent.putExtra("ID", entity.getID());
-            intent.putExtra("CLASS", getIntentEntityClass());
             getContext().startActivity(intent);
         } catch (AppException ex) {
             // El manejo de la excepcion se hara desde el AppErrorHelper

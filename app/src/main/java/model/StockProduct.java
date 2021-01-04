@@ -1,5 +1,7 @@
 package model;
 
+import androidx.annotation.NonNull;
+
 /**
  * La clase ProductoInventario hereda de la clase Producto. Almacena ademas la cantidad actual del producto. Asi como, ofrece los
  * metodos correspondientes para modelar el comportamiento de este tipo de productos
@@ -97,9 +99,9 @@ public class StockProduct extends Product implements Cloneable {
 	/**
 	 * @return ProductoInventario con el mismo estado que el actual
 	 */
-	@Override
+	@NonNull
+    @Override
 	public Object clone() throws CloneNotSupportedException {
-		StockProduct p = new StockProduct(this);
-		return p;
+		return new StockProduct(this);
 	}
 }

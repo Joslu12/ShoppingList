@@ -1,5 +1,6 @@
 package com.example.shoppinglist.product_list_class;
 
+import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +22,7 @@ import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import model.ProductsListClass;
 
-public abstract class ProductListClassActivity<T extends ProductsListClass> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
+public abstract class ProductListClassActivity<T extends ProductsListClass<?>> extends AppCompatActivity implements DeleteEntityDialog.DeleteEntityDialogListener, EditListOfProductsDialog.EditListOfProductsDialogListener {
 
     //---- View Elements ----
     private Fragment fragmentProducts;
@@ -29,7 +30,6 @@ public abstract class ProductListClassActivity<T extends ProductsListClass> exte
     //---- Attributes ----
     protected SQLiteDatabase bd;
     protected T productsList;
-    protected Class productListClass;
 
     //---- Activity Methods ----
     protected abstract ListOfProductsFragment getNewInstance(T productsList);
@@ -45,7 +45,6 @@ public abstract class ProductListClassActivity<T extends ProductsListClass> exte
         bd = BaseDatosUtils.getWritableDatabaseConnection(getApplicationContext());
 
         // Cargamos de la base de datos la lista de la compra
-        productListClass = (Class) getIntent().getSerializableExtra("CLASS");
         loadProductList(getIntent().getIntExtra("ID",-1));
 
         // Configuramos lo necesario de la barra de herramientas
@@ -118,7 +117,7 @@ public abstract class ProductListClassActivity<T extends ProductsListClass> exte
     }
 
     @Override
-    public void onDialogUpdateClick(EditListOfProductsDialog dialog) {
+    public void onDialogUpdateClick(EditListOfProductsDialog<?> dialog) {
         ListTableDao<T> dao = getProductListDao();
 
         // Actualizamos el nombre de la lista de productos
@@ -139,6 +138,7 @@ public abstract class ProductListClassActivity<T extends ProductsListClass> exte
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void buttonClicked(View view) {
         switch(view.getId()) {
             case R.id.btnAddNewProduct:

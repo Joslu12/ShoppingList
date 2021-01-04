@@ -1,11 +1,13 @@
 package com.example.shoppinglist.product_list_class;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
@@ -14,7 +16,7 @@ import java.util.List;
 
 import model.Product;
 
-public abstract class MyListOfItemsProductsRecyclerViewAdapter<T extends Product> extends RecyclerView.Adapter<MyListOfItemsProductsRecyclerViewAdapter.ViewHolder> {
+public abstract class MyListOfItemsProductsRecyclerViewAdapter<T extends Product> extends RecyclerView.Adapter<MyListOfItemsProductsRecyclerViewAdapter.ViewHolder<T>> {
 
     //---- Atributos ----
     private static ListOfProductsFragment parentFragment = null;
@@ -22,14 +24,15 @@ public abstract class MyListOfItemsProductsRecyclerViewAdapter<T extends Product
 
     //---- Constructor ----
     public MyListOfItemsProductsRecyclerViewAdapter(ListOfProductsFragment<T> fragment, List<T> objects) {
-        this.parentFragment = fragment;
+        parentFragment = fragment;
         values = objects;
     }
 
     //---- Metodos ----
     protected abstract ViewHolder<T> getCreateViewHolder(ViewGroup parent);
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getCreateViewHolder(parent);
     }
 
@@ -78,6 +81,7 @@ public abstract class MyListOfItemsProductsRecyclerViewAdapter<T extends Product
             return super.toString() + " '" + mName.getText() + "'";
         }
 
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             switch(view.getId()) {

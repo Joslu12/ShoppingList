@@ -1,7 +1,6 @@
 package com.example.shoppinglist.view_utils.dialogs.delete_entity;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateListOfProductsDialog;
 
 import model.Stock;
 

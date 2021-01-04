@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,6 @@ import model.Product;
 import model.ProductsListClass;
 import model.ShoppingList;
 import model.Stock;
-import model.StockShoppingList;
 
 import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 
@@ -36,21 +36,21 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
     //---- Attributes ----
     protected ProductsListClass<T> productList; //Objeto que contiene el Listado de productos
-    private ListTableDao daoProductList; //Dao para actualizar y cargar el listado de productos
+    private ListTableDao<?> daoProductList; //Dao para actualizar y cargar el listado de productos
     protected List<T> products; //Lista con los productos del listado de productos
 
     //---- Constructor ----
     public ListOfProductsFragment() {}
 
     //---- Fragment Methods ----
-    protected abstract ListTableDao getDaoProductList();
+    protected abstract ListTableDao<?> getDaoProductList();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            productList = (ProductsListClass) getArguments().getSerializable(PRODUCT_LIST);
+            productList = (ProductsListClass<T>) getArguments().getSerializable(PRODUCT_LIST);
             daoProductList = getDaoProductList();
             products = productList.getProductsInsideAList(); // Cargamos los productos del listado en una lista
         } else {
@@ -73,7 +73,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
                                          Bundle savedInstanceState);
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Fragmento completo. Se devuelve uno u otro segun el tipo de instancia del objeto
         View view = this.getFragmentView(inflater,container,savedInstanceState);
@@ -125,7 +125,9 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
                 updateFragment();
             }
 
-        } catch (AppException ex) { }
+        } catch (AppException ex) {
+            // El propio AppErrorHelper se encarga de actuar adecuadamente ante la excepcion lanzada en el getEntityToCreate()
+        }
     }
 
     protected abstract DeleteEntityDialog<T> getDeleteProductDialog(T product);
@@ -136,7 +138,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
     @Override
     public void onDialogDeleteClick(DeleteEntityDialog dialog) {
-        if (productList instanceof ShoppingList || productList instanceof Stock || productList instanceof StockShoppingList) {
+        if (productList instanceof ShoppingList || productList instanceof Stock) {
             // Guardamos el nombre para el mensage mostrado despues
             T entity = (T)dialog.getEntity();
             String name = entity.getName();

@@ -18,7 +18,7 @@ import model.ProductsListClass;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
-public abstract class EditListOfProductsDialog<T extends ProductsListClass> extends TwoButtonsCustomDialog {
+public abstract class EditListOfProductsDialog<T extends ProductsListClass<?>> extends TwoButtonsCustomDialog {
 
     //---- View Elements ----
     private EditText inputName;
@@ -28,7 +28,7 @@ public abstract class EditListOfProductsDialog<T extends ProductsListClass> exte
 
     //---- Constants and Definitions ----
     public interface EditListOfProductsDialogListener extends CustomDialogListener {
-        void onDialogUpdateClick(EditListOfProductsDialog dialog);
+        void onDialogUpdateClick(EditListOfProductsDialog<?> dialog);
     }
 
     //---- Constructor ----
@@ -49,7 +49,7 @@ public abstract class EditListOfProductsDialog<T extends ProductsListClass> exte
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
 

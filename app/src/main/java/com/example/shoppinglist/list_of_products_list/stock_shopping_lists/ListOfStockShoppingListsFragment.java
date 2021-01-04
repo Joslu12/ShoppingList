@@ -59,11 +59,4 @@ public class ListOfStockShoppingListsFragment extends ListOfProductsListFragment
         new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
         return null;
     }
-
-    @Override
-    protected Class<?> getIntentEntityClass() {
-        // Nunca va a ser llamado
-        new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
-        return null;
-    }
 }

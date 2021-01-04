@@ -77,7 +77,6 @@ public abstract class MyListOfProductsListRecyclerViewAdapter<T extends Products
         public void onClick(View view) {
             Intent intent = new Intent(mContext,getIntentActivityClass());
             intent.putExtra("ID", mProductList.getID());
-            intent.putExtra("CLASS",mProductList.getClass());
             mContext.startActivity(intent);
         }
     }

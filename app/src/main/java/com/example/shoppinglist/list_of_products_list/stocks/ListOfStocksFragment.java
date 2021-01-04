@@ -51,9 +51,4 @@ public class ListOfStocksFragment extends ListOfProductsListFragment<Stock> {
     protected Class<?> getIntentActivityClass() {
         return StockActivity.class;
     }
-
-    @Override
-    protected Class<?> getIntentEntityClass() {
-        return Stock.class;
-    }
 }

@@ -34,8 +34,7 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
     //---- Methods ----
     public String getDialogTitle() {
         String titleText = getResources().getString(R.string.the_stock_product);
-        String dialogTitle = String.format(getResources().getString(R.string.enter_the_product_name), titleText);
-        return dialogTitle;
+        return String.format(getResources().getString(R.string.enter_the_product_name), titleText);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
         //Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
         inputTargetAmount = this.dialogContent.findViewById(R.id.input_target_amount);
@@ -69,9 +68,8 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
 
     @Override
     public String getSuccessMsg(String entityName) {
-        String msg = String.format(getResources().getString(R.string.info_msg_entity_created),
+        return String.format(getResources().getString(R.string.info_msg_entity_created),
                 getResources().getString(R.string.upCase_the_stock_product), entityName);
-        return msg;
     }
 
     final protected String getTypedName() {

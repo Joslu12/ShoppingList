@@ -23,7 +23,7 @@ public class StockShoppingListActivity extends ProductListClassActivity<StockSho
 
     @Override
     protected DeleteEntityDialog<StockShoppingList> generateEntityDeleteDialog() {
-        return new DeleteStockShoppingListDialog(this, (StockShoppingList) this.productsList);
+        return new DeleteStockShoppingListDialog(this, this.productsList);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class StockShoppingListActivity extends ProductListClassActivity<StockSho
 
     @Override
     protected EditListOfProductsDialog<StockShoppingList> generateEntityEditDialog() {
-        return new EditStockShoppingListDialog(this, (StockShoppingList) this.productsList);
+        return new EditStockShoppingListDialog(this, this.productsList);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.shoppinglist.product_list_class;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,10 +74,10 @@ public class MyListOfStockProductsRecyclerViewAdapter extends MyListOfItemsProdu
         }
 
         private void updateTextView() {
-            mTargetAmount.setText(String.format(mContext.getResources().getString(R.string.current_target_amount_difference),
-                    ((StockProduct)mProduct).getCurrentAmount(),mProduct.getTargetAmount()));
+            mTargetAmount.setText(String.format(mContext.getResources().getString(R.string.current_target_amount_difference), mProduct.getCurrentAmount(),mProduct.getTargetAmount()));
         }
 
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             // Para el caso de que se pulse sobre Delete
@@ -86,7 +87,7 @@ public class MyListOfStockProductsRecyclerViewAdapter extends MyListOfItemsProdu
                 case R.id.btnAddUnit:
                     // Actualizamos el estado del producto
                     mProduct.increaseCurrentAmount();
-                    dao.update((StockProduct)mProduct);
+                    dao.update(mProduct);
 
                     // Actualizamos la vista del ViewHolder
                     updateButtonsVisibility();
@@ -97,7 +98,7 @@ public class MyListOfStockProductsRecyclerViewAdapter extends MyListOfItemsProdu
                 case R.id.btnRemoveUnit:
                     // Actualizamos el estado del producto
                     mProduct.decreaseCurrentAmount();
-                    dao.update((StockProduct)mProduct);
+                    dao.update(mProduct);
 
                     // Actualizamos la vista del ViewHolder
                     updateButtonsVisibility();

@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.example.shoppinglist.R;
 
-import java.io.Serializable;
-
 public class AppError {
 
     //---- Attributes ----

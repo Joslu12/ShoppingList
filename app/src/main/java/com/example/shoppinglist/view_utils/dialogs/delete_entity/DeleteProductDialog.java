@@ -3,7 +3,6 @@ package com.example.shoppinglist.view_utils.dialogs.delete_entity;
 import com.example.shoppinglist.R;
 
 import model.Product;
-import model.StockProduct;
 
 public class DeleteProductDialog extends DeleteEntityDialog<Product> {
     //---- Constructor ----

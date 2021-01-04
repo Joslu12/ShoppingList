@@ -1,5 +1,6 @@
 package com.example.shoppinglist.view_utils.dialogs;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public abstract class TwoButtonsCustomDialog extends CustomDialog implements Vie
     //---- Methods ----
     protected View generateCustomDialogView() {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_two_buttons, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.dialog_two_buttons, null);
 
         // Titulo del Dialogo
         ((TextView) view.findViewById(R.id.txt_dialog_title)).setText(this.getDialogTitle());
@@ -50,6 +51,7 @@ public abstract class TwoButtonsCustomDialog extends CustomDialog implements Vie
         btnNegative.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public final void onClick(View view) {
         switch(view.getId()) {

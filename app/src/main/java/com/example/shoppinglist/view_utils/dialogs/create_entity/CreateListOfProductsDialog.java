@@ -34,7 +34,7 @@ public abstract class CreateListOfProductsDialog<T extends ProductsListClass> ex
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
 

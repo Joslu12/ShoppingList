@@ -11,8 +11,4 @@ public class AppException extends Exception {
         this.error = error;
     }
 
-    //---- Methods ----
-    public AppError getError() {
-        return error;
-    }
 }

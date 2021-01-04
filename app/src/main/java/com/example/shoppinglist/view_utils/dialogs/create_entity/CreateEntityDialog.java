@@ -8,7 +8,7 @@ public abstract class CreateEntityDialog<T> extends TwoButtonsCustomDialog {
 
     //---- Constants and Definitions ----
     public interface CreateEntityDialogListener extends CustomDialogListener {
-        void onDialogCreateClick(CreateEntityDialog dialog);
+        void onDialogCreateClick(CreateEntityDialog<?> dialog);
     }
 
     //---- Constructor ----

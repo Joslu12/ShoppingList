@@ -17,14 +17,11 @@ import com.example.shoppinglist.shopping_summary.ShoppingSummaryActivity;
 
 import model.ShoppingList;
 
-public class GoShoppingActivity<T extends ShoppingList> extends AppCompatActivity {
+public class GoShoppingActivity extends AppCompatActivity {
 
 
     //---- Attributes ----
-    private T shoppingList;
-
-    //---- View Elements ----
-    private RecyclerView recyclerView;
+    private ShoppingList shoppingList;
 
     //--- Activity Methods ----
     @Override
@@ -35,7 +32,7 @@ public class GoShoppingActivity<T extends ShoppingList> extends AppCompatActivit
         setSupportActionBar(toolbar);
 
         if(getIntent().getSerializableExtra("SHOPPING_LIST") != null) {
-            shoppingList = ((T) getIntent().getSerializableExtra("SHOPPING_LIST"));
+            shoppingList = ((ShoppingList) getIntent().getSerializableExtra("SHOPPING_LIST"));
             shoppingList.initPurchasing(); // Comenzamos la compra
         } else {
             new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),this);
@@ -45,8 +42,7 @@ public class GoShoppingActivity<T extends ShoppingList> extends AppCompatActivit
         View recyclerViewElement = this.findViewById(R.id.recyclerView);
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
-            recyclerView = (RecyclerView) recyclerViewElement;
-            recyclerView.setAdapter(new MyGoShoppingRecyclerViewAdapter(shoppingList, shoppingList.getProductsInsideAList()));
+            ((RecyclerView) recyclerViewElement).setAdapter(new MyGoShoppingRecyclerViewAdapter(shoppingList, shoppingList.getProductsInsideAList()));
         }
     }
 

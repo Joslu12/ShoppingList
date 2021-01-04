@@ -1,14 +1,19 @@
 package com.example.shoppinglist.go_shopping;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.app_error_handling.AppError;
+import com.example.shoppinglist.app_error_handling.AppErrorHelper;
 
 import java.util.List;
 
@@ -24,11 +29,12 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
 
     //---- Constructor ----
     public MyGoShoppingRecyclerViewAdapter(ShoppingList shoppingList, List<Product> values) {
-        this.shoppingList = shoppingList;
+        MyGoShoppingRecyclerViewAdapter.shoppingList = shoppingList;
         this.values = values;
     }
 
     //---- Methods ----
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
@@ -36,6 +42,7 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mProduct = values.get(position);
@@ -56,12 +63,14 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
         //---- Attributes ----
         public final TextView mName, mTargetAmount;
         private final CheckBox mCheckBox;
+        private final Context mContext;
         public Product mProduct;
 
         //---- Constructor ----
         public ViewHolder(View view) {
             super(view);
             mName = (TextView) view.findViewById(R.id.txtName);
+            mContext = view.getContext();
             mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mCheckBox = (CheckBox) view.findViewById(R.id.checkBox);
             mCheckBox.setOnClickListener(this);
@@ -82,7 +91,10 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
                 } else {
                     shoppingList.uncheckProduct(mProduct);
                 }
-            } catch (ShoppingListException ex) {}
+            } catch (ShoppingListException ex) {
+                // No se deberia de dar nunca un error aqui
+                new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, mContext.getResources().getString(R.string.unexpected_error),mContext);
+            }
         }
     }
 }

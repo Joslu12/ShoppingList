@@ -106,8 +106,7 @@ public class Stock extends ProductsListClass<StockProduct> {
 			}
 		}
 		
-		StockShoppingList shoppingList = new StockShoppingList(name,productsList,this);
-		return shoppingList;
+		return new StockShoppingList(name,productsList,this);
 	}
 	
 }
