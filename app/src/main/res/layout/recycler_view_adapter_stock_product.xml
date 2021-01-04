@@ -8,45 +8,45 @@
 
     <GridLayout
         android:layout_height="match_parent"
-        android:layout_columnWeight="5"
+        android:layout_columnWeight="20"
         android:orientation="horizontal"
         android:columnCount="2">
 
         <TextView
             android:id="@+id/txtName"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_gravity="left"
-            android:textAppearance="@style/AppFont.ListItemFont"/>
+            android:textAppearance="@style/AppFont.ListItemFont"
+            android:textAlignment="gravity"/>
 
         <TextView
             android:id="@+id/txtCurrentTargetAmount"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:textAppearance="@style/AppFont.ListItemFont"/>
+            android:textAppearance="@style/AppFont.ListItemFont"
+            android:textAlignment="gravity"/>
 
     </GridLayout>
 
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_columnWeight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
         <android.widget.Button
-            style="@style/AppButton.RemoveUnitButton"
+            style="@style/AppButton.UpdateUnitButton.RemoveUnitButton"
             android:id="@+id/btnRemoveUnit"
             android:text="-"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:textAlignment="center"/>
 
         <android.widget.Button
-            style="@style/AppButton.AddUnitButton"
+            style="@style/AppButton.UpdateUnitButton.AddUnitButton"
             android:id="@+id/btnAddUnit"
             android:text="+"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:textAlignment="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,13 +55,10 @@
         android:orientation="horizontal">
 
         <android.widget.Button
-            style="@style/AppButton.NegativeButton"
+            style="@style/AppButton.RemoveButton"
             android:id="@+id/btnDeleteProduct"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
             android:layout_marginLeft="4dp"
-            android:layout_gravity="right"
-            android:text="@string/delete"/>
+            android:layout_gravity="end"/>
 
     </LinearLayout>
 

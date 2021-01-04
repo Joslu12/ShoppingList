@@ -44,6 +44,9 @@
 
     <color name="app_stock_shopping_list_wallpaper_start_color">#ec9f8b</color>
     <color name="app_stock_shopping_list_wallpaper_end_color">#d25f44</color>
+
+    <color name="app_go_shopping_wallpaper_start_color">#FFFAFA</color>
+    <color name="app_go_shopping_wallpaper_end_color">@color/light_grey</color>
     <!-- END WALLPAPER COLORS -->
 
     <!-- BEGIN SHOPPING LIST COLORS -->

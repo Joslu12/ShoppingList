@@ -73,12 +73,22 @@
         <item name="android:background">@drawable/button_action</item>
     </style>
 
-    <style name="AppButton.AddUnitButton" parent="AppButton">
+    <style name="AppButton.UpdateUnitButton" parent="AppButton">
+        <item name="android:layout_height">@dimen/button_change_units_height</item>
+        <item name="android:layout_width">@dimen/button_change_units_width</item>
+    </style>
+    <style name="AppButton.UpdateUnitButton.AddUnitButton" parent="AppButton.UpdateUnitButton">
         <item name="android:background">@drawable/button_add_unit</item>
     </style>
 
-    <style name="AppButton.RemoveUnitButton" parent="AppButton">
+    <style name="AppButton.UpdateUnitButton.RemoveUnitButton" parent="AppButton.UpdateUnitButton">
         <item name="android:background">@drawable/button_remove_unit</item>
+    </style>
+
+    <style name="AppButton.RemoveButton" parent="AppButton">
+        <item name="android:layout_height">@dimen/button_change_units_height</item>
+        <item name="android:layout_width">@dimen/button_change_units_width</item>
+        <item name="android:background">@drawable/button_remove</item>
     </style>
     <!-- END BUTTONS STYLES -->
 

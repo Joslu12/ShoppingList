@@ -6,4 +6,8 @@
     <dimen name="button_stroke">2dp</dimen>
     <dimen name="list_item_button_radius">20dp</dimen>
     <dimen name="list_item_button_stroke">1dp</dimen>
+
+    <dimen name="button_change_units_side">30dp</dimen>
+    <dimen name="button_change_units_width">@dimen/button_change_units_side</dimen>
+    <dimen name="button_change_units_height">@dimen/button_change_units_side</dimen>
 </resources>
