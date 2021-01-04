@@ -1,8 +1,7 @@
-package com.example.shoppinglist.stocks;
+package com.example.shoppinglist.product_list_class.stock;
 
-import com.example.shoppinglist.ProductListClassActivity;
+import com.example.shoppinglist.product_list_class.ProductListClassActivity;
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.stocks.view_utils.StockFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;

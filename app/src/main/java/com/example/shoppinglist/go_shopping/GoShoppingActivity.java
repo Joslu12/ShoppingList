@@ -1,4 +1,4 @@
-package com.example.shoppinglist.shoppinglists;
+package com.example.shoppinglist.go_shopping;
 
 
 import android.content.Intent;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
-import com.example.shoppinglist.shoppinglists.view_utils.MyGoShoppingRecyclerViewAdapter;
+import com.example.shoppinglist.shopping_summary.ShoppingSummaryActivity;
 
 import model.ShoppingList;
 

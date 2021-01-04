@@ -1,4 +1,4 @@
-package com.example.shoppinglist.shoppinglists.view_utils;
+package com.example.shoppinglist.list_of_products_list.shopping_lists;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.shoppinglists.ShoppingListActivity;
-import com.example.shoppinglist.view_utils.fragments.MyListOfProductsListRecyclerViewAdapter;
+import com.example.shoppinglist.list_of_products_list.MyListOfProductsListRecyclerViewAdapter;
+import com.example.shoppinglist.product_list_class.shopping_list.ShoppingListActivity;
 
 import java.util.List;
 

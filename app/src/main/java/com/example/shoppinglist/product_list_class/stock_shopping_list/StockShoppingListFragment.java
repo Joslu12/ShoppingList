@@ -1,5 +1,5 @@
 
-package com.example.shoppinglist.shoppinglists.view_utils;
+package com.example.shoppinglist.product_list_class.stock_shopping_list;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.stocks.StockActivity;
+import com.example.shoppinglist.product_list_class.stock.StockActivity;
+import com.example.shoppinglist.product_list_class.shopping_list.ShoppingListFragment;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;

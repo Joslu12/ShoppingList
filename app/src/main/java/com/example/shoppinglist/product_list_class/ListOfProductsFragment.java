@@ -1,4 +1,4 @@
-package com.example.shoppinglist.view_utils.fragments;
+package com.example.shoppinglist.product_list_class;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,8 +15,6 @@ import com.example.shoppinglist.app_error_handling.AppException;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import bd.dao.ListTableDao;

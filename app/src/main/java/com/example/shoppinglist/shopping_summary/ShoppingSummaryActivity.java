@@ -1,4 +1,4 @@
-package com.example.shoppinglist.shoppinglists;
+package com.example.shoppinglist.shopping_summary;
 
 
 import android.content.Intent;
@@ -15,10 +15,9 @@ import com.example.shoppinglist.MainActivity;
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
-import com.example.shoppinglist.view_utils.fragments.MyListOfProductsRecyclerViewAdapter;
+import com.example.shoppinglist.product_list_class.MyListOfProductsRecyclerViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +31,6 @@ import model.Product;
 import model.ShoppingList;
 import model.ShoppingListException;
 import model.Stock;
-import model.StockProduct;
 import model.StockShoppingList;
 
 public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatActivity {

@@ -69,7 +69,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".view_utils.fragments.ListOfProductsFragment"
+            tools:context=".product_list_class.ListOfProductsFragment"
             android:id="@+id/recyclerView"
             tools:listitem="@layout/recycler_view_adapter_list_of_products"/>
 

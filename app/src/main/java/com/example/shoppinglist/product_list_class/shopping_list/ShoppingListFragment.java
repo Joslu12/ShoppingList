@@ -1,5 +1,5 @@
 
-package com.example.shoppinglist.shoppinglists.view_utils;
+package com.example.shoppinglist.product_list_class.shopping_list;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.shoppinglists.GoShoppingActivity;
+import com.example.shoppinglist.go_shopping.GoShoppingActivity;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateProductDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteProductDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
-import com.example.shoppinglist.view_utils.fragments.MyListOfItemsProductsRecyclerViewAdapter;
-import com.example.shoppinglist.view_utils.fragments.MyListOfProductsRecyclerViewAdapter;
+import com.example.shoppinglist.product_list_class.ListOfProductsFragment;
+import com.example.shoppinglist.product_list_class.MyListOfItemsProductsRecyclerViewAdapter;
+import com.example.shoppinglist.product_list_class.MyListOfProductsRecyclerViewAdapter;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;

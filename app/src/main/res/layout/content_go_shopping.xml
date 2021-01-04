@@ -62,7 +62,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".shoppinglists.GoShoppingActivity"
+            tools:context=".go_shopping.GoShoppingActivity"
             android:id="@+id/recyclerView"
             tools:listitem="@layout/recycler_view_adapter_go_shopping"/>
 

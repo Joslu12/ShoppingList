@@ -27,7 +27,7 @@
 
         <!-- BEGIN STOCK -->
         <activity
-            android:name=".stocks.StockActivity"
+            android:name=".product_list_class.stock.StockActivity"
             android:label="@string/title_activity_stock_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
@@ -39,7 +39,7 @@
 
         <!-- BEGIN SHOPPING LIST -->
         <activity
-            android:name=".shoppinglists.ShoppingListActivity"
+            android:name=".product_list_class.shopping_list.ShoppingListActivity"
             android:label="@string/shopping_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
@@ -49,7 +49,7 @@
         </activity>
 
         <activity
-            android:name=".shoppinglists.StockShoppingListActivity"
+            android:name=".product_list_class.stock_shopping_list.StockShoppingListActivity"
             android:label="@string/stock_shopping_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
@@ -60,24 +60,24 @@
 
         <!-- TODO: label -->
         <activity
-            android:name=".shoppinglists.GoShoppingActivity"
+            android:name=".go_shopping.GoShoppingActivity"
             android:label="@string/shopping_list"
-            android:parentActivityName=".shoppinglists.ShoppingListActivity"
+            android:parentActivityName=".product_list_class.shopping_list.ShoppingListActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".shoppinglists.ShoppingListActivity" />
+                android:value=".product_list_class.shopping_list.ShoppingListActivity" />
         </activity>
 
         <!-- TODO: label -->
         <activity
-            android:name=".shoppinglists.ShoppingSummaryActivity"
+            android:name=".shopping_summary.ShoppingSummaryActivity"
             android:label="@string/shopping_list"
-            android:parentActivityName=".shoppinglists.GoShoppingActivity"
+            android:parentActivityName=".go_shopping.GoShoppingActivity"
             android:theme="@style/Theme.ShoppingList.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".shoppinglists.GoShoppingActivity" />
+                android:value=".go_shopping.GoShoppingActivity" />
         </activity>
         <!-- END SHOPPING LIST -->
     </application>

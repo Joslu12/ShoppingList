@@ -1,13 +1,12 @@
-package com.example.shoppinglist.shoppinglists;
+package com.example.shoppinglist.product_list_class.stock_shopping_list;
 
-import com.example.shoppinglist.ProductListClassActivity;
+import com.example.shoppinglist.product_list_class.ProductListClassActivity;
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.shoppinglists.view_utils.StockShoppingListFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteStockShoppingListDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditStockShoppingListDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
+import com.example.shoppinglist.product_list_class.ListOfProductsFragment;
 
 import bd.dao.ListTableDao;
 import bd.dao.StockShoppingListDao;

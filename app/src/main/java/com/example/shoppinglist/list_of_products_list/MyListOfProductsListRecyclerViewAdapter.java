@@ -1,4 +1,4 @@
-package com.example.shoppinglist.view_utils.fragments;
+package com.example.shoppinglist.list_of_products_list;
 
 import android.content.Context;
 import android.content.Intent;

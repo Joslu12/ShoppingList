@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.shoppinglist.shoppinglists.view_utils.ListOfShoppingListsFragment;
-import com.example.shoppinglist.shoppinglists.view_utils.ListOfStockShoppingListsFragment;
-import com.example.shoppinglist.stocks.view_utils.ListOfStocksFragment;
+import com.example.shoppinglist.list_of_products_list.shopping_lists.ListOfShoppingListsFragment;
+import com.example.shoppinglist.list_of_products_list.stock_shopping_lists.ListOfStockShoppingListsFragment;
+import com.example.shoppinglist.list_of_products_list.stocks.ListOfStocksFragment;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteAllEntitiesDialog;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
+import com.example.shoppinglist.list_of_products_list.ListOfProductsListFragment;
 
 import bd.BaseDatosUtils;
 

@@ -32,7 +32,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".shoppinglists.ShoppingSummaryActivity"
+                tools:context=".shopping_summary.ShoppingSummaryActivity"
                 android:id="@+id/purchasedProductsRecyclerView"
                 tools:listitem="@layout/recycler_view_adapter_product"/>
 
@@ -58,7 +58,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".shoppinglists.ShoppingSummaryActivity"
+                tools:context=".shopping_summary.ShoppingSummaryActivity"
                 android:id="@+id/productsToPurchaseRecyclerView"
                 tools:listitem="@layout/recycler_view_adapter_product"/>
 

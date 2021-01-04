@@ -1,4 +1,4 @@
-package com.example.shoppinglist;
+package com.example.shoppinglist.product_list_class;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,13 +10,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
 import static com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.view_utils.dialogs.delete_entity.DeleteEntityDialog;
 import com.example.shoppinglist.view_utils.dialogs.edit_entity.EditListOfProductsDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsFragment;
 
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;

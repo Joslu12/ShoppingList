@@ -1,4 +1,4 @@
-package com.example.shoppinglist.shoppinglists.view_utils;
+package com.example.shoppinglist.list_of_products_list.stock_shopping_lists;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.shoppinglist.R;
 import com.example.shoppinglist.app_error_handling.AppError;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
+import com.example.shoppinglist.list_of_products_list.ListOfProductsListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import bd.dao.ListTableDao;

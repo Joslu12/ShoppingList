@@ -1,4 +1,4 @@
-package com.example.shoppinglist.stocks.view_utils;
+package com.example.shoppinglist.list_of_products_list.stocks;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.shoppinglist.R;
-import com.example.shoppinglist.stocks.StockActivity;
+import com.example.shoppinglist.list_of_products_list.ListOfProductsListFragment;
+import com.example.shoppinglist.product_list_class.stock.StockActivity;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateStockDialog;
-import com.example.shoppinglist.view_utils.fragments.ListOfProductsListFragment;
 
 import bd.dao.ListTableDao;
 import bd.dao.StockDao;
