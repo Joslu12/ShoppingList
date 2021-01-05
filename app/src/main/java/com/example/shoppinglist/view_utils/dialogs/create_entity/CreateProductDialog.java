@@ -35,7 +35,7 @@ public class CreateProductDialog extends CreateEntityDialog<Product> {
     //---- Methods ----
     public String getDialogTitle() {
         String titleText = getResources().getString(R.string.the_product);
-        return String.format(getResources().getString(R.string.enter_the_product), titleText);
+        return String.format(getResources().getString(R.string.enter_the_entity), titleText);
     }
 
     @Override

@@ -18,12 +18,11 @@
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
     <string name="warning">Warning</string>
-    <string name="enter_the_product_list">"Enter %1$s:"</string>
+    <string name="enter_the_entity">"Enter %1$s:"</string>
     <string name="info_msg_entity_created">"%1$s '%2$s' has been created successfully."</string>
     <string name="info_msg_entity_deleted">"%1$s '%2$s' has been deleted."</string>
     <string name="info_msg_entity_updated">"%1$s has been updated with the name: '%2$s'."</string>
     <string name="delete_warning">"Are you sure you want to delete %1$s: '%2$s'?"</string>
-    <string name="enter_the_product">"Enter %1$s:"</string>
     <string name="delete_all_data_warning">"WARNING! This operation can't be undone. Are you sure you want to delete all the data stored?</string>
     <string name="info_msg_all_data_deleted">All data stored was deleted successfully.</string>
     <string name="info_msg_stock_shopping_list_created">"The shopping list has been created successfully with the name '%1$s'."</string>

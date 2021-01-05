@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- BEGIN MAIN -->
-    <string name="app_name">ShoppingList</string>
+    <string name="app_name">Shop2Go</string>
     <string name="action_settings">Ajustes</string>
     <!-- END MAIN -->
 
@@ -18,12 +18,11 @@
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
     <string name="warning">Cuidado</string>
-    <string name="enter_the_product_list">"Introduce %1$s:"</string>
-    <string name="info_msg_entity_created">"%1$s '%2$s' ha sido creado con éxito."</string>
-    <string name="info_msg_entity_deleted">"%1$s '%2$s' ha sido eliminado."</string>
-    <string name="info_msg_entity_updated">"%1$s ha sido actualizado con el nombre: '%2$s'."</string>
+    <string name="enter_the_entity">"Introduce %1$s:"</string>
+    <string name="info_msg_entity_created">"%1$s '%2$s' se ha creado con éxito."</string>
+    <string name="info_msg_entity_deleted">"%1$s '%2$s' se ha eliminado."</string>
+    <string name="info_msg_entity_updated">"%1$s se ha actualizado con el nombre: '%2$s'."</string>
     <string name="delete_warning">"¿Estás seguro que quieres eliminar %1$s: '%2$s'?"</string>
-    <string name="enter_the_product">"Introduce %1$s:"</string>
     <string name="delete_all_data_warning">"¡CUIDADO! Esta operación no puede ser desecha. ¿Estás seguro que quieres eliminar todos los datos almacenados?</string>
     <string name="info_msg_all_data_deleted">Todos los datos almacenados han sido eliminados con éxito.</string>
     <string name="info_msg_stock_shopping_list_created">"La lista de la compra del inventario ha sido creada con éxito con el nombre: '%1$s'."</string>
