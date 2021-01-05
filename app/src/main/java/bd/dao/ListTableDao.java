@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -81,6 +82,7 @@ public abstract class ListTableDao<T extends ProductsListClass> extends Abstract
             cursor.close();
         }
 
+        Collections.sort(list);
         return list;
     }
 

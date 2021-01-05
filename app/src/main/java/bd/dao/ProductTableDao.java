@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import bd.ShoppingListContract;
@@ -111,6 +112,7 @@ public abstract class ProductTableDao<T extends Product> extends AbstractDao<T> 
             cursor.close();
         }
 
+        Collections.sort(list);
         return list;
     }
 

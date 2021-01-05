@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
  * Implementa el interfaz Cloneable y no es editable. Es decir, el nombre o la cantidad objetivo indicada al inicio son los valores 
  * finales del objeto
  */
-public class Product extends IdentifiedObjectClass implements Cloneable {
+public class Product extends IdentifiedObjectClass implements Cloneable, Comparable<Product> {
 
 	//---- Attributes ----
 	private final String name;
@@ -97,5 +97,17 @@ public class Product extends IdentifiedObjectClass implements Cloneable {
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return new Product(this);
+	}
+
+	/**
+	 * La comparacion se realiza lexicograficamente segun el nombre
+	 * @param product producto con el que comprara
+	 * @return <0 si product es mayor que el objeto
+	 * 		    0 si ambos son iguales
+	 * 		   0> si product es menor que el objeto
+	 */
+	@Override
+	public int compareTo(Product product) {
+		return this.name.compareToIgnoreCase(product.getName());
 	}
 }

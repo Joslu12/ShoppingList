@@ -11,7 +11,7 @@ import java.util.List;
  * @param <E> representa una clase que hereda de la clase Producto
  */
 
-public abstract class ProductsListClass<E extends Product> extends IdentifiedObjectClass {
+public abstract class ProductsListClass<E extends Product> extends IdentifiedObjectClass implements Comparable<ProductsListClass<E>>{
 
 	//---- Attributes ----
 	protected String name;
@@ -106,16 +106,14 @@ public abstract class ProductsListClass<E extends Product> extends IdentifiedObj
 	}
 
 	/**
-	 *
-	 * @return a List with copys of the products
+	 * La comparacion se realiza lexicograficamente segun el nombre
+	 * @param productsListClass listado con el que comprara
+	 * @return <0 si productsListClass es mayor que el objeto
+	 * 		    0 si ambos son iguales
+	 * 		   0> si productsListClass es menor que el objeto
 	 */
-	public List<E> getProductsInsideAList() {
-		List<E> result = new ArrayList<E>();
-
-		Iterator<E> iterator = getProducts();
-		while(iterator.hasNext()) {
-			result.add(iterator.next());
-		}
-		return result;
+	@Override
+	public int compareTo(ProductsListClass<E> productsListClass) {
+		return this.name.compareToIgnoreCase(productsListClass.getName());
 	}
 }

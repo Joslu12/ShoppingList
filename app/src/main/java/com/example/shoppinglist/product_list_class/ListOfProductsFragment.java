@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.Utils;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppException;
 import com.example.shoppinglist.view_utils.dialogs.create_entity.CreateEntityDialog;
@@ -53,7 +54,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         if (getArguments() != null) {
             productList = (ProductsListClass<T>) getArguments().getSerializable(PRODUCT_LIST);
             daoProductList = getDaoProductList();
-            products = productList.getProductsInsideAList(); // Cargamos los productos del listado en una lista
+            products = Utils.listOfProductsFromIterator(productList.getProducts()); // Cargamos los productos del listado en una lista
         } else {
             new AppError(CodeErrors.MUST_NOT_HAPPEN, getResources().getString(R.string.unexpected_error),getContext());
         }
@@ -64,7 +65,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
     public void onResume() {
         super.onResume();
         if(recyclerView != null) {
-            products = productList.getProductsInsideAList();
+            products = Utils.listOfProductsFromIterator(productList.getProducts());
             recyclerView.setAdapter(getRecyclerView());
             updateFragment();
         }
@@ -122,7 +123,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
             // Recargamos la lista de productos
             if(recyclerView != null) {
-                products = productList.getProductsInsideAList();
+                products = Utils.listOfProductsFromIterator(productList.getProducts());
                 recyclerView.setAdapter(getRecyclerView());
                 updateFragment();
             }
@@ -156,7 +157,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
 
             // Recargamos la lista de productos
             if(recyclerView != null) {
-                products = productList.getProductsInsideAList();
+                products = Utils.listOfProductsFromIterator(productList.getProducts());
                 recyclerView.setAdapter(getRecyclerView());
                 updateFragment();
             }

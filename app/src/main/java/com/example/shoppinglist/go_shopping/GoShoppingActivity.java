@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.Utils;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.shopping_summary.ShoppingSummaryActivity;
@@ -43,7 +44,7 @@ public class GoShoppingActivity extends AppCompatActivity {
         View recyclerViewElement = this.findViewById(R.id.recyclerView);
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
-            ((RecyclerView) recyclerViewElement).setAdapter(new MyGoShoppingRecyclerViewAdapter(shoppingList, shoppingList.getProductsInsideAList()));
+            ((RecyclerView) recyclerViewElement).setAdapter(new MyGoShoppingRecyclerViewAdapter(shoppingList, Utils.listOfProductsFromIterator(shoppingList.getProducts())));
             ((RecyclerView)recyclerViewElement).addItemDecoration(new DividerItemDecoration(recyclerViewElement.getContext(), DividerItemDecoration.VERTICAL));
         }
     }

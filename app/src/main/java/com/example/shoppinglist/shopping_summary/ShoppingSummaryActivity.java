@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.MainActivity;
 import com.example.shoppinglist.R;
+import com.example.shoppinglist.Utils;
 import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.product_list_class.MyListOfProductsRecyclerViewAdapter;
@@ -68,7 +69,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             purchasedProductsRecyclerView = (RecyclerView) recyclerViewElement;
-            purchasedProductsRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getPurchasedProducts())));
+            purchasedProductsRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,Utils.listOfProductsFromIterator(shoppingList.getPurchasedProducts())));
             purchasedProductsRecyclerView.addItemDecoration(new DividerItemDecoration(purchasedProductsRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
         }
 
@@ -77,7 +78,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             productsToPurchaseRecyclerView = (RecyclerView) recyclerViewElement;
-            productsToPurchaseRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getProductsToPurchase())));
+            productsToPurchaseRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null, Utils.listOfProductsFromIterator(shoppingList.getProductsToPurchase())));
             productsToPurchaseRecyclerView.addItemDecoration(new DividerItemDecoration(productsToPurchaseRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
         }
 
@@ -92,14 +93,6 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         ((Button) findViewById(R.id.btnSave)).setText(getResources().getString(R.string.update) + " " + getResources().getString(R.string.stock));
         ((Button) findViewById(R.id.btnSave)).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         ((Button) findViewById(R.id.btnUpdate)).setVisibility(View.INVISIBLE);
-    }
-
-    private <E extends Product> List<E> listFromIterator(Iterator<E> iterator) {
-        List<E> result = new ArrayList<E>();
-        while(iterator.hasNext()) {
-            result.add(iterator.next());
-        }
-        return result;
     }
 
     public void onClick(View view) {
