@@ -73,43 +73,85 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/max_preferred_margin"
-            android:layout_marginBottom="@dimen/max_preferred_margin"
+            android:layout_marginBottom="@dimen/min_preferred_margin"
             android:orientation="horizontal">
 
-            <android.widget.Button
-                style="@style/AppButton.NegativeButton"
-                android:id="@+id/btnDiscard"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="@string/discard"
-                android:onClick="onClick"/>
+                android:orientation="vertical">
 
-            <android.widget.Button
-                style="@style/AppButton.PositiveButton"
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="@string/save"
-                android:onClick="onClick"/>
+                <android.widget.Button
+                    style="@style/AppButton.NegativeButton"
+                    android:id="@+id/btnDiscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textAlignment="center"
+                    android:text="@string/discard"
+                    android:onClick="onClick"/>
 
-            <android.widget.Button
-                style="@style/AppButton.NeutralButton"
-                android:id="@+id/btnUpdate"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/shopping_list_will_be_deleted"/>
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="@string/update"
-                android:onClick="onClick"/>
+                android:orientation="vertical">
+
+                <android.widget.Button
+                    style="@style/AppButton.PositiveButton"
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textAlignment="center"
+                    android:text="@string/restore"
+                    android:onClick="onClick"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/shopping_list_will_be_restored"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.widget.Button
+                    style="@style/AppButton.NeutralButton"
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textAlignment="center"
+                    android:text="@string/update"
+                    android:onClick="onClick"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/the_shopping_list_will_be_updated"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </ScrollView>

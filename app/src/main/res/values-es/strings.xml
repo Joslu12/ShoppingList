@@ -13,7 +13,7 @@
     <string name="edit_name">Editar nombre</string>
     <string name="update">Actualizar</string>
     <string name="discard">Descartar</string>
-    <string name="save">Guardar</string>
+    <string name="restore">Restaurar</string>
     <!-- END ACTIONS -->
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
@@ -27,6 +27,10 @@
     <string name="delete_all_data_warning">"¡CUIDADO! Esta operación no puede ser desecha. ¿Estás seguro que quieres eliminar todos los datos almacenados?</string>
     <string name="info_msg_all_data_deleted">Todos los datos almacenados han sido eliminados con éxito.</string>
     <string name="info_msg_stock_shopping_list_created">"La lista de la compra del inventario ha sido creada con éxito con el nombre: '%1$s'."</string>
+
+    <string name="shopping_list_will_be_deleted">La lista de la compra será eliminada</string>
+    <string name="shopping_list_will_be_restored">La lista de la compra no sufrirá cambios</string>
+    <string name="the_shopping_list_will_be_updated">Se eliminarán de la lista los productos comprados</string>
     <!-- END MESSAGES & QUESTIONS -->
 
     <!-- BEGIN ERROR MSG -->

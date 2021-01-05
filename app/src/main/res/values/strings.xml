@@ -13,7 +13,7 @@
     <string name="edit_name">Edit name</string>
     <string name="update">Update</string>
     <string name="discard">Discard</string>
-    <string name="save">Save</string>
+    <string name="restore">Restore</string>
     <!-- END ACTIONS -->
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
@@ -27,6 +27,10 @@
     <string name="delete_all_data_warning">"WARNING! This operation can't be undone. Are you sure you want to delete all the data stored?</string>
     <string name="info_msg_all_data_deleted">All data stored was deleted successfully.</string>
     <string name="info_msg_stock_shopping_list_created">"The shopping list has been created successfully with the name '%1$s'."</string>
+
+    <string name="shopping_list_will_be_deleted">The shopping list will be delete</string>
+    <string name="shopping_list_will_be_restored">The shopping list will be restored</string>
+    <string name="the_shopping_list_will_be_updated">The shopping list will be updated, deleting purchased products</string>
     <!-- END MESSAGES & QUESTIONS -->
 
     <!-- BEGIN ERROR MSG -->
