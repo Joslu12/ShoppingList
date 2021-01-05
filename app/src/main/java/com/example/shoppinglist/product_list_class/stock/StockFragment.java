@@ -89,7 +89,7 @@ public class StockFragment extends ListOfProductsFragment<StockProduct> {
 
     @Override
     protected String getStringTypeOfProduct() {
-        return getResources().getString(R.string.the_stock_product);
+        return getResources().getString(R.string.the_product);
     }
 
     @Override

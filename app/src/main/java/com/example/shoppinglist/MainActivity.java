@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements DeleteEntityDialo
                 dialog.show(getSupportFragmentManager(), "Delete all data");
                 break;
 
-            case R.id.action_settings:
-                break;
-
             default:
                 ok = super.onOptionsItemSelected(item);
                 break;

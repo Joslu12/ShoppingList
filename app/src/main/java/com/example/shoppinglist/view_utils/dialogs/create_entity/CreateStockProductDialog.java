@@ -2,6 +2,7 @@ package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +34,8 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
 
     //---- Methods ----
     public String getDialogTitle() {
-        String titleText = getResources().getString(R.string.the_stock_product);
-        return String.format(getResources().getString(R.string.enter_the_product_name), titleText);
+        String titleText = getResources().getString(R.string.the_product);
+        return String.format(getResources().getString(R.string.enter_the_product), titleText);
     }
 
     @Override
@@ -46,8 +47,10 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
         //Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
-        inputTargetAmount = this.dialogContent.findViewById(R.id.input_target_amount);
+        inputTargetAmount = this.dialogContent.findViewById(R.id.input_amount);
+        inputTargetAmount.setKeyListener(new DigitsKeyListener());
         inputCurrentAmount = this.dialogContent.findViewById(R.id.input_current_amount);
+        inputCurrentAmount.setKeyListener(new DigitsKeyListener());
 
         //Ponemos el foco en el EditText y abrimos el teclado directamente
         inputName.requestFocus();
@@ -69,7 +72,7 @@ public class CreateStockProductDialog  extends CreateEntityDialog<StockProduct> 
     @Override
     public String getSuccessMsg(String entityName) {
         return String.format(getResources().getString(R.string.info_msg_entity_created),
-                getResources().getString(R.string.upCase_the_stock_product), entityName);
+                getResources().getString(R.string.upCase_the_product), entityName);
     }
 
     final protected String getTypedName() {

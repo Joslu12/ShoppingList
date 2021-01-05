@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/input_target_amount"
+        android:id="@+id/input_amount"
         android:inputType="text"
         android:hint="@string/target_amount"
         android:layout_width="wrap_content"

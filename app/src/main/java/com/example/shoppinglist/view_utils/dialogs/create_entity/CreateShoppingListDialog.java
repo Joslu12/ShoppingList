@@ -17,7 +17,7 @@ public class CreateShoppingListDialog extends CreateListOfProductsDialog<Shoppin
     //---- Methods ----
     public String getDialogTitle() {
         String titleText = getResources().getString(R.string.the_shopping_list);
-        return String.format(getResources().getString(R.string.enter_the_product_list_name), titleText);
+        return String.format(getResources().getString(R.string.enter_the_product_list), titleText);
     }
 
     @Override

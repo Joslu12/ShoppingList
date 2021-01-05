@@ -18,30 +18,29 @@
 
     <!-- BEGIN MESSAGES & QUESTIONS -->
     <string name="warning">Warning</string>
-    <string name="enter_the_product_list_name">"Enter %1$s name:"</string>
+    <string name="enter_the_product_list">"Enter %1$s:"</string>
     <string name="info_msg_entity_created">"%1$s '%2$s' has been created successfully."</string>
     <string name="info_msg_entity_deleted">"%1$s '%2$s' has been deleted."</string>
     <string name="info_msg_entity_updated">"%1$s has been updated with the name: '%2$s'."</string>
     <string name="delete_warning">"Are you sure you want to delete %1$s: '%2$s'?"</string>
-    <string name="enter_the_product_name">"Enter %1$s name:"</string>
+    <string name="enter_the_product">"Enter %1$s:"</string>
     <string name="delete_all_data_warning">"WARNING! This operation can't be undone. Are you sure you want to delete all the data stored?</string>
     <string name="info_msg_all_data_deleted">All data stored was deleted successfully.</string>
-    <string name="info_msg_stock_shopping_list_created">"The shopping list has been created succesfully with the name '%1$s'."</string>
+    <string name="info_msg_stock_shopping_list_created">"The shopping list has been created successfully with the name '%1$s'."</string>
     <!-- END MESSAGES & QUESTIONS -->
 
     <!-- BEGIN ERROR MSG -->
     <string name="src_error">"Oops! Something isn't work properly"</string>
     <string name="unexpected_error">"Oops! This error shouldn't have occurred."</string>
     <string name="blank_name_input_error">"The name can't be empty."</string>
+    <string name="blank_amount_input_error">"The amount can't be empty."</string>
     <string name="blank_target_amount_input_error">"The target amount can't be empty."</string>
     <string name="blank_current_amount_input_error">"The current amount can't be empty."</string>
+    <string name="invalid_amount_input_error">"The amount must be bigger than 0."</string>
     <string name="invalid_target_amount_input_error">"The target amount must be bigger than 0."</string>
     <string name="invalid_current_amount_input_error">"The current amount must be bigger or equals than the target amount."</string>
     <string name="not_a_number_input_error">"The number must not have decimals."</string>
     <!-- END ERROR MSG -->
-
-    <!--TODO: Arreglar lo de: "De el" -->
-    <!--TODO: Arreglar titulos dialogos de productos -->
 
     <!-- BEGIN WORDS -->
     <string name="name">Name</string>
@@ -69,12 +68,6 @@
     <string name="finish_shopping">Finish Shopping</string>
     <string name="shopping_summary">Shopping Summary</string>
     <!-- END SHOPPING LIST -->
-
-    <!-- BEGIN STOCKPRODUCT -->
-    <string name="stock_product">Stock Product</string>
-    <string name="the_stock_product">the stock product</string>
-    <string name="upCase_the_stock_product">The stock product</string>
-    <!-- END STOCKPRODUCT -->
 
     <!-- BEGIN STOCK -->
     <string name="title_activity_stock_list">Stock List</string>

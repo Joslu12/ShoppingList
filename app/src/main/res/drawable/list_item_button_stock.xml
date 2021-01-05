@@ -9,8 +9,10 @@
             <stroke android:width="@dimen/list_item_button_stroke"/>
 
             <!-- Colores del boton -->
-            <solid
-                android:color="@color/stock_inactive_button_color"/>
+            <gradient
+                android:startColor="@color/stock_inactive_button_color"
+                android:endColor="@color/stock_active_button_color"
+                android:angle="45"/>
 
         </shape>
     </item>
@@ -24,7 +26,7 @@
 
             <!-- Colores del boton -->
             <solid
-                android:color="@color/stock_active_button_color"/>
+                android:color="@color/stock_inactive_button_color"/>
 
         </shape>
     </item>

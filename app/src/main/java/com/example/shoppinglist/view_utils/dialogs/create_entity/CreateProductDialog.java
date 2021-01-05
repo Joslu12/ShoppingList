@@ -2,6 +2,7 @@ package com.example.shoppinglist.view_utils.dialogs.create_entity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class CreateProductDialog extends CreateEntityDialog<Product> {
 
     //---- View Elements ----
     private EditText inputName;
-    private EditText inputTargetAmount;
+    private EditText inputAmount;
 
     //---- Constructor ----
     public CreateProductDialog(CreateEntityDialogListener listener) {
@@ -34,7 +35,7 @@ public class CreateProductDialog extends CreateEntityDialog<Product> {
     //---- Methods ----
     public String getDialogTitle() {
         String titleText = getResources().getString(R.string.the_product);
-        return String.format(getResources().getString(R.string.enter_the_product_name), titleText);
+        return String.format(getResources().getString(R.string.enter_the_product), titleText);
     }
 
     @Override
@@ -46,9 +47,8 @@ public class CreateProductDialog extends CreateEntityDialog<Product> {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
         //Referenciamos el EditText desde el contenido del Dialog
         inputName = this.dialogContent.findViewById(R.id.input_name);
-        inputTargetAmount = this.dialogContent.findViewById(R.id.input_target_amount);
-
-        // TODO: Abrir teclado solo de numeros al recibir Focus
+        inputAmount = this.dialogContent.findViewById(R.id.input_amount);
+        inputAmount.setKeyListener(new DigitsKeyListener());
 
         //Ponemos el foco en el EditText y abrimos el teclado directamente
         inputName.requestFocus();
@@ -76,24 +76,24 @@ public class CreateProductDialog extends CreateEntityDialog<Product> {
     final protected String getTypedName() {
         return inputName.getText().toString().trim();
     }
-    final protected String getTypedTargetAmount() {
-        return inputTargetAmount.getText().toString().trim();
+    final protected String getTypedAmount() {
+        return inputAmount.getText().toString().trim();
     }
 
     @Override
     public Product getEntityToCreate() throws AppException {
         try {
             String name = getTypedName();
-            String targetAmount = getTypedTargetAmount();
+            String amount = getTypedAmount();
             if(name.equals("")) {
                 throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_NAME_INPUT, getResources().getString(R.string.blank_name_input_error),getContext()));
-            } else if(targetAmount.equals("")) {
-                throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_TARGET_AMOUNT_INPUT, getResources().getString(R.string.blank_target_amount_input_error),getContext()));
+            } else if(amount.equals("")) {
+                throw new AppException(new AppError(AppErrorHelper.CodeErrors.EMPTY_AMOUNT_INPUT, getResources().getString(R.string.blank_amount_input_error),getContext()));
             } else {
-                return new Product(name,Integer.parseInt(targetAmount));
+                return new Product(name,Integer.parseInt(amount));
             }
         } catch (ShoppingListException e) {
-            throw new AppException(new AppError(AppErrorHelper.CodeErrors.INVALID_TARGET_AMOUNT_INPUT, getResources().getString(R.string.invalid_target_amount_input_error),getContext()));
+            throw new AppException(new AppError(AppErrorHelper.CodeErrors.INVALID_AMOUNT_INPUT, getResources().getString(R.string.invalid_amount_input_error),getContext()));
         } catch (NumberFormatException e) {
             throw new AppException(new AppError(AppErrorHelper.CodeErrors.NOT_A_NUMBER_TARGET_AMOUNT_INPUT, getResources().getString(R.string.not_a_number_input_error),getContext()));
         }

@@ -14,13 +14,13 @@ public class DeleteStockProductDialog extends DeleteEntityDialog<StockProduct> {
     @Override
     protected String getDialogWarningMessage() {
         String deleteText = getResources().getString(R.string.delete);
-        String titleText = getResources().getString(R.string.the_stock_product);
+        String titleText = getResources().getString(R.string.the_product);
         return deleteText + " " + titleText + ": '" + entity.getName() + "'";
     }
 
     @Override
     protected String getDialogTitle() {
-        String typeEntityText = getResources().getString(R.string.the_stock_product);
+        String typeEntityText = getResources().getString(R.string.the_product);
         return String.format(getResources().getString(R.string.delete_warning),typeEntityText,entity.getName());
     }
 }
