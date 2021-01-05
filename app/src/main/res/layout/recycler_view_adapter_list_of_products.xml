@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/min_preferred_margin"
     android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/btnItemProductList"
-        android:background="@android:drawable/btn_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -14,7 +14,9 @@
             android:id="@+id/txtProductListName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/AppFont.ListItemFont"/>
+            android:paddingHorizontal="@dimen/max_preferred_margin"
+            android:paddingVertical="@dimen/min_preferred_margin"
+            android:textAppearance="@style/AppFont"/>
 
     </RelativeLayout>
 

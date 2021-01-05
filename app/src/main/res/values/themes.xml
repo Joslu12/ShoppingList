@@ -7,8 +7,8 @@
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/dark_grey</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
@@ -23,16 +23,21 @@
     <style name="AppFont">
         <item name="android:typeface">serif</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">3mm</item>
+        <item name="android:textSize">@dimen/app_font_size</item>
     </style>
 
     <style name="AppFont.TitleFont" parent="AppFont">
-        <item name="android:textSize">7mm</item>
+        <item name="android:textSize">@dimen/app_title_font_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppFont.TitleListFont" parent="AppFont">
+        <item name="android:textSize">@dimen/app_title_list_font_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="AppFont.ListItemFont" parent="AppFont">
-        <item name="android:textSize">3mm</item>
+        <item name="android:textSize">@dimen/app_list_item_font_size</item>
         <item name="android:textStyle">normal</item>
     </style>
     <!-- END FONTS -->
@@ -40,6 +45,7 @@
     <!-- BEGIN BUTTONS STYLES -->
     <style name="AppButton" parent="@android:style/Widget.Button">
         <item name="android:textAppearance">@style/AppFont</item>
+        <item name="android:padding">@dimen/button_preferred_padding</item>
     </style>
 
     <style name="AppButton.MainShoppingListButton" parent="AppButton">
@@ -59,24 +65,30 @@
 
     <style name="AppButton.NegativeButton" parent="AppButton">
         <item name="android:background">@drawable/button_negative</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
     </style>
 
     <style name="AppButton.NeutralButton" parent="AppButton">
         <item name="android:background">@drawable/button_neutral</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
     </style>
 
     <style name="AppButton.PositiveButton" parent="AppButton">
         <item name="android:background">@drawable/button_positive</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
     </style>
 
     <style name="AppButton.ActionButton" parent="AppButton">
         <item name="android:background">@drawable/button_action</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
     </style>
 
     <style name="AppButton.UpdateUnitButton" parent="AppButton">
         <item name="android:layout_height">@dimen/button_change_units_height</item>
         <item name="android:layout_width">@dimen/button_change_units_width</item>
+        <item name="android:padding">0dp</item>
     </style>
+
     <style name="AppButton.UpdateUnitButton.AddUnitButton" parent="AppButton.UpdateUnitButton">
         <item name="android:background">@drawable/button_add_unit</item>
     </style>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
@@ -84,6 +85,7 @@ public abstract class ListOfProductsFragment<T extends Product> extends Fragment
         if (recyclerViewElement instanceof RecyclerView) {
             recyclerView = (RecyclerView) recyclerViewElement;
             recyclerView.setAdapter(getRecyclerView());
+            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
             updateFragment();
         }
 

@@ -6,31 +6,34 @@ android:layout_gravity="center"
 android:columnCount="2"
 android:orientation="horizontal">
 
-<GridLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_columnWeight="10"
-    android:gravity="left"
-    android:orientation="horizontal"
-    android:columnCount="2">
-
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_height="wrap_content"
+    <GridLayout
+        android:id="@+id/productTextContainer"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        android:layout_gravity="left"
-        android:textAppearance="@style/AppFont.ListItemFont"/>
+        android:layout_columnWeight="10"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:columnCount="2">
 
-    <TextView
-        android:id="@+id/txtCurrentTargetAmount"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:textAppearance="@style/AppFont.ListItemFont"/>
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:textAppearance="@style/AppFont.ListItemFont"/>
 
-</GridLayout>
+        <TextView
+            android:id="@+id/txtCurrentTargetAmount"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/min_preferred_margin"
+            android:textAppearance="@style/AppFont.ListItemFont"/>
 
-    <CheckBox android:id="@+id/checkBox"/>
+    </GridLayout>
+
+    <CheckBox android:id="@+id/checkBox"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"/>
 
 </GridLayout>

@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/txt_error_msg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <!--TODO: Foto de error en la que se muestre ¿Como has llegado hasta aqui?-->

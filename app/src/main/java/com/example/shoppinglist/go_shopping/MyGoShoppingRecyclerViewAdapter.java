@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,7 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
         private final CheckBox mCheckBox;
         private final Context mContext;
         public Product mProduct;
+        private final GridLayout mProductTextContainer;
 
         //---- Constructor ----
         public ViewHolder(View view) {
@@ -74,6 +76,7 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
             mTargetAmount = (TextView) view.findViewById(R.id.txtCurrentTargetAmount);
             mCheckBox = (CheckBox) view.findViewById(R.id.checkBox);
             mCheckBox.setOnClickListener(this);
+            mProductTextContainer = (GridLayout) view.findViewById(R.id.productTextContainer);
         }
 
         //---- Methods ----
@@ -88,8 +91,10 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
             try {
                 if (mCheckBox.isChecked()) {
                     shoppingList.checkProduct(mProduct);
+                    mProductTextContainer.setBackground(mContext.getResources().getDrawable(R.drawable.list_item_stud,null));
                 } else {
                     shoppingList.uncheckProduct(mProduct);
+                    mProductTextContainer.setBackground(null);
                 }
             } catch (ShoppingListException ex) {
                 // No se deberia de dar nunca un error aqui

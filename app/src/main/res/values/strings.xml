@@ -40,6 +40,9 @@
     <string name="not_a_number_input_error">"The number must not have decimals."</string>
     <!-- END ERROR MSG -->
 
+    <!--TODO: Arreglar lo de: "De el" -->
+    <!--TODO: Arreglar titulos dialogos de productos -->
+
     <!-- BEGIN WORDS -->
     <string name="name">Name</string>
     <string name="code">Code</string>
@@ -49,7 +52,6 @@
     <!-- END WORDS -->
 
     <!-- BEGIN PRODUCT -->
-    <string name="title_activity_product">Stock List</string>
     <string name="product">Product</string>
     <string name="the_product">the product</string>
     <string name="upCase_the_product">The product</string>
@@ -62,10 +64,13 @@
     <string name="shopping_list">Shopping List</string>
     <string name="the_shopping_list">the shopping list</string>
     <string name="upCase_the_shopping_list">The shopping list</string>
+    <string name="go_shopping">Go Shopping!</string>
+    <string name="shopping">Shopping</string>
+    <string name="finish_shopping">Finish Shopping</string>
+    <string name="shopping_summary">Shopping Summary</string>
     <!-- END SHOPPING LIST -->
 
     <!-- BEGIN STOCKPRODUCT -->
-    <string name="title_activity_stock_product">Stock Product</string>
     <string name="stock_product">Stock Product</string>
     <string name="the_stock_product">the stock product</string>
     <string name="upCase_the_stock_product">The stock product</string>
@@ -78,6 +83,7 @@
     <string name="the_stock">the stock</string>
     <string name="upCase_the_stock">The stock</string>
     <string name="current_target_amount_difference">"%1$d/%2$d"</string>
+    <string name="generate_shopping_list">Generate shopping list</string>
     <!-- END STOCK -->
 
     <!-- BEGIN STOCK SHOPPING LIST -->
@@ -85,6 +91,7 @@
     <string name="stock_shopping_list">Stock Shopping List</string>
     <string name="the_stock_shopping_list">the stock shopping list</string>
     <string name="upCase_the_stock_shopping_list">The stock shopping list</string>
+    <string name="go_to_associated_stock">Go to associated stock</string>
     <!-- END STOCK SHOPPING LIST -->
 
 </resources>

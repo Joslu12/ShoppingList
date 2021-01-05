@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Borde del Dialogo -->
+    <stroke android:width="@dimen/dialog_stroke"/>
+
+    <gradient
+        android:startColor="@color/app_dialog_wallpaper_start_color"
+        android:endColor="@color/app_dialog_wallpaper_end_color"
+        android:angle="270"/>
+</shape>

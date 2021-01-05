@@ -36,6 +36,9 @@
     <color name="app_main_wallpaper_start_color">#FFFACD</color>
     <color name="app_main_wallpaper_end_color">#F2DEB3</color>
 
+    <color name="app_dialog_wallpaper_start_color">#FFFACD</color>
+    <color name="app_dialog_wallpaper_end_color">#F2DEB3</color>
+
     <color name="app_shopping_list_wallpaper_start_color">#b4d6ad</color>
     <color name="app_shopping_list_wallpaper_end_color">#5d8d5d</color>
 

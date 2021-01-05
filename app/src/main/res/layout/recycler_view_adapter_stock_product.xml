@@ -10,6 +10,8 @@
         android:layout_height="match_parent"
         android:layout_columnWeight="20"
         android:orientation="horizontal"
+        android:layout_marginRight="@dimen/max_preferred_margin"
+        android:layout_gravity="center_vertical"
         android:columnCount="2">
 
         <TextView
@@ -40,7 +42,8 @@
             style="@style/AppButton.UpdateUnitButton.RemoveUnitButton"
             android:id="@+id/btnRemoveUnit"
             android:text="-"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:layout_marginRight="@dimen/min_preferred_margin"/>
 
         <android.widget.Button
             style="@style/AppButton.UpdateUnitButton.AddUnitButton"
@@ -57,7 +60,7 @@
         <android.widget.Button
             style="@style/AppButton.RemoveButton"
             android:id="@+id/btnDeleteProduct"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="@dimen/max_preferred_margin"
             android:layout_gravity="end"/>
 
     </LinearLayout>

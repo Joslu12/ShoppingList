@@ -1,14 +1,15 @@
 package com.example.shoppinglist.shopping_summary;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.MainActivity;
@@ -68,6 +69,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         if (recyclerViewElement instanceof RecyclerView) {
             purchasedProductsRecyclerView = (RecyclerView) recyclerViewElement;
             purchasedProductsRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getPurchasedProducts())));
+            purchasedProductsRecyclerView.addItemDecoration(new DividerItemDecoration(purchasedProductsRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
         }
 
         // Se corresponde con el productsToPurchaseRecyclerView
@@ -76,6 +78,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         if (recyclerViewElement instanceof RecyclerView) {
             productsToPurchaseRecyclerView = (RecyclerView) recyclerViewElement;
             productsToPurchaseRecyclerView.setAdapter(new MyListOfProductsRecyclerViewAdapter(null,listFromIterator(shoppingList.getProductsToPurchase())));
+            productsToPurchaseRecyclerView.addItemDecoration(new DividerItemDecoration(productsToPurchaseRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
         }
 
         if(shoppingList instanceof StockShoppingList) {
@@ -87,6 +90,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
     private void showPropertlyButtons() {
         ((Button) findViewById(R.id.btnDiscard)).setVisibility(View.INVISIBLE);
         ((Button) findViewById(R.id.btnSave)).setText(getResources().getString(R.string.update) + " " + getResources().getString(R.string.stock));
+        ((Button) findViewById(R.id.btnSave)).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         ((Button) findViewById(R.id.btnUpdate)).setVisibility(View.INVISIBLE);
     }
 

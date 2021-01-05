@@ -23,7 +23,7 @@
                 android:id="@+id/btnGenerateAssociatedStock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Generate Shopping list"/>
+                android:text="@string/generate_shopping_list"/>
 
         </LinearLayout>
 
@@ -47,14 +47,15 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="left"
                     android:text="@string/product"
-                    android:textAppearance="@style/AppFont.ListItemFont"/>
+                    android:textAppearance="@style/AppFont.TitleListFont"/>
 
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
+                    android:paddingLeft="@dimen/button_change_units_side"
                     android:text="@string/amount"
-                    android:textAppearance="@style/AppFont.ListItemFont"/>
+                    android:textAppearance="@style/AppFont.TitleListFont"/>
 
             </GridLayout>
         </GridLayout>
@@ -62,15 +63,14 @@
         <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            tools:context=".product_list_class.ListOfProductsFragment"
+            app:layoutManager="LinearLayoutManager"
+            android:id="@+id/recyclerView"
             android:name="com.example.shoppinglist.ListOfProductsFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:layoutManager="LinearLayoutManager"
-            tools:context=".product_list_class.ListOfProductsFragment"
-            android:id="@+id/recyclerView"
+            android:layout_margin="@dimen/max_preferred_margin"
             tools:listitem="@layout/recycler_view_adapter_list_of_products"/>
 
     </LinearLayout>
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/max_preferred_margin"
         app:backgroundTint="@color/start_action_button_color"
         app:srcCompat="@android:drawable/ic_input_add"/>
 

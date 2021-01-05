@@ -1,0 +1,94 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- BEGIN MAIN -->
+    <string name="app_name">ShoppingList</string>
+    <string name="action_settings">Ajustes</string>
+    <!-- END MAIN -->
+
+    <!-- BEGIN ACTIONS -->
+    <string name="delete">Eliminar</string>
+    <string name="delete_all_data">Eliminar todos los datos almacenados</string>
+    <string name="cancel">Cancelar</string>
+    <string name="create">Crear</string>
+    <string name="edit_name">Editar nombre</string>
+    <string name="update">Actualizar</string>
+    <string name="discard">Descartar</string>
+    <string name="save">Guardar</string>
+    <!-- END ACTIONS -->
+
+    <!-- BEGIN MESSAGES & QUESTIONS -->
+    <string name="warning">Cuidado</string>
+    <string name="enter_the_product_list_name">"Introduce el nombre de %1$s"</string>
+    <string name="info_msg_entity_created">"%1$s '%2$s' ha sido creada con éxito."</string>
+    <string name="info_msg_entity_deleted">"%1$s '%2$s' ha sido eliminado."</string>
+    <string name="info_msg_entity_updated">"%1$s ha sido actualizado con el nombre: '%2$s'."</string>
+    <string name="delete_warning">"¿Estás seguro que quieres eliminar %1$s: '%2$s'?"</string>
+    <string name="enter_the_product_name">"Introduce el nombre de %1$s:"</string>
+    <string name="delete_all_data_warning">"¡CUIDADO! Esta operación no puede ser desecha. ¿Estás seguro que quieres eliminar todos los datos almacenados?</string>
+    <string name="info_msg_all_data_deleted">Todos los datos almacenados han sido eliminados con éxito.</string>
+    <string name="info_msg_stock_shopping_list_created">"La lista de la compra del inventario ha sido creada con éxito con el nombre: '%1$s'."</string>
+    <!-- END MESSAGES & QUESTIONS -->
+
+    <!-- BEGIN ERROR MSG -->
+    <string name="src_error">"¡Ups! Algo no está funcionando correctamente"</string>
+    <string name="unexpected_error">"¡Ups! Este error no debería haber ocurrido."</string>
+    <string name="blank_name_input_error">"El nombre no puede estar vacío."</string>
+    <string name="blank_target_amount_input_error">"La cantidad objetivo no puede estar vacía."</string>
+    <string name="blank_current_amount_input_error">"La cantidad actual no puede estar vacía."</string>
+    <string name="invalid_target_amount_input_error">"La cantidad objetivo debe ser mayor que 0."</string>
+    <string name="invalid_current_amount_input_error">"La cantidad actual debe ser mayor o igual que la cantidad objetivo."</string>
+    <string name="not_a_number_input_error">"El número no debe tener decimales."</string>
+    <!-- END ERROR MSG -->
+
+    <!-- BEGIN WORDS -->
+    <string name="name">Nombre</string>
+    <string name="code">Código</string>
+    <string name="amount">Cantidad</string>
+    <string name="target_amount">Cantidad Objetivo</string>
+    <string name="current_amount" tools:ignore="DuplicateDefinition">Cantidad Actual</string>
+    <!-- END WORDS -->
+
+    <!-- BEGIN PRODUCT -->
+    <string name="product">Producto</string>
+    <string name="the_product">el producto</string>
+    <string name="upCase_the_product">El producto</string>
+    <string name="purchased_products">Productos comprados:</string>
+    <string name="products_to_purchase">Productos por comprar:</string>
+    <!-- END PRODUCT -->
+
+    <!-- BEGIN SHOPPING LIST -->
+    <string name="shopping_lists">Listas de la compra</string>
+    <string name="shopping_list">Lista de la compra</string>
+    <string name="the_shopping_list">la lista de la compra</string>
+    <string name="upCase_the_shopping_list">La lista de la compra</string>
+    <string name="go_shopping">¡Ir de Compras!</string>
+    <string name="shopping">Comprando</string>
+    <string name="finish_shopping">Finalizar Compra</string>
+    <string name="shopping_summary">Resumen de la compra</string>
+    <!-- END SHOPPING LIST -->
+
+    <!-- BEGIN STOCKPRODUCT -->
+    <string name="stock_product">Producto de Inventario</string>
+    <string name="the_stock_product">el producto de inventario</string>
+    <string name="upCase_the_stock_product">El producto de inventario</string>
+    <!-- END STOCKPRODUCT -->
+
+    <!-- BEGIN STOCK -->
+    <string name="title_activity_stock_list">Lista de Inventarios</string>
+    <string name="stocks">Inventarios</string>
+    <string name="stock">Inventario</string>
+    <string name="the_stock">el inventario</string>
+    <string name="upCase_the_stock">El inventario</string>
+    <string name="current_target_amount_difference">"%1$d/%2$d"</string>
+    <string name="generate_shopping_list">Generar lista de la compra</string>
+    <!-- END STOCK -->
+
+    <!-- BEGIN STOCK SHOPPING LIST -->
+    <string name="stock_shopping_lists">Listas de la Compra de Inventarios</string>
+    <string name="stock_shopping_list">Lista de la Compra de Inventario</string>
+    <string name="the_stock_shopping_list">la lista de la compra de inventario</string>
+    <string name="upCase_the_stock_shopping_list">La lista de la compra de inventario</string>
+    <string name="go_to_associated_stock">Ir al inventario asociado</string>
+    <!-- END STOCK SHOPPING LIST -->
+
+</resources>

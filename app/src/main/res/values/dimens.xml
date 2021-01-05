@@ -1,13 +1,37 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">55dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="min_preferred_margin">5dp</dimen>
+    <dimen name="max_preferred_margin">10dp</dimen>
+
+    <!-- BEGIN FONTS SIZES -->
+    <dimen name="app_font_size">19dp</dimen>
+    <dimen name="app_title_font_size">26dp</dimen>
+    <dimen name="app_title_list_font_size">21dp</dimen>
+    <dimen name="app_list_item_font_size">18dp</dimen>
+    <!-- END FONTS SIZES -->
+
+    <!-- BEGIN BUTTON DIMENSIONS -->
     <dimen name="button_radius">5dp</dimen>
     <dimen name="button_stroke">2dp</dimen>
     <dimen name="list_item_button_radius">20dp</dimen>
     <dimen name="list_item_button_stroke">1dp</dimen>
-
     <dimen name="button_change_units_side">30dp</dimen>
     <dimen name="button_change_units_width">@dimen/button_change_units_side</dimen>
     <dimen name="button_change_units_height">@dimen/button_change_units_side</dimen>
+
+    <dimen name="between_buttons_margin">8dp</dimen>
+    <dimen name="button_preferred_margin">10dp</dimen>
+    <dimen name="button_preferred_padding">8dp</dimen>
+    <!-- END BUTTON DIMENSIONS -->
+
+    <!-- BEGIN DIALOG DIMENSIONS -->
+    <dimen name="dialog_stroke">4dp</dimen>
+
+    <dimen name="dialog_borders_margin">16dp</dimen>
+    <!-- END DIALOG DIMENSIONS -->
+
+    <dimen name="list_item_separator_stroke">1dp</dimen>
+    <dimen name="list_item_stud_stroke">3dp</dimen>
+
 </resources>

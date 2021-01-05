@@ -10,8 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="2"
-        android:gravity="left"
+        android:layout_gravity="center_vertical"
         android:orientation="horizontal"
+        android:layout_marginRight="@dimen/min_preferred_margin"
         android:columnCount="2">
 
         <TextView
@@ -35,7 +36,7 @@
     <android.widget.Button
         style="@style/AppButton.RemoveButton"
         android:id="@+id/btnDeleteProduct"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="@dimen/min_preferred_margin"
         android:layout_gravity="end"/>
 
 </GridLayout>

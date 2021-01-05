@@ -22,19 +22,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="@string/purchased_products"/>
+                android:text="@string/purchased_products"
+                android:layout_marginLeft="@dimen/min_preferred_margin"
+                android:textAppearance="@style/AppFont.TitleListFont"/>
 
             <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
+                tools:context=".shopping_summary.ShoppingSummaryActivity"
+                app:layoutManager="LinearLayoutManager"
+                android:id="@+id/purchasedProductsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".shopping_summary.ShoppingSummaryActivity"
-                android:id="@+id/purchasedProductsRecyclerView"
+                android:layout_marginLeft="@dimen/max_preferred_margin"
+                android:layout_marginRight="@dimen/max_preferred_margin"
+                android:layout_marginBottom="@dimen/max_preferred_margin"
                 tools:listitem="@layout/recycler_view_adapter_product"/>
 
         </LinearLayout>
@@ -48,19 +51,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="@string/products_to_purchase"/>
+                android:text="@string/products_to_purchase"
+                android:layout_marginLeft="@dimen/min_preferred_margin"
+                android:textAppearance="@style/AppFont.TitleListFont"/>
 
             <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
+                tools:context=".shopping_summary.ShoppingSummaryActivity"
+                app:layoutManager="LinearLayoutManager"
+                android:id="@+id/productsToPurchaseRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".shopping_summary.ShoppingSummaryActivity"
-                android:id="@+id/productsToPurchaseRecyclerView"
+                android:layout_marginLeft="@dimen/max_preferred_margin"
+                android:layout_marginRight="@dimen/max_preferred_margin"
+                android:layout_marginBottom="@dimen/max_preferred_margin"
                 tools:listitem="@layout/recycler_view_adapter_product"/>
 
         </LinearLayout>
@@ -69,6 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginTop="@dimen/max_preferred_margin"
+            android:layout_marginBottom="@dimen/max_preferred_margin"
             android:orientation="horizontal">
 
             <android.widget.Button

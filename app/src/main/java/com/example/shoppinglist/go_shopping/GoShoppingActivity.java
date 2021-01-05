@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppinglist.R;
@@ -43,6 +44,7 @@ public class GoShoppingActivity extends AppCompatActivity {
         // Set the adapter
         if (recyclerViewElement instanceof RecyclerView) {
             ((RecyclerView) recyclerViewElement).setAdapter(new MyGoShoppingRecyclerViewAdapter(shoppingList, shoppingList.getProductsInsideAList()));
+            ((RecyclerView)recyclerViewElement).addItemDecoration(new DividerItemDecoration(recyclerViewElement.getContext(), DividerItemDecoration.VERTICAL));
         }
     }
 

@@ -8,15 +8,15 @@
     <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".list_of_products_list.ListOfProductsListFragment"
+        app:layoutManager="LinearLayoutManager"
+        android:id="@+id/recyclerView"
         android:name="com.example.shoppinglist.ListOfProductsListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".list_of_products_list.ListOfProductsListFragment"
-        android:id="@+id/recyclerView"
+        android:layout_marginLeft="@dimen/max_preferred_margin"
+        android:layout_marginRight="@dimen/max_preferred_margin"
         tools:listitem="@layout/recycler_view_adapter_list_of_products"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/max_preferred_margin"
         app:backgroundTint="@color/start_action_button_color"
         app:srcCompat="@android:drawable/ic_input_add"/>
 
