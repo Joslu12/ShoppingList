@@ -59,7 +59,15 @@ public class ShoppingList extends ProductsListClass<Product> {
 		}
 		buying = true;
 	}
-	
+
+	/**
+	 * @param p Producto a comprobar si esta marcado
+	 * @return true si el Producto p ha sido marcado antes
+	 */
+	public boolean isChecked(final Product p) {
+		return purchasedProducts.contains(p);
+	}
+
 	/**
 	 * Permite indicar que un producto ya se ha comprado
 	 * @param p Producto a marcar como comprado

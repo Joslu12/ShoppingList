@@ -49,6 +49,14 @@ public class MyGoShoppingRecyclerViewAdapter extends RecyclerView.Adapter<MyGoSh
         holder.mProduct = values.get(position);
         holder.mName.setText(holder.mProduct.getName());
         holder.mTargetAmount.setText(Integer.toString(holder.mProduct.getTargetAmount()));
+        // Al enlazarse el ViewHolder vemos en que estado debemos mostrar la vista
+        if (shoppingList.isChecked(holder.mProduct)) {
+            holder.mProductTextContainer.setBackground(holder.mContext.getResources().getDrawable(R.drawable.list_item_stud,null));
+            holder.mCheckBox.setChecked(true);
+        } else {
+            holder.mProductTextContainer.setBackground(null);
+            holder.mCheckBox.setChecked(false);
+        }
     }
 
     @Override
