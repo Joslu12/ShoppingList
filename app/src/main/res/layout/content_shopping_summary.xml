@@ -79,6 +79,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/layoutBtnDiscard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -110,7 +111,7 @@
 
                 <android.widget.Button
                     style="@style/AppButton.PositiveButton"
-                    android:id="@+id/btnSave"
+                    android:id="@+id/btnRestore"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -119,6 +120,7 @@
                     android:onClick="onClick"/>
 
                 <TextView
+                    android:id="@+id/txtBtnRestore"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
@@ -127,6 +129,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutBtnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

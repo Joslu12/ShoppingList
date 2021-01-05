@@ -19,17 +19,12 @@ import com.example.shoppinglist.app_error_handling.AppError;
 import com.example.shoppinglist.app_error_handling.AppErrorHelper.CodeErrors;
 import com.example.shoppinglist.product_list_class.MyListOfProductsRecyclerViewAdapter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import bd.BaseDatosUtils;
 import bd.dao.ListTableDao;
 import bd.dao.ShoppingListDao;
 import bd.dao.StockDao;
 import bd.dao.StockShoppingListDao;
 import model.EndPurchaseOperation;
-import model.Product;
 import model.ShoppingList;
 import model.ShoppingListException;
 import model.Stock;
@@ -89,10 +84,11 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
 
     //---- Methods ----
     private void showPropertlyButtons() {
-        ((Button) findViewById(R.id.btnDiscard)).setVisibility(View.INVISIBLE);
-        ((Button) findViewById(R.id.btnSave)).setText(getResources().getString(R.string.update) + " " + getResources().getString(R.string.stock));
-        ((Button) findViewById(R.id.btnSave)).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        ((Button) findViewById(R.id.btnUpdate)).setVisibility(View.INVISIBLE);
+        findViewById(R.id.layoutBtnDiscard).setVisibility(View.INVISIBLE);
+        ((Button) findViewById(R.id.btnRestore)).setText(getResources().getString(R.string.update) + " " + getResources().getString(R.string.stock));
+        ((Button) findViewById(R.id.btnRestore)).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        findViewById(R.id.txtBtnRestore).setVisibility(View.GONE);
+        findViewById(R.id.layoutBtnUpdate).setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View view) {
@@ -107,7 +103,7 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
                     result = (T) shoppingList.finishSummary(EndPurchaseOperation.DISCARD);
                     break;
 
-                case R.id.btnSave:
+                case R.id.btnRestore:
                     result = (T) shoppingList.finishSummary(EndPurchaseOperation.SAVE_LIST);
                     break;
 
