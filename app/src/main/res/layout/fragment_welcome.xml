@@ -6,12 +6,10 @@
     tools:context=".WelcomeFragment"
     android:background="@drawable/wallpaper_main">
 
-    <!-- TODO: icono de la app -->
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="25sp"
-        android:text="@string/app_name" />
+        android:src="@drawable/logotipo"
+        android:contentDescription="@string/app_name"/>
 
 </FrameLayout>
