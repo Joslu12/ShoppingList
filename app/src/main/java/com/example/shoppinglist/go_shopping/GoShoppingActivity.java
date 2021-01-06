@@ -54,11 +54,11 @@ public class GoShoppingActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.btnFinishShopping:
                 // Finalizamos la compra y mostramos un resumen de la compra
-                finish(); // Finalizamos la actividad para que nos se pueda volver a ella
                 shoppingList.finishPurchasing();
                 Intent intent = new Intent(getApplicationContext(), ShoppingSummaryActivity.class);
                 intent.putExtra("SHOPPING_LIST",shoppingList);
                 getApplicationContext().startActivity(intent);
+                finish(); // Finalizamos la actividad para que nos se pueda volver a ella
                 break;
         }
     }

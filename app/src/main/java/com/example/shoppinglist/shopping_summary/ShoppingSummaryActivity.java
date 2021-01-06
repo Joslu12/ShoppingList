@@ -127,9 +127,9 @@ public class ShoppingSummaryActivity<T extends ShoppingList> extends AppCompatAc
         }
 
         // Volvemos a la pantalla de inicio
-        finishAffinity(); // Eliminamos las actividades del Stack
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         getApplicationContext().startActivity(intent);
+        finishAffinity(); // Eliminamos las actividades del Stack
     }
 
 }
