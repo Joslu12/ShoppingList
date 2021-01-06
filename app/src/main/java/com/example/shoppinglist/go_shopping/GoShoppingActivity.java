@@ -57,7 +57,7 @@ public class GoShoppingActivity extends AppCompatActivity {
                 shoppingList.finishPurchasing();
                 Intent intent = new Intent(getApplicationContext(), ShoppingSummaryActivity.class);
                 intent.putExtra("SHOPPING_LIST",shoppingList);
-                getApplicationContext().startActivity(intent);
+                this.startActivity(intent);
                 finish(); // Finalizamos la actividad para que nos se pueda volver a ella
                 break;
         }
