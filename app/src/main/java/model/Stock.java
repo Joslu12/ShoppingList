@@ -81,14 +81,20 @@ public class Stock extends ProductsListClass<StockProduct> {
 	}
 	
 	/**
-	 * Las unidades actuales del producto pasaran a ser igual a las unidades objetivo
+	 * Las unidades actuales del producto pasaran a ser igual a las unidades objetivo,
+	 * si el producto no está en el inventario es añadido al mismo.
 	 * @param p Producto al que completar las unidades
 	 * @throws ShoppingListException 
 	 */
 	public void completeUnitsProduct(final Product p) throws ShoppingListException {
 		// Hay necesidad de poner ownProduct, porque p es un Producto, y por tanto no tiene currentAmount
-		StockProduct ownProduct = this.products.get(products.indexOf(p));
-		ownProduct.setCurrentAmount(ownProduct.getTargetAmount());
+		int idx = products.indexOf(p);
+		if(idx!=-1) {
+			StockProduct ownProduct = this.products.get(products.indexOf(p));
+			ownProduct.setCurrentAmount(ownProduct.getTargetAmount());
+		}else{
+			this.addProduct(new StockProduct(p.getName(),p.getTargetAmount(),p.getTargetAmount()));
+		}
 	}
 	
 	/**
